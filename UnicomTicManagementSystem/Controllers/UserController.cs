@@ -8,14 +8,14 @@ using UnicomTicManagementSystem.Repositories;
 
 namespace UnicomTicManagementSystem.Controllers
 {
-    public static class UserController
+    public static class UserController//test
     {
         public static bool CreateAdmin(string username, string password)
         {
             using (var conn = DbConfig.GetConnection())
             {
                 conn.Open();
-
+                
                 string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
                 using var checkCmd = new SQLiteCommand(checkQuery, conn);
                 checkCmd.Parameters.AddWithValue("@Username", username);
