@@ -13,4 +13,23 @@ namespace UnicomTicManagementSystem.Models
         public string Password { get; set; } = string.Empty;
         public string Role { get; set; }//Admin, Student, Staff, Lecturer
     }
+    public class ComboBoxItem
+    {
+        public string Text { get; set; }   // Displayed text (e.g., CourseName)
+        public string Value { get; set; }  // Internal value (e.g., CourseID like "C1001")
+
+        public ComboBoxItem(string text, string value)
+        {
+            Text = text;
+            Value = value;
+        }
+
+        public override string ToString()
+        {
+            return Text; // So ComboBox displays only course name
+        }
+    }
+
+
+
 }

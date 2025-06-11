@@ -45,7 +45,7 @@
             cmbGender = new ComboBox();
             dtpDOB = new DateTimePicker();
             lbMail = new Label();
-            textBox1 = new TextBox();
+            txtEmail = new TextBox();
             btnSave = new Button();
             btnUpdate = new Button();
             btnDelete = new Button();
@@ -195,12 +195,12 @@
             lbMail.TabIndex = 17;
             lbMail.Text = "E.Mail";
             // 
-            // textBox1
+            // txtEmail
             // 
-            textBox1.Location = new Point(145, 326);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(240, 23);
-            textBox1.TabIndex = 18;
+            txtEmail.Location = new Point(145, 326);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(240, 23);
+            txtEmail.TabIndex = 18;
             // 
             // btnSave
             // 
@@ -220,6 +220,7 @@
             btnUpdate.TabIndex = 20;
             btnUpdate.Text = "UPDATE";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
@@ -229,7 +230,6 @@
             btnDelete.TabIndex = 21;
             btnDelete.Text = "DElETE";
             btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
             // 
             // btnBack
             // 
@@ -239,6 +239,7 @@
             btnBack.TabIndex = 22;
             btnBack.Text = "BACK  ";
             btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             // 
             // dgvStudents
             // 
@@ -247,6 +248,7 @@
             dgvStudents.Name = "dgvStudents";
             dgvStudents.Size = new Size(335, 220);
             dgvStudents.TabIndex = 23;
+            dgvStudents.CellContentClick += dgvStudents_CellContentClick;
             // 
             // StudentForm
             // 
@@ -258,7 +260,7 @@
             Controls.Add(btnDelete);
             Controls.Add(btnUpdate);
             Controls.Add(btnSave);
-            Controls.Add(textBox1);
+            Controls.Add(txtEmail);
             Controls.Add(lbMail);
             Controls.Add(dtpDOB);
             Controls.Add(cmbGender);
@@ -302,7 +304,7 @@
         private ComboBox cmbGender;
         private DateTimePicker dtpDOB;
         private Label lbMail;
-        private TextBox textBox1;
+        private TextBox txtEmail;
         private Button btnSave;
         private Button btnUpdate;
         private Button btnDelete;

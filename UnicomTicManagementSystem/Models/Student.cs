@@ -15,7 +15,7 @@ namespace UnicomTicManagementSystem.Models
         public string Phone { get; set; }
         public DateTime DOB { get; set; }
         public string Gender { get; set; }
-        public int CourseID { get; set; }
+        public string CourseID { get; set; }
         public int UserID { get; set; }
     }
 }

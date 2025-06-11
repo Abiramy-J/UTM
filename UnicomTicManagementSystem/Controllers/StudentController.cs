@@ -17,14 +17,14 @@ namespace UnicomTicManagementSystem.Controllers
             using var conn = DbConfig.GetConnection();
             conn.Open();
             // Get the maximum existing StudentID. If no student exists, return 0.
-            var cmd = new SQLiteCommand("SELECT INFULL (MAX(StudentID),0)FROM Students", conn);
+            var cmd = new SQLiteCommand("SELECT COALESCE(MAX(StudentID), 0) FROM Students", conn);
             long lastID = (long)cmd.ExecuteScalar();
             return "UT" + (1000 + lastID + 1);
         }
         public static string GeneratePassword()
         {
             var rnd = new Random();
-            return "Stud@" + rnd.Next(1000, 999);
+            return "Stud@" + rnd.Next(1000, 9999);
         }
         public static bool CreateStudent(Student s, string username, string password)
         {

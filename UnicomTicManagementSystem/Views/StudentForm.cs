@@ -20,6 +20,17 @@ namespace UnicomTicManagementSystem.Views
         public StudentForm()
         {
             InitializeComponent();
+            // Add this in InitializeComponent or before adding rows in LoadStudentData
+            dgvStudents.Columns.Add("StudentID", "Student ID");
+            dgvStudents.Columns.Add("Name", "Name");
+            dgvStudents.Columns.Add("Address", "Address");
+            dgvStudents.Columns.Add("Email", "Email");
+            dgvStudents.Columns.Add("Phone", "Phone");
+            dgvStudents.Columns.Add("DOB", "Date of Birth");
+            dgvStudents.Columns.Add("Gender", "Gender");
+            dgvStudents.Columns.Add("CourseName", "Course Name");
+            dgvStudents.Columns.Add("Username", "Username");
+
         }
         private int selectedStudentId = 0; // Stores the currently selected student ID for update/delete
 
@@ -40,11 +51,12 @@ namespace UnicomTicManagementSystem.Views
             using var rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
-                cmbCourse.Items.Add(new ComboBoxItem(rdr["CourseName"].ToString(), Convert.ToInt32(rdr["CourseID"])));
-            }
+                cmbCourse.Items.Add(new ComboBoxItem(rdr["CourseName"].ToString(), rdr["CourseID"].ToString()));
 
-            // Load existing students into the data grid
-            LoadStudentData();
+
+                // Load existing students into the data grid
+                LoadStudentData();
+            }
         }
 
         // Load all student records from the database into the DataGridView
@@ -90,19 +102,20 @@ namespace UnicomTicManagementSystem.Views
                 Name = txtName.Text,
                 Address = txtAddress.Text,
                 Email = txtEmail.Text,
-                Phone = txtPhone.Text,
+                Phone = txtPhoneNo.Text,
                 DOB = dtpDOB.Value,
                 Gender = cmbGender.Text,
                 CourseID = ((ComboBoxItem)cmbCourse.SelectedItem).Value
+
             };
 
             // Call controller to insert student into database
-            bool added = StudentController.CreateStudent(s, txtUsername.Text, txtPassword.Text);
+            bool added = StudentController.CreateStudent(s, txtUserName.Text, txtPassword.Text);
             if (added)
             {
                 MessageBox.Show("Student added!");
                 LoadStudentData();  // Reload the data grid with new student
-                ClearForm();        // Clear the form for next entry
+                                    // ClearForm();        // Clear the form for next entry
             }
             else
             {
@@ -137,8 +150,80 @@ namespace UnicomTicManagementSystem.Views
             }
         }
 
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (selectedStudentId == 0)
+            {
+                MessageBox.Show("Select a student.");
+                return;
+            }
+
+            var s = new Student
+            {
+                StudentID = selectedStudentId,
+                Name = txtName.Text,
+                Address = txtAddress.Text,
+                Email = txtEmail.Text,
+                Phone = txtPhoneNo.Text,
+                DOB = dtpDOB.Value,
+                Gender = cmbGender.Text,
+                CourseID = ((ComboBoxItem)cmbCourse.SelectedItem).Value
+            };
+
+            bool updated = StudentController.UpdateStudents(s);
+            if (updated)
+            {
+                MessageBox.Show("Updated!");
+                LoadStudentData();
+                ClearForm();
+            }
+            else
+            {
+                MessageBox.Show("Update failed.");
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close(); // Close the form
+        }
+
+        private void dgvStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvStudents.Rows[e.RowIndex];
+                selectedStudentId = Convert.ToInt32(row.Cells[0].Value);
+                txtName.Text = row.Cells[1].Value.ToString();
+                txtAddress.Text = row.Cells[2].Value.ToString();
+                txtEmail.Text = row.Cells[3].Value.ToString();
+                txtPhoneNo.Text = row.Cells[4].Value.ToString();
+                dtpDOB.Value = Convert.ToDateTime(row.Cells[5].Value);
+                cmbGender.Text = row.Cells[6].Value.ToString();
+                cmbCourse.Text = row.Cells[7].Value.ToString();
+                txtUserName.Text = row.Cells[8].Value.ToString();
+                txtUserName.ReadOnly = true;
+                txtPassword.ReadOnly = true;
+            }
+        }
+        private void ClearForm()
+        {
+            txtName.Clear();
+            txtAddress.Clear();
+            txtEmail.Clear();
+            txtPhoneNo.Clear();
+            cmbGender.SelectedIndex = -1;
+            cmbCourse.SelectedIndex = -1;
+            dtpDOB.Value = DateTime.Today;
+            txtUserName.Text = StudentController.GenerateUsername();
+            txtPassword.Text = StudentController.GeneratePassword();
+            selectedStudentId = 0;
+        }
     }
+    
 }
-}
-}
-}
+
+
+        
+
+    

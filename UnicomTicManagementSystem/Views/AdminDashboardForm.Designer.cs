@@ -47,6 +47,7 @@
             btnAddStudent.TabIndex = 0;
             btnAddStudent.Text = "Add Student ";
             btnAddStudent.UseVisualStyleBackColor = true;
+            btnAddStudent.Click += btnAddStudent_Click;
             // 
             // btnAddLecturer
             // 
