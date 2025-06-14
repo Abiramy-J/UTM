@@ -224,16 +224,16 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(552, 390);
+            btnDelete.Location = new Point(648, 390);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 21;
-            btnDelete.Text = "DElETE";
+            btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(667, 390);
+            btnBack.Location = new Point(793, 390);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(75, 23);
             btnBack.TabIndex = 22;
@@ -246,7 +246,7 @@
             dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvStudents.Location = new Point(435, 143);
             dgvStudents.Name = "dgvStudents";
-            dgvStudents.Size = new Size(335, 220);
+            dgvStudents.Size = new Size(433, 220);
             dgvStudents.TabIndex = 23;
             dgvStudents.CellContentClick += dgvStudents_CellContentClick;
             // 
@@ -254,7 +254,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1065, 570);
             Controls.Add(dgvStudents);
             Controls.Add(btnBack);
             Controls.Add(btnDelete);
