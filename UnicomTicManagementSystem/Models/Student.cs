@@ -17,5 +17,6 @@ namespace UnicomTicManagementSystem.Models
         public string Gender { get; set; }
         public string CourseID { get; set; }
         public int UserID { get; set; }
+        public string Username { get; set; }
     }
 }

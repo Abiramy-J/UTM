@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UnicomTicManagementSystem.Repositories
 {
-    public static class SystemDefaults
+    /*public static class SystemDefaults
     {
         // This method seeds default courses and subjects into the database
         // but only if the Courses table is empty (to avoid duplicate inserts).
@@ -71,6 +71,6 @@ namespace UnicomTicManagementSystem.Repositories
             }
             // If courses already exist, this method does nothing to avoid duplicates
         }
-    }
+    }*/
 
 }

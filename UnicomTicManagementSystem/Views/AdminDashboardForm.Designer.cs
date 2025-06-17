@@ -28,66 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnAddStudent = new Button();
-            btnAddLecturer = new Button();
-            btnAddStaff = new Button();
-            btnCreateAdmin = new Button();
+            btnCreateUsers = new Button();
+            btnManageUser = new Button();
             btnManageCourseAndSubject = new Button();
             btnAddExam = new Button();
             btnAddMarks = new Button();
             btnAddTimetable = new Button();
             btnLogout = new Button();
+            btnAttendance = new Button();
             SuspendLayout();
             // 
-            // btnAddStudent
+            // btnCreateUsers
             // 
-            btnAddStudent.Location = new Point(29, 63);
-            btnAddStudent.Name = "btnAddStudent";
-            btnAddStudent.Size = new Size(173, 23);
-            btnAddStudent.TabIndex = 0;
-            btnAddStudent.Text = "Add Student ";
-            btnAddStudent.UseVisualStyleBackColor = true;
-            btnAddStudent.Click += btnAddStudent_Click;
+            btnCreateUsers.Location = new Point(29, 63);
+            btnCreateUsers.Name = "btnCreateUsers";
+            btnCreateUsers.Size = new Size(173, 23);
+            btnCreateUsers.TabIndex = 0;
+            btnCreateUsers.Text = "Create Users";
+            btnCreateUsers.UseVisualStyleBackColor = true;
+            btnCreateUsers.Click += btnAddStudent_Click;
             // 
-            // btnAddLecturer
+            // btnManageUser
             // 
-            btnAddLecturer.Location = new Point(29, 92);
-            btnAddLecturer.Name = "btnAddLecturer";
-            btnAddLecturer.Size = new Size(173, 23);
-            btnAddLecturer.TabIndex = 1;
-            btnAddLecturer.Text = "Add Lecturer";
-            btnAddLecturer.UseVisualStyleBackColor = true;
-            // 
-            // btnAddStaff
-            // 
-            btnAddStaff.Location = new Point(29, 121);
-            btnAddStaff.Name = "btnAddStaff";
-            btnAddStaff.Size = new Size(184, 23);
-            btnAddStaff.TabIndex = 2;
-            btnAddStaff.Text = "Add Staff";
-            btnAddStaff.UseVisualStyleBackColor = true;
-            // 
-            // btnCreateAdmin
-            // 
-            btnCreateAdmin.Location = new Point(29, 150);
-            btnCreateAdmin.Name = "btnCreateAdmin";
-            btnCreateAdmin.Size = new Size(184, 23);
-            btnCreateAdmin.TabIndex = 3;
-            btnCreateAdmin.Text = "Create Admin";
-            btnCreateAdmin.UseVisualStyleBackColor = true;
+            btnManageUser.Location = new Point(29, 92);
+            btnManageUser.Name = "btnManageUser";
+            btnManageUser.Size = new Size(173, 23);
+            btnManageUser.TabIndex = 1;
+            btnManageUser.Text = "Manage User";
+            btnManageUser.UseVisualStyleBackColor = true;
+            btnManageUser.Click += btnManageUser_Click;
             // 
             // btnManageCourseAndSubject
             // 
-            btnManageCourseAndSubject.Location = new Point(12, 190);
+            btnManageCourseAndSubject.Location = new Point(12, 130);
             btnManageCourseAndSubject.Name = "btnManageCourseAndSubject";
             btnManageCourseAndSubject.Size = new Size(190, 23);
             btnManageCourseAndSubject.TabIndex = 4;
             btnManageCourseAndSubject.Text = "Manage Course and Subject";
             btnManageCourseAndSubject.UseVisualStyleBackColor = true;
+            btnManageCourseAndSubject.Click += btnManageCourseAndSubject_Click;
             // 
             // btnAddExam
             // 
-            btnAddExam.Location = new Point(29, 237);
+            btnAddExam.Location = new Point(42, 192);
             btnAddExam.Name = "btnAddExam";
             btnAddExam.Size = new Size(123, 23);
             btnAddExam.TabIndex = 6;
@@ -96,7 +79,7 @@
             // 
             // btnAddMarks
             // 
-            btnAddMarks.Location = new Point(29, 266);
+            btnAddMarks.Location = new Point(42, 221);
             btnAddMarks.Name = "btnAddMarks";
             btnAddMarks.Size = new Size(123, 23);
             btnAddMarks.TabIndex = 7;
@@ -121,20 +104,28 @@
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
             // 
+            // btnAttendance
+            // 
+            btnAttendance.Location = new Point(42, 250);
+            btnAttendance.Name = "btnAttendance";
+            btnAttendance.Size = new Size(123, 23);
+            btnAttendance.TabIndex = 10;
+            btnAttendance.Text = "Attendance";
+            btnAttendance.UseVisualStyleBackColor = true;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(945, 481);
+            Controls.Add(btnAttendance);
             Controls.Add(btnLogout);
             Controls.Add(btnAddTimetable);
             Controls.Add(btnAddMarks);
             Controls.Add(btnAddExam);
             Controls.Add(btnManageCourseAndSubject);
-            Controls.Add(btnCreateAdmin);
-            Controls.Add(btnAddStaff);
-            Controls.Add(btnAddLecturer);
-            Controls.Add(btnAddStudent);
+            Controls.Add(btnManageUser);
+            Controls.Add(btnCreateUsers);
             Name = "AdminDashboardForm";
             Text = "AdminDashboardForm";
             ResumeLayout(false);
@@ -142,14 +133,13 @@
 
         #endregion
 
-        private Button btnAddStudent;
-        private Button btnAddLecturer;
-        private Button btnAddStaff;
-        private Button btnCreateAdmin;
+        private Button btnCreateUsers;
+        private Button btnManageUser;
         private Button btnManageCourseAndSubject;
         private Button btnAddExam;
         private Button btnAddMarks;
         private Button btnAddTimetable;
         private Button btnLogout;
+        private Button btnAttendance;
     }
 }

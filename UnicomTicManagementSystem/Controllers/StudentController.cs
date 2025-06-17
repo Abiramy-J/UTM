@@ -108,5 +108,38 @@ namespace UnicomTicManagementSystem.Controllers
             // Return true if the user was deleted successfully
             return delUser.ExecuteNonQuery() > 0;
         }
+        public static Student GetStudentById(int studentId)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = @"SELECT s.*, u.Username 
+                     FROM Students s
+                     JOIN Users u ON s.UserID = u.UserID
+                     WHERE s.StudentID = @id";
+
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@id", studentId);
+
+            using var rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                return new Student
+                {
+                    StudentID = Convert.ToInt32(rdr["StudentID"]),
+                    Name = rdr["Name"].ToString(),
+                    Address = rdr["Address"].ToString(),
+                    Email = rdr["Email"].ToString(),
+                    Phone = rdr["Phone"].ToString(),
+                    DOB = Convert.ToDateTime(rdr["DOB"]),
+                    Gender = rdr["Gender"].ToString(),
+                    CourseID = rdr["CourseID"].ToString(),
+                    UserID = Convert.ToInt32(rdr["UserID"]),
+                    Username = rdr["Username"].ToString()
+                };
+            }
+            return null;
+        }
+
     }
 }

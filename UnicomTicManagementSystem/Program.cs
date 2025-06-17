@@ -24,7 +24,7 @@ namespace UnicomTicManagementSystem
                 conn.Open();
 
                 // Seed default courses and subjects if empty
-                SystemDefaults.SeedDefaultCoursesAndSubjects(conn);
+                //SystemDefaults.SeedDefaultCoursesAndSubjects(conn);
 
                 //// Check if any admin user exists
                 string checkAdminQuery = "SELECT COUNT(*) FROM Users WHERE Role = 'Admin'";

@@ -19,8 +19,20 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
-            StudentForm studentForm = new StudentForm();
-            studentForm.ShowDialog();
+            var createUserForm = new CreateUserPannel();
+            createUserForm.Show(); // or .ShowDialog() if you want it modal
+        }
+
+        private void btnManageCourseAndSubject_Click(object sender, EventArgs e)
+        {
+            var manageCourse_Subject = new ManageCourse_SubjectForm();
+            manageCourse_Subject.Show(); // or .ShowDialog() if you want it modal
+        }
+
+        private void btnManageUser_Click(object sender, EventArgs e)
+        {
+            var manageUserPannel = new ManageUserPannel();
+            manageUserPannel.Show();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace UnicomTicManagementSystem.Models
 {
     public class Course
     {
-        public int CourseID { get; set; }
+        public string CourseID { get; set; }
         public string CourseName { get; set; }
     }
 }

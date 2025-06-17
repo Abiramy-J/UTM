@@ -86,7 +86,21 @@ namespace UnicomTicManagementSystem.Repositories
                 RoomID INTEGER,
                 FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
                 FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID)
+            );",
+            // 9. Staff Table
+
+             @"CREATE TABLE IF NOT EXISTS Staffs (
+            StaffID INTEGER PRIMARY KEY AUTOINCREMENT,
+            FullName TEXT NOT NULL,
+            Address TEXT NOT NULL,
+            Email TEXT NOT NULL,
+            Phone TEXT NOT NULL,
+            UserID INTEGER NOT NULL, -- Foreign Key to Users
+
+            FOREIGN KEY (UserID) REFERENCES Users(UserID)
             );"
+
+
         };
 
             foreach (var sql in tableCommands)
