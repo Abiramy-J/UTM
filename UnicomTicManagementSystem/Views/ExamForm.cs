@@ -16,20 +16,20 @@ namespace UnicomTicManagementSystem.Views
 {
     public partial class ExamForm : Form
     {
-        private int selectedExamId = 0;  // 🧠 Keep track of which exam is selected
+        private int selectedExamId = 0;
         public ExamForm()
         {
             InitializeComponent();
             LoadSubjectsIntoComboBox();
             LoadExamList();
-
         }
+
         private void LoadSubjectsIntoComboBox()
         {
             cmbSubject.Items.Clear();
-
             using var conn = DbConfig.GetConnection();
             conn.Open();
+
             string query = "SELECT SubjectID, SubjectName FROM Subjects";
             using var cmd = new SQLiteCommand(query, conn);
             using var rdr = cmd.ExecuteReader();
@@ -41,17 +41,49 @@ namespace UnicomTicManagementSystem.Views
                 ));
             }
         }
-        private void dgvExams_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
+        private void LoadExamList()
+        {
+            dgvExam.Rows.Clear();
+            dgvExam.Columns.Clear();
+
+            dgvExam.Columns.Add("ExamID", "Exam ID");
+            dgvExam.Columns.Add("SubjectName", "Subject");
+            dgvExam.Columns.Add("ExamName", "Exam Name");
+            dgvExam.Columns.Add("ExamDate", "Exam Date");
+
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+            string query = @"
+                SELECT e.ExamID, s.SubjectName, e.ExamName, e.ExamDate
+                FROM Exams e
+                JOIN Subjects s ON e.SubjectID = s.SubjectID
+            ";
+            using var cmd = new SQLiteCommand(query, conn);
+            using var rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                dgvExam.Rows.Add(
+                    rdr["ExamID"],
+                    rdr["SubjectName"],
+                    rdr["ExamName"],
+                    Convert.ToDateTime(rdr["ExamDate"]).ToShortDateString()
+                );
+            }
         }
 
-        private void ExamForm_Load(object sender, EventArgs e)
+        private void dgvExams_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex >= 0)
+            {
+                selectedExamId = Convert.ToInt32(dgvExam.Rows[e.RowIndex].Cells["ExamID"].Value);
+                txtExamName.Text = dgvExam.Rows[e.RowIndex].Cells["ExamName"].Value.ToString();
+                cmbSubject.Text = dgvExam.Rows[e.RowIndex].Cells["SubjectName"].Value.ToString();
+                dtpExamDate.Value = Convert.ToDateTime(dgvExam.Rows[e.RowIndex].Cells["ExamDate"].Value);
+            }
         }
 
-        private void btnEAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             if (cmbSubject.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtExamName.Text))
             {
@@ -59,18 +91,20 @@ namespace UnicomTicManagementSystem.Views
                 return;
             }
 
+            var subjectId = ((ComboBoxItem)cmbSubject.SelectedItem).Value;
+
             Exam newExam = new Exam
             {
-                SubjectID = cmbSubject.SelectedValue.ToString(),
+                SubjectID = subjectId,
                 ExamName = txtExamName.Text,
                 ExamDate = dtpExamDate.Value
             };
-
             bool success = ExamController.CreateExam(newExam);
             if (success)
             {
                 MessageBox.Show("✅ Exam added successfully!");
                 txtExamName.Clear();
+                cmbSubject.SelectedIndex = -1;
                 LoadExamList();
             }
             else
@@ -79,49 +113,20 @@ namespace UnicomTicManagementSystem.Views
             }
         }
 
-        private void LoadExamList()
-        {
-            dgvExams.Rows.Clear();
-            dgvExams.Columns.Clear();
-
-            dgvExams.Columns.Add("ExamID", "Exam ID");
-            dgvExams.Columns.Add("SubjectName", "Subject");
-            dgvExams.Columns.Add("ExamName", "Exam Name");
-            dgvExams.Columns.Add("ExamDate", "Exam Date");
-
-            using var conn = DbConfig.GetConnection();
-            conn.Open();
-            string query = @"
-            SELECT e.ExamID, s.SubjectName, e.ExamName, e.ExamDate
-            FROM Exams e
-            JOIN Subjects s ON e.SubjectID = s.SubjectID
-        ";
-            using var cmd = new SQLiteCommand(query, conn);
-            using var rdr = cmd.ExecuteReader();
-            while (rdr.Read())
-            {
-                dgvExams.Rows.Add(
-                    rdr["ExamID"],
-                    rdr["SubjectName"],
-                    rdr["ExamName"],
-                    rdr["ExamDate"]
-                );
-            }
-        }
-        
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvExams.SelectedRows.Count == 0)
+            if (selectedExamId == 0)
             {
                 MessageBox.Show("Select an exam to update.");
                 return;
             }
 
+            var subjectId = ((ComboBoxItem)cmbSubject.SelectedItem).Value;
+
             Exam updatedExam = new Exam
             {
-                ExamID = selectedExamId, // from your DGV click
-                SubjectID = cmbSubject.SelectedValue.ToString(),
+                ExamID = selectedExamId,
+                SubjectID = subjectId,
                 ExamName = txtExamName.Text,
                 ExamDate = dtpExamDate.Value
             };
@@ -138,21 +143,18 @@ namespace UnicomTicManagementSystem.Views
             }
         }
 
-
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvExams.SelectedRows.Count == 0)
+            if (selectedExamId == 0)
             {
                 MessageBox.Show("Select an exam to delete.");
                 return;
             }
 
-            int examId = Convert.ToInt32(dgvExams.SelectedRows[0].Cells["ExamID"].Value);
             var confirm = MessageBox.Show("Are you sure you want to delete this exam?", "Confirm", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                bool deleted = ExamController.DeleteExam(examId);
+                bool deleted = ExamController.DeleteExam(selectedExamId);
                 if (deleted)
                 {
                     MessageBox.Show("✅ Exam deleted successfully!");
@@ -164,9 +166,15 @@ namespace UnicomTicManagementSystem.Views
                 }
             }
         }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
         }
     }
 }
+
+    
+
+    
+    

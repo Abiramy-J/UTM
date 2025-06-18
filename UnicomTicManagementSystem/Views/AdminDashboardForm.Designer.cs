@@ -76,6 +76,7 @@
             btnAddExam.TabIndex = 6;
             btnAddExam.Text = "Add Exam";
             btnAddExam.UseVisualStyleBackColor = true;
+            btnAddExam.Click += btnAddExam_Click;
             // 
             // btnAddMarks
             // 

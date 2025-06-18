@@ -9,8 +9,13 @@ namespace UnicomTicManagementSystem.Models
     public class Mark
     {
         public int MarkID { get; set; }
-        public int StudentID { get; set; }
+        public string StudentID { get; set; }
         public int ExamID { get; set; }
         public int Score { get; set; } // between 0 and 100
+
+        //  for display purposes
+        public string StudentName { get; set; }
+        public string ExamName { get; set; }
     }
 }
+

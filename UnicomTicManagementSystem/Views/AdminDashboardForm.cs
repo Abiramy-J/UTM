@@ -34,5 +34,11 @@ namespace UnicomTicManagementSystem.Views
             var manageUserPannel = new ManageUserPannel();
             manageUserPannel.Show();
         }
+
+        private void btnAddExam_Click(object sender, EventArgs e)
+        {
+            var ExamForm = new ExamForm();
+            ExamForm.Show();
+        }
     }
 }

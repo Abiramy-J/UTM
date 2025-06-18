@@ -65,16 +65,17 @@ namespace UnicomTicManagementSystem.Repositories
             // 5. Exams Table
             @"CREATE TABLE IF NOT EXISTS Exams (
                 ExamID INTEGER PRIMARY KEY AUTOINCREMENT,
-                ExamName TEXT NOT NULL,
                 SubjectID TEXT,
-                FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+                ExamName TEXT NOT NULL,
+                ExamDate TEXT NOT NULL,
+                FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)  
             );",
 
             // 6. Marks Table
             @"CREATE TABLE IF NOT EXISTS Marks (
                 MarkID INTEGER PRIMARY KEY AUTOINCREMENT,
-                StudentID TEXT,
-                ExamID INTEGER,
+                StudentID TEXT NOT NULL,
+                ExamID INTEGER NOT NULL,
                 Score INTEGER CHECK(Score >= 0 AND Score <= 100),
                 FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
                 FOREIGN KEY (ExamID) REFERENCES Exams(ExamID)
@@ -110,7 +111,7 @@ namespace UnicomTicManagementSystem.Repositories
             );",
 
 
-            @"CREATE TABLE Lecturers (
+            @"CREATE TABLE IF NOT EXISTS Lecturers (
                 LecturerID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name TEXT NOT NULL,
                 Address TEXT,
