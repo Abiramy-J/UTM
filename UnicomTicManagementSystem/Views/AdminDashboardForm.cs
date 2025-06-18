@@ -40,5 +40,11 @@ namespace UnicomTicManagementSystem.Views
             var ExamForm = new ExamForm();
             ExamForm.Show();
         }
+
+        private void btnAddMarks_Click(object sender, EventArgs e)
+        {
+            var MarkForm = new MarkForm();
+            MarkForm.Show();
+        }
     }
 }

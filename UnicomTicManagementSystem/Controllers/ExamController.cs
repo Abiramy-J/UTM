@@ -73,8 +73,25 @@ namespace UnicomTicManagementSystem.Controllers
             }
             return null;
         }
-
-
+        public static List<Exam> GetAllExams()
+        {
+            var exams = new List<Exam>();
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+            string query = "SELECT ExamID, ExamName FROM Exams";
+            using var cmd = new SQLiteCommand(query, conn);
+            using var rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                exams.Add(new Exam
+                {
+                    ExamID = Convert.ToInt32(rdr["ExamID"]),
+                    ExamName = rdr["ExamName"].ToString()
+                });
+            }
+            return exams;
+        }
+      
     }
 }
 

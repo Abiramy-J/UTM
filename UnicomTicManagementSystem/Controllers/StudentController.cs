@@ -140,6 +140,25 @@ namespace UnicomTicManagementSystem.Controllers
             }
             return null;
         }
+        public static List<Student> GetAllStudents()
+        {
+            var students = new List<Student>();
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+            string query = "SELECT StudentID, Name FROM Students";
+            using var cmd = new SQLiteCommand(query, conn);
+            using var rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                students.Add(new Student
+                {
+                    StudentID = Convert.ToInt32(rdr["StudentID"]),
+                    Name = rdr["Name"].ToString()
+                });
+            }
+            return students;
+        }
+
 
     }
 }

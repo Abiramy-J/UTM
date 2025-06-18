@@ -86,6 +86,7 @@
             btnAddMarks.TabIndex = 7;
             btnAddMarks.Text = "Add Marks";
             btnAddMarks.UseVisualStyleBackColor = true;
+            btnAddMarks.Click += btnAddMarks_Click;
             // 
             // btnAddTimetable
             // 
