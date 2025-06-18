@@ -2,8 +2,17 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+using UnicomTicManagementSystem.Models;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace UnicomTicManagementSystem.Repositories
 {
@@ -90,18 +99,39 @@ namespace UnicomTicManagementSystem.Repositories
             // 9. Staff Table
 
              @"CREATE TABLE IF NOT EXISTS Staffs (
-            StaffID INTEGER PRIMARY KEY AUTOINCREMENT,
-            FullName TEXT NOT NULL,
-            Address TEXT NOT NULL,
-            Email TEXT NOT NULL,
-            Phone TEXT NOT NULL,
-            UserID INTEGER NOT NULL, -- Foreign Key to Users
+                StaffID INTEGER PRIMARY KEY AUTOINCREMENT,
+                FullName TEXT NOT NULL,
+                Address TEXT NOT NULL,
+                Email TEXT NOT NULL,
+                Phone TEXT NOT NULL,
+                UserID INTEGER NOT NULL, -- Foreign Key to Users
 
-            FOREIGN KEY (UserID) REFERENCES Users(UserID)
-            );"
+                FOREIGN KEY (UserID) REFERENCES Users(UserID)
+            );",
 
+
+            @"CREATE TABLE Lecturers (
+                LecturerID INTEGER PRIMARY KEY AUTOINCREMENT,
+                Name TEXT NOT NULL,
+                Address TEXT,
+                Email TEXT,
+                Phone TEXT,
+                SubjectID INTEGER, -- Foreign Key
+                UserID INTEGER,
+                FOREIGN KEY (UserID) REFERENCES Users(UserID),
+                FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+            );",
+
+               /*         @"CREATE TABLE LecturerSubjects (
+                LecturerID INTEGER,
+                SubjectID INTEGER,
+                PRIMARY KEY (LecturerID, SubjectID),
+                FOREIGN KEY (LecturerID) REFERENCES Lecturers(LecturerID),
+                FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+            );",*/
 
         };
+
 
             foreach (var sql in tableCommands)
             {

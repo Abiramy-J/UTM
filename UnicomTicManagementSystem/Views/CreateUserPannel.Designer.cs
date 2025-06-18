@@ -23,8 +23,7 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -33,7 +32,7 @@
             lbCreateUser = new Label();
             btnAdmin = new Button();
             btnStudent = new Button();
-            button2 = new Button();
+            btnLecturer = new Button();
             btnStaff = new Button();
             panelHead = new Panel();
             btnCloseCU = new Button();
@@ -50,7 +49,7 @@
             panelside.Controls.Add(lbCreateUser);
             panelside.Controls.Add(btnAdmin);
             panelside.Controls.Add(btnStudent);
-            panelside.Controls.Add(button2);
+            panelside.Controls.Add(btnLecturer);
             panelside.Controls.Add(btnStaff);
             panelside.Dock = DockStyle.Left;
             panelside.Location = new Point(0, 30);
@@ -104,18 +103,18 @@
             btnStudent.UseVisualStyleBackColor = false;
             btnStudent.Click += btnStudent_Click;
             // 
-            // button2
+            // btnLecturer
             // 
-            button2.BackColor = SystemColors.ActiveCaption;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(12, 309);
-            button2.Name = "button2";
-            button2.Size = new Size(178, 38);
-            button2.TabIndex = 4;
-            button2.Text = "Leturer";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            btnLecturer.BackColor = SystemColors.ActiveCaption;
+            btnLecturer.FlatStyle = FlatStyle.Flat;
+            btnLecturer.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLecturer.Location = new Point(12, 309);
+            btnLecturer.Name = "btnLecturer";
+            btnLecturer.Size = new Size(178, 38);
+            btnLecturer.TabIndex = 4;
+            btnLecturer.Text = "Leturer";
+            btnLecturer.UseVisualStyleBackColor = false;
+            btnLecturer.Click += btnLecturer_Click;
             // 
             // btnStaff
             // 
@@ -187,11 +186,18 @@
         private Panel panelHead;
         private Button btnStudent;
         private Button btnAdmin;
-        private Button button2;
+        private Button btnLecturer;
         private Button btnStaff;
         private PictureBox pictureBox1;
         private Label lbCreateUser;
         private Button btnCloseCU;
         private Panel pnlCreateUser;
+
+        // Add this method to handle the btnLecturer_Click event
+        private void btnLecturer_Click(object sender, EventArgs e)
+        {
+            // Add your logic here for the Lecturer button click event
+            MessageBox.Show("Lecturer button clicked!");
+        }
     }
 }

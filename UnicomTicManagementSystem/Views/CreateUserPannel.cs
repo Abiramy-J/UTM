@@ -48,8 +48,10 @@ namespace UnicomTicManagementSystem.Views
             LoadFormIntoPanel(staffForm);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonLecturer_Click(object sender, EventArgs e)
         {
+            AddLecturerForm addLecturerForm = new AddLecturerForm();
+            LoadFormIntoPanel(addLecturerForm);
 
         }
 

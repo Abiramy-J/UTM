@@ -10,6 +10,13 @@ namespace UnicomTicManagementSystem.Models
     {
         public int LecturerID { get; set; }
         public string Name { get; set; }
-        public int UserID { get; set; } // Foreign key from Users table
+        public string Address { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string SubjectID { get; set; }
+        public string Username { get; set; }
+    
+        public string subjects { get; set; }
+        public int UserID { get; set; } // Foreign key to Users table
     }
 }

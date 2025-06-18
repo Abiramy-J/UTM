@@ -48,5 +48,11 @@ namespace UnicomTicManagementSystem.Views
             ManageStaffForm manageStaffForm = new ManageStaffForm();
             LoadFormIntoPanel(manageStaffForm);
         }
+
+        private void btnLecturerManage_Click(object sender, EventArgs e)
+        {
+            ManageLecturerForm manageLecturerForm = new ManageLecturerForm();
+            LoadFormIntoPanel (manageLecturerForm); 
+        }
     }
 }

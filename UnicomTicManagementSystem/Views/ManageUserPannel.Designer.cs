@@ -139,6 +139,7 @@
             btnLecturerManage.TabIndex = 2;
             btnLecturerManage.Text = "Lecturer";
             btnLecturerManage.UseVisualStyleBackColor = false;
+            btnLecturerManage.Click += btnLecturerManage_Click;
             // 
             // btnStaffManage
             // 
