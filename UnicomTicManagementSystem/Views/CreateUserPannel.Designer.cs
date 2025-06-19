@@ -194,10 +194,10 @@
         private Panel pnlCreateUser;
 
         // Add this method to handle the btnLecturer_Click event
-        private void btnLecturer_Click(object sender, EventArgs e)
+        /*private void btnLecturer_Click(object sender, EventArgs e)
         {
-            // Add your logic here for the Lecturer button click event
-            MessageBox.Show("Lecturer button clicked!");
-        }
+            AddLecturerForm addLecturerForm = new AddLecturerForm();
+            LoadFormIntoPanel(addLecturerForm);
+        }*/
     }
 }

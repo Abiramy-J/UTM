@@ -160,7 +160,7 @@ namespace UnicomTicManagementSystem.Views
             var confirm = MessageBox.Show("Are you sure you want to close?", "Exit", MessageBoxButtons.YesNo);
             if (confirm == DialogResult.Yes)
             {
-                this.Close();
+                this.Hide();
             }
         }
         private void LoadSubjectData()

@@ -36,7 +36,7 @@ namespace UnicomTicManagementSystem.Views
         {
             txtUsername.Text = StaffController.GenerateUsername();
             txtPassword.Text = StaffController.GeneratePassword();
-            txtPassword.UseSystemPasswordChar = true; // Optional: hides password like ●●●
+           // txtPassword.UseSystemPasswordChar = true; // Optional: hides password like ●●●
         }
 
         private void LoadStaffDataIntoForm()
@@ -119,6 +119,8 @@ namespace UnicomTicManagementSystem.Views
             txtEmail.Clear();
             txtPhone.Clear();
             LoadFormDefaults();
+            txtUsername.Text = StudentController.GenerateUsername();
+            txtPassword.Text = StudentController.GeneratePassword();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

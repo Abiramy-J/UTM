@@ -39,9 +39,10 @@ namespace UnicomTicManagementSystem.Views
             conn.Open();
 
             var q = @"SELECT l.LecturerID, l.Name, l.Address, l.Email, l.Phone, 
-                         s.SubjectName, l.Username
+                         s.SubjectName, u.Username
                   FROM Lecturers l
-                  JOIN Subjects s ON l.SubjectID = s.SubjectID";
+                  JOIN Subjects s ON l.SubjectID = s.SubjectID
+                  JOIN Users u ON l.UserID = u.UserID";
 
             using var cmd = new SQLiteCommand(q, conn);
             using var rdr = cmd.ExecuteReader();

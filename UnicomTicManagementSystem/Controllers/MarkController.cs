@@ -9,7 +9,7 @@ using UnicomTicManagementSystem.Repositories;
 
 namespace UnicomTicManagementSystem.Controllers
 {
-    public  class MarkController
+    public class MarkController
     {
         public static bool AddMark(Mark mark)
         {
@@ -49,7 +49,18 @@ namespace UnicomTicManagementSystem.Controllers
             var marks = new List<Mark>();
             using var conn = DbConfig.GetConnection();
             conn.Open();
-            string query = @"SELECT MarkID, StudentID, ExamID, Score FROM Marks";
+            string query = @"
+            SELECT m.MarkID, 
+                   s.Name AS StudentName, 
+                   e.ExamName, 
+                   sub.SubjectName,
+                   m.Score
+            FROM Marks m
+            JOIN Students s ON m.StudentID = s.StudentID
+            JOIN Exams e ON m.ExamID = e.ExamID
+            JOIN Subjects sub ON e.SubjectID = sub.SubjectID
+            ";
+
             using var cmd = new SQLiteCommand(query, conn);
             using var rdr = cmd.ExecuteReader();
             while (rdr.Read())
@@ -57,13 +68,60 @@ namespace UnicomTicManagementSystem.Controllers
                 marks.Add(new Mark
                 {
                     MarkID = Convert.ToInt32(rdr["MarkID"]),
-                    StudentID = rdr["StudentID"].ToString(),
-                    ExamID = Convert.ToInt32(rdr["ExamID"]),
+                    StudentName = rdr["StudentName"].ToString(),
+                    ExamName = rdr["ExamName"].ToString(),
+                    SubjectName = rdr["SubjectName"].ToString(),
+                    Score = Convert.ToInt32(rdr["Score"]),
+
+                });
+            }
+
+            return marks;
+        }
+        public static bool MarkExists(int studentId, int examId)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+            string query = "SELECT COUNT(*) FROM Marks WHERE StudentID = @studentId AND ExamID = @examId";
+
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@studentId", studentId);
+            cmd.Parameters.AddWithValue("@examId", examId);
+
+            long count = (long)cmd.ExecuteScalar();
+            return count > 0;
+        }
+        public static List<Mark> GetMarksForLoggedInStudent()
+        {
+            var marks = new List<Mark>();
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = @"
+        SELECT m.MarkID, s.Name AS StudentName, e.ExamName, m.Score
+        FROM Marks m
+        JOIN Students s ON m.StudentID = s.StudentID
+        JOIN Exams e ON m.ExamID = e.ExamID
+        WHERE s.UserID = @uid";  // <- linking student to user
+
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@uid", AppSession.UserId);  // Easy!
+
+            using var rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                marks.Add(new Mark
+                {
+                    MarkID = Convert.ToInt32(rdr["MarkID"]),
+                    StudentName = rdr["StudentName"].ToString(),
+                    ExamName = rdr["ExamName"].ToString(),
                     Score = Convert.ToInt32(rdr["Score"])
                 });
             }
+
             return marks;
         }
+
 
     }
 }

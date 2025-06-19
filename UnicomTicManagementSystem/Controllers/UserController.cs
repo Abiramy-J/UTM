@@ -4,6 +4,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnicomTicManagementSystem.Models;
 using UnicomTicManagementSystem.Repositories;
 
 namespace UnicomTicManagementSystem.Controllers
@@ -41,7 +42,7 @@ namespace UnicomTicManagementSystem.Controllers
             using (var conn = DbConfig.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
+                string query = "SELECT UserID, Role FROM Users WHERE Username = @Username AND Password = @Password";
                 using var cmd = new SQLiteCommand(query, conn);
                 cmd.Parameters.AddWithValue("@Username", username);
                 cmd.Parameters.AddWithValue("@Password", password);
@@ -49,8 +50,17 @@ namespace UnicomTicManagementSystem.Controllers
                 using var reader = cmd.ExecuteReader();
 
                 if (reader.Read())
-                {
-                    return reader["Role"].ToString();
+                { 
+                    AppSession.UserId = Convert.ToInt32(reader["UserID"]);
+                    AppSession.Role = reader["Role"].ToString();
+
+                    //  If it's a student, set the StudentID also:
+                    if (AppSession.Role == "Student")
+                    {
+                        AppSession.StudentID = StudentController.GetStudentIDByUserId(AppSession.UserId);
+                    }
+
+                    return AppSession.Role; // 👈 return it so you know where to redirect
                 }
                 else
                 {

@@ -31,11 +31,11 @@
             btnCreateUsers = new Button();
             btnManageUser = new Button();
             btnManageCourseAndSubject = new Button();
-            btnAddExam = new Button();
-            btnAddMarks = new Button();
-            btnAddTimetable = new Button();
+            btnManageExam = new Button();
+            btnManageMarks = new Button();
+            btnManageTimetable = new Button();
             btnLogout = new Button();
-            btnAttendance = new Button();
+            btnManageRooms = new Button();
             SuspendLayout();
             // 
             // btnCreateUsers
@@ -46,7 +46,7 @@
             btnCreateUsers.TabIndex = 0;
             btnCreateUsers.Text = "Create Users";
             btnCreateUsers.UseVisualStyleBackColor = true;
-            btnCreateUsers.Click += btnAddStudent_Click;
+            btnCreateUsers.Click += btnCreateUers_Click;
             // 
             // btnManageUser
             // 
@@ -68,34 +68,35 @@
             btnManageCourseAndSubject.UseVisualStyleBackColor = true;
             btnManageCourseAndSubject.Click += btnManageCourseAndSubject_Click;
             // 
-            // btnAddExam
+            // btnManageExam
             // 
-            btnAddExam.Location = new Point(42, 192);
-            btnAddExam.Name = "btnAddExam";
-            btnAddExam.Size = new Size(123, 23);
-            btnAddExam.TabIndex = 6;
-            btnAddExam.Text = "Add Exam";
-            btnAddExam.UseVisualStyleBackColor = true;
-            btnAddExam.Click += btnAddExam_Click;
+            btnManageExam.Location = new Point(42, 192);
+            btnManageExam.Name = "btnManageExam";
+            btnManageExam.Size = new Size(123, 23);
+            btnManageExam.TabIndex = 6;
+            btnManageExam.Text = "Manage Exam";
+            btnManageExam.UseVisualStyleBackColor = true;
+            btnManageExam.Click += btnManageExam_Click;
             // 
-            // btnAddMarks
+            // btnManageMarks
             // 
-            btnAddMarks.Location = new Point(42, 221);
-            btnAddMarks.Name = "btnAddMarks";
-            btnAddMarks.Size = new Size(123, 23);
-            btnAddMarks.TabIndex = 7;
-            btnAddMarks.Text = "Add Marks";
-            btnAddMarks.UseVisualStyleBackColor = true;
-            btnAddMarks.Click += btnAddMarks_Click;
+            btnManageMarks.Location = new Point(42, 221);
+            btnManageMarks.Name = "btnManageMarks";
+            btnManageMarks.Size = new Size(123, 23);
+            btnManageMarks.TabIndex = 7;
+            btnManageMarks.Text = "Manage Marks";
+            btnManageMarks.UseVisualStyleBackColor = true;
+            btnManageMarks.Click += btnManageMarks_Click;
             // 
-            // btnAddTimetable
+            // btnManageTimetable
             // 
-            btnAddTimetable.Location = new Point(29, 295);
-            btnAddTimetable.Name = "btnAddTimetable";
-            btnAddTimetable.Size = new Size(123, 23);
-            btnAddTimetable.TabIndex = 8;
-            btnAddTimetable.Text = "Add Timetable";
-            btnAddTimetable.UseVisualStyleBackColor = true;
+            btnManageTimetable.Location = new Point(29, 295);
+            btnManageTimetable.Name = "btnManageTimetable";
+            btnManageTimetable.Size = new Size(123, 23);
+            btnManageTimetable.TabIndex = 8;
+            btnManageTimetable.Text = "Manage Timetable";
+            btnManageTimetable.UseVisualStyleBackColor = true;
+            btnManageTimetable.Click += btnManageTimetable_Click;
             // 
             // btnLogout
             // 
@@ -106,25 +107,26 @@
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
             // 
-            // btnAttendance
+            // btnManageRooms
             // 
-            btnAttendance.Location = new Point(42, 250);
-            btnAttendance.Name = "btnAttendance";
-            btnAttendance.Size = new Size(123, 23);
-            btnAttendance.TabIndex = 10;
-            btnAttendance.Text = "Attendance";
-            btnAttendance.UseVisualStyleBackColor = true;
+            btnManageRooms.Location = new Point(42, 250);
+            btnManageRooms.Name = "btnManageRooms";
+            btnManageRooms.Size = new Size(123, 23);
+            btnManageRooms.TabIndex = 10;
+            btnManageRooms.Text = "ManageRooms";
+            btnManageRooms.UseVisualStyleBackColor = true;
+            btnManageRooms.Click += btnManageRooms_Click;
             // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(945, 481);
-            Controls.Add(btnAttendance);
+            Controls.Add(btnManageRooms);
             Controls.Add(btnLogout);
-            Controls.Add(btnAddTimetable);
-            Controls.Add(btnAddMarks);
-            Controls.Add(btnAddExam);
+            Controls.Add(btnManageTimetable);
+            Controls.Add(btnManageMarks);
+            Controls.Add(btnManageExam);
             Controls.Add(btnManageCourseAndSubject);
             Controls.Add(btnManageUser);
             Controls.Add(btnCreateUsers);
@@ -138,10 +140,10 @@
         private Button btnCreateUsers;
         private Button btnManageUser;
         private Button btnManageCourseAndSubject;
-        private Button btnAddExam;
-        private Button btnAddMarks;
-        private Button btnAddTimetable;
+        private Button btnManageExam;
+        private Button btnManageMarks;
+        private Button btnManageTimetable;
         private Button btnLogout;
-        private Button btnAttendance;
+        private Button btnManageRooms;
     }
 }

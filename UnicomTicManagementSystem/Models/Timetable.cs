@@ -9,8 +9,14 @@ namespace UnicomTicManagementSystem.Models
     public class Timetable
     {
         public int TimetableID { get; set; }
-        public int SubjectID { get; set; }
-        public string TimeSlot { get; set; }   // Eg: "Mon 10:00 - 12:00"
+        public string SubjectID { get; set; }
         public int RoomID { get; set; }
+        public DateTime Date { get; set; }
+        public string TimeSlot { get; set; }
+
+        // For View Only
+        public string SubjectName { get; set; }
+        public string RoomName { get; set; }
     }
 }
+

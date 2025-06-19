@@ -23,10 +23,10 @@ namespace UnicomTicManagementSystem.Views
         }
         private void LoadFormIntoPanel(Form form)
         {
-            if (form.IsDisposed)//Prevents error if form is already "dead"
+            if (form.IsDisposed) // Prevents error if form is already "dead"
             {
-                MessageBox.Show("The form cannot be loaded because it has been disposed.");
-                return;
+                MessageBox.Show("form cannot be loaded bcz it has been disposed");
+                return;//// Exit early to prevent further operations
             }
             pnlCreateUser.Controls.Clear(); // Clear previously loaded form
             form.TopLevel = false;
@@ -67,6 +67,13 @@ namespace UnicomTicManagementSystem.Views
 
         private void pnlCreateUser_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void btnLecturer_Click(object sender, EventArgs e)
+        {
+            AddLecturerForm addLecturerForm = new AddLecturerForm();
+            LoadFormIntoPanel(addLecturerForm);
 
         }
     }

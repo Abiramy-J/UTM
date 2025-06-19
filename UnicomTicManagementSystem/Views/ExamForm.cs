@@ -17,11 +17,46 @@ namespace UnicomTicManagementSystem.Views
     public partial class ExamForm : Form
     {
         private int selectedExamId = 0;
-        public ExamForm()
+        
+        private string userRole;
+
+        public ExamForm(string role)
         {
             InitializeComponent();
+            userRole = role;
             LoadSubjectsIntoComboBox();
             LoadExamList();
+            SetupRoleBasedAccess();
+        }
+        private void SetupRoleBasedAccess()
+        {
+            if (userRole == "Student" || userRole == "Lecturer")
+            {
+                // View-only
+                dgvExam.Visible = true;
+
+                // Hide input controls
+                txtExamName.Visible = false;
+                cmbSubject.Visible = false;
+
+                btnAdd.Visible = false;
+                btnUpdate.Visible = false;
+                btnDelete.Visible = false;
+
+                MessageBox.Show("View-only mode for exams.");
+            }
+            else if (userRole == "Admin" || userRole == "Staff")
+            {
+                // Full access
+                dgvExam.Visible = true;
+
+                txtExamName.Visible = true;
+                cmbSubject.Visible = true;
+
+                btnAdd.Visible = true;
+                btnUpdate.Visible = true;
+                btnDelete.Visible = true;
+            }
         }
 
         private void LoadSubjectsIntoComboBox()
@@ -46,6 +81,7 @@ namespace UnicomTicManagementSystem.Views
         {
             dgvExam.Rows.Clear();
             dgvExam.Columns.Clear();
+            dgvExam.AllowUserToAddRows = false;
 
             dgvExam.Columns.Add("ExamID", "Exam ID");
             dgvExam.Columns.Add("SubjectName", "Subject");
@@ -72,14 +108,19 @@ namespace UnicomTicManagementSystem.Views
             }
         }
 
-        private void dgvExams_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvExam_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex < dgvExam.Rows.Count)
             {
-                selectedExamId = Convert.ToInt32(dgvExam.Rows[e.RowIndex].Cells["ExamID"].Value);
-                txtExamName.Text = dgvExam.Rows[e.RowIndex].Cells["ExamName"].Value.ToString();
-                cmbSubject.Text = dgvExam.Rows[e.RowIndex].Cells["SubjectName"].Value.ToString();
-                dtpExamDate.Value = Convert.ToDateTime(dgvExam.Rows[e.RowIndex].Cells["ExamDate"].Value);
+                var row = dgvExam.Rows[e.RowIndex];
+
+                // Check if row has data
+                if (row.Cells["ExamID"].Value == null) return;
+
+                selectedExamId = Convert.ToInt32(row.Cells["ExamID"].Value);
+                txtExamName.Text = row.Cells["ExamName"].Value?.ToString();
+                cmbSubject.Text = row.Cells["SubjectName"].Value?.ToString();
+                dtpExamDate.Value = Convert.ToDateTime(row.Cells["ExamDate"].Value);
             }
         }
 
@@ -93,26 +134,53 @@ namespace UnicomTicManagementSystem.Views
 
             var subjectId = ((ComboBoxItem)cmbSubject.SelectedItem).Value;
 
-            Exam newExam = new Exam
+            if (selectedExamId == 0)
             {
-                SubjectID = subjectId,
-                ExamName = txtExamName.Text,
-                ExamDate = dtpExamDate.Value
-            };
-            bool success = ExamController.CreateExam(newExam);
-            if (success)
-            {
-                MessageBox.Show("✅ Exam added successfully!");
-                txtExamName.Clear();
-                cmbSubject.SelectedIndex = -1;
-                LoadExamList();
+                // Normal Add
+                Exam newExam = new Exam
+                {
+                    SubjectID = subjectId,
+                    ExamName = txtExamName.Text,
+                    ExamDate = dtpExamDate.Value
+                };
+
+                bool success = ExamController.CreateExam(newExam);
+                if (success)
+                {
+                    MessageBox.Show("✅ Exam added successfully!");
+                    ResetForm();
+                    LoadExamList();
+                }
+                else
+                {
+                    MessageBox.Show("❌ Failed to add exam.");
+                }
             }
             else
             {
-                MessageBox.Show("❌ Failed to add exam.");
+                // Act like Update
+                var updatedExam = new Exam
+                {
+                    ExamID = selectedExamId,
+                    SubjectID = subjectId,
+                    ExamName = txtExamName.Text,
+                    ExamDate = dtpExamDate.Value
+                };
+
+                bool success = ExamController.UpdateExam(updatedExam);
+                if (success)
+                {
+                    MessageBox.Show("✏️ Exam updated instead of added!");
+                    ResetForm();
+                    LoadExamList();
+                }
+                else
+                {
+                    MessageBox.Show("❌ Failed to update exam.");
+                }
             }
         }
-
+        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedExamId == 0)
@@ -135,6 +203,7 @@ namespace UnicomTicManagementSystem.Views
             if (success)
             {
                 MessageBox.Show("✅ Exam updated successfully!");
+                ResetForm(); // ← Reset the form after update
                 LoadExamList();
             }
             else
@@ -142,7 +211,13 @@ namespace UnicomTicManagementSystem.Views
                 MessageBox.Show("❌ Failed to update exam.");
             }
         }
-
+        private void ResetForm()
+        {
+            txtExamName.Clear();
+            cmbSubject.SelectedIndex = -1;
+            dtpExamDate.Value = DateTime.Today;
+            selectedExamId = 0;
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedExamId == 0)
@@ -158,6 +233,7 @@ namespace UnicomTicManagementSystem.Views
                 if (deleted)
                 {
                     MessageBox.Show("✅ Exam deleted successfully!");
+                    ResetForm(); // ← clear the form after deletion
                     LoadExamList();
                 }
                 else

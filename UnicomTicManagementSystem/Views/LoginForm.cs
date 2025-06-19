@@ -40,22 +40,16 @@ namespace UnicomTicManagementSystem.Views
             }
 
             MessageBox.Show($"Welcome {role}!");
-            this.Hide();
+            this.Hide(); // Hide Login Form
 
-            switch (role)
-            {
-                case "Admin":
-                    new AdminDashboardForm().Show();
-                    break;
-                /* case "Student": new StudentDashboardForm().Show(); break;
-                   case "Staff":   new StaffDashboardForm().Show(); break;
-                   case "Lecturer":new LecturerDashboardForm().Show(); break; */
-                default:
-                    MessageBox.Show("Unknown role. Contact administrator.");
-                    break;
-            }
-
+            //  OPEN THE COMMON DASHBOARD AND PASS THE ROLE
+            AdminDashboardForm dashboard = new AdminDashboardForm(role);
+            dashboard.Show();
         }
+            
+            
+
+        
 
         private void LoginForm_Load(object sender, EventArgs e)
         {

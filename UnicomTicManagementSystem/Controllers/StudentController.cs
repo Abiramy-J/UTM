@@ -113,7 +113,7 @@ namespace UnicomTicManagementSystem.Controllers
             using var conn = DbConfig.GetConnection();
             conn.Open();
 
-            string query = @"SELECT s.*, u.Username 
+            string query = @"SELECT s.*, u.Username, u.Password 
                      FROM Students s
                      JOIN Users u ON s.UserID = u.UserID
                      WHERE s.StudentID = @id";
@@ -135,11 +135,13 @@ namespace UnicomTicManagementSystem.Controllers
                     Gender = rdr["Gender"].ToString(),
                     CourseID = rdr["CourseID"].ToString(),
                     UserID = Convert.ToInt32(rdr["UserID"]),
-                    Username = rdr["Username"].ToString()
+                    Username = rdr["Username"].ToString(),
+                    Password = rdr["Password"].ToString() // here you grab password
                 };
             }
             return null;
         }
+
         public static List<Student> GetAllStudents()
         {
             var students = new List<Student>();
@@ -157,6 +159,17 @@ namespace UnicomTicManagementSystem.Controllers
                 });
             }
             return students;
+        }
+        public static int GetStudentIDByUserId(int userId)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            var cmd = new SQLiteCommand("SELECT StudentID FROM Students WHERE UserID = @uid", conn);
+            cmd.Parameters.AddWithValue("@uid", userId);
+            var result = cmd.ExecuteScalar();
+
+            return result != null ? Convert.ToInt32(result) : 0;
         }
 
 

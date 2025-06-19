@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,8 @@ namespace UnicomTicManagementSystem.Views
             
             isEditMode = true;
             editingStudent = studentToEdit;
-            LoadStudentDataIntoForm();
+            LoadFormDefaults();//FIRST load gender & course items
+            LoadStudentDataIntoForm();//THEN apply selected items
         }
 
         private void LoadFormDefaults()
@@ -41,6 +43,7 @@ namespace UnicomTicManagementSystem.Views
             // Clear gender to prevent duplicates
             cmbGender.Items.Clear();
             cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
+
 
             // Clear courses before loading
             cmbCourse.Items.Clear();
@@ -55,34 +58,64 @@ namespace UnicomTicManagementSystem.Views
                     rdr["CourseName"].ToString(),
                     rdr["CourseID"].ToString()));
             }
+            // AFTER loading → check if it's still empty
+            if (cmbCourse.Items.Count == 0)
+                {
+                    MessageBox.Show("⚠️ No courses found in database. Please create at least one .");
+                }
         }
-        
+
 
         private void LoadStudentDataIntoForm()
         {
             if (editingStudent == null) return;
 
+            // Load gender options
+            cmbGender.Items.Clear();
+            cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
+
+            // Select gender
+            cmbGender.SelectedItem = editingStudent.Gender;
+
+            // Load courses FIRST
+            cmbCourse.Items.Clear();
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+            var cmd = new SQLiteCommand("SELECT CourseID, CourseName FROM Courses", conn);
+            using var rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                cmbCourse.Items.Add(new ComboBoxItem(
+                    rdr["CourseName"].ToString(),
+                    rdr["CourseID"].ToString()));
+            }
+
+            // Select course using SelectedIndex for better matching
+            foreach (ComboBoxItem item in cmbCourse.Items)
+            {
+                if (item.Value == editingStudent.CourseID)
+                {
+                    cmbCourse.SelectedIndex = cmbCourse.Items.IndexOf(item);
+                    break;
+                }
+            }
+
+            // Fill textboxes
             txtFullname.Text = editingStudent.Name;
             txtAddress.Text = editingStudent.Address;
             txtMail.Text = editingStudent.Email;
             txtPhoneNo.Text = editingStudent.Phone;
             dtpDOB.Value = editingStudent.DOB;
-            cmbGender.Text = editingStudent.Gender;
 
-            foreach (ComboBoxItem item in cmbCourse.Items)
-            {
-                if (item.Value == editingStudent.CourseID)
-                {
-                    cmbCourse.SelectedItem = item;
-                    break;
-                }
-            }
-
+            // Username and password fields (read-only in edit mode)
             txtUsername.Text = editingStudent.Username;
-            txtPw.Text = "Hidden";
             txtUsername.ReadOnly = true;
+
+            txtPw.Text = editingStudent.Password;
             txtPw.ReadOnly = true;
+            txtPw.UseSystemPasswordChar = false;
         }
+
 
         private void AddStudentForm_Load(object sender, EventArgs e)
         {
@@ -94,19 +127,31 @@ namespace UnicomTicManagementSystem.Views
 
                 // Open ManageCourseForm
                 var manageCourseForm = new ManageCourse_SubjectForm();
-                
-                manageCourseForm.Show();
 
-                // Close or hide this AddStudentForm
-                this.Hide();
-                return;
+                manageCourseForm.ShowDialog();
+
+                if (!HasAnyCourses())
+                {
+                    MessageBox.Show("No courses available. Please create one First.");
+                    this.Hide();
+                    var manageCourseForm1 = new ManageCourse_SubjectForm();
+
+                    manageCourseForm.ShowDialog();
+
+
+                }
+                LoadFormDefaults(); // Reload courses after adding
+
             }
             if (!isEditMode)
             {
                 txtUsername.Text = StudentController.GenerateUsername();
                 txtPw.Text = StudentController.GeneratePassword();
+                txtUsername.ReadOnly = true;
+                txtPw.ReadOnly = true;
             }
         }
+        
         private bool HasAnyCourses()
         {
             using var conn = DbConfig.GetConnection();
@@ -121,7 +166,7 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Basic field validations
+            // 🔎 Basic field validations
             if (string.IsNullOrWhiteSpace(txtFullname.Text) ||
                 string.IsNullOrWhiteSpace(txtAddress.Text) ||
                 string.IsNullOrWhiteSpace(txtMail.Text) ||
@@ -130,36 +175,39 @@ namespace UnicomTicManagementSystem.Views
                 MessageBox.Show("Please fill in all the student details.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // Phone number validation (10–15 digits only)
+
+            // 📞 Phone number validation (must be 10 digits and start with 07 or 021)
             if (!Regex.IsMatch(txtPhoneNo.Text, @"^(07|021)\d{8}$"))
             {
                 MessageBox.Show("Phone number must start with 07 or 021 and be 10 digits.");
                 return;
             }
 
-
-            // Email format validation
+            // 📧 Email format validation
             if (!Regex.IsMatch(txtMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Invalid email address.");
                 return;
             }
 
-            // Gender validation
-            if (cmbGender.SelectedIndex == -1)
+            // ⛔ Gender validation
+            if (!cmbGender.Items.Contains(cmbGender.Text))
             {
-                MessageBox.Show("Please select a gender.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a valid gender.");
                 return;
             }
 
-            // Course validation
-            if (cmbCourse.SelectedIndex == -1)
+
+            //⛔ Course validation
+            if (cmbCourse.SelectedItem == null || !(cmbCourse.SelectedItem is ComboBoxItem))
             {
-                MessageBox.Show("Please select a course.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a valid course.");
                 return;
             }
 
-            // Creating student object
+
+
+            // 🎓 Create student object
             var student = new Student
             {
                 Name = txtFullname.Text.Trim(),
@@ -169,17 +217,18 @@ namespace UnicomTicManagementSystem.Views
                 DOB = dtpDOB.Value,
                 Gender = cmbGender.Text,
                 CourseID = ((ComboBoxItem)cmbCourse.SelectedItem).Value
-
             };
 
+            // 🔄 Save or Update logic
             if (isEditMode)
             {
                 student.StudentID = editingStudent.StudentID;
+
                 bool updated = StudentController.UpdateStudents(student);
                 if (updated)
                 {
                     MessageBox.Show("✅ Student updated successfully!");
-                    this.Close(); // Close after editing
+                    this.Close(); // Close the form after editing
                 }
                 else
                 {
@@ -192,7 +241,7 @@ namespace UnicomTicManagementSystem.Views
                 if (added)
                 {
                     MessageBox.Show("✅ Student added successfully!");
-                    ClearForm();
+                    ClearForm(); // Reset form after successful creation
                 }
                 else
                 {
@@ -210,9 +259,14 @@ namespace UnicomTicManagementSystem.Views
             cmbGender.SelectedIndex = -1;
             cmbCourse.SelectedIndex = -1;
             dtpDOB.Value = DateTime.Today;
+
             txtUsername.Text = StudentController.GenerateUsername();
             txtPw.Text = StudentController.GeneratePassword();
+            txtUsername.ReadOnly = true;
+            txtPw.ReadOnly = true;
+            txtPw.UseSystemPasswordChar = false;
         }
+
 
         private void btnBack_Click(object sender, EventArgs e)
         {

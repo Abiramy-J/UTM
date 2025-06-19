@@ -102,7 +102,7 @@
             dgvExam.Name = "dgvExam";
             dgvExam.Size = new Size(403, 206);
             dgvExam.TabIndex = 6;
-            dgvExam.CellClick += dgvExams_CellClick;
+            dgvExam.CellClick += dgvExam_CellClick;
             // 
             // btnBack
             // 

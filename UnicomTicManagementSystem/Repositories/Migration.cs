@@ -74,7 +74,7 @@ namespace UnicomTicManagementSystem.Repositories
             // 6. Marks Table
             @"CREATE TABLE IF NOT EXISTS Marks (
                 MarkID INTEGER PRIMARY KEY AUTOINCREMENT,
-                StudentID TEXT NOT NULL,
+                StudentID INTEGER NOT NULL,
                 ExamID INTEGER NOT NULL,
                 Score INTEGER CHECK(Score >= 0 AND Score <= 100),
                 FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
@@ -91,9 +91,10 @@ namespace UnicomTicManagementSystem.Repositories
             // 8. Timetables Table
             @"CREATE TABLE IF NOT EXISTS Timetables (
                 TimetableID INTEGER PRIMARY KEY AUTOINCREMENT,
-                SubjectID TEXT,
+                SubjectID TEXT NOT NULL,
+                Date TEXT NOT NULL,
                 TimeSlot TEXT NOT NULL,
-                RoomID INTEGER,
+                RoomID INTEGER NOT NULL,
                 FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
                 FOREIGN KEY (RoomID) REFERENCES Rooms(RoomID)
             );",

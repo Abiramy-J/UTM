@@ -56,7 +56,7 @@ namespace UnicomTicManagementSystem.Views
 
             if (cmbSubject.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a subject.");
+                MessageBox.Show("Please select a subject or if u are not create one click BACK and please create them in Manage Course and subject.");
                 return;
             }
 
@@ -103,9 +103,20 @@ namespace UnicomTicManagementSystem.Views
             if (!HasAnySubjects())
             {
                 MessageBox.Show("No subjects found. Please add subjects first!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.Close(); // Or redirect to ManageSubjectForm
-                return;
+                ManageCourse_SubjectForm manageForm = new ManageCourse_SubjectForm();
+                manageForm.ShowDialog();
+                if (!HasAnySubjects())
+                {
+                    MessageBox.Show("No subjects available. please add course and subject the form.");
+                    this.Hide();
+                    ManageCourse_SubjectForm manageForm1 = new ManageCourse_SubjectForm();
+                    manageForm1.ShowDialog();
+
+                }
             }
+
+            LoadSubjects(); // Reload subjects after adding
+            
 
             if (!isEditMode)
             {
