@@ -15,11 +15,12 @@ namespace UnicomTicManagementSystem.Controllers
         {
             using var conn = DbConfig.GetConnection();
             conn.Open();
-            string query = @"INSERT INTO Marks (StudentID, ExamID, Score) 
-                         VALUES (@StudentID, @ExamID, @Score)";
+            string query = @"INSERT INTO Marks (StudentID, ExamID, SubjectID, Score) 
+                 VALUES (@StudentID, @ExamID, @SubjectID, @Score)";
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@StudentID", mark.StudentID);
             cmd.Parameters.AddWithValue("@ExamID", mark.ExamID);
+            cmd.Parameters.AddWithValue("@SubjectID", mark.SubjectID);
             cmd.Parameters.AddWithValue("@Score", mark.Score);
             return cmd.ExecuteNonQuery() > 0;
         }
@@ -58,7 +59,7 @@ namespace UnicomTicManagementSystem.Controllers
             FROM Marks m
             JOIN Students s ON m.StudentID = s.StudentID
             JOIN Exams e ON m.ExamID = e.ExamID
-            JOIN Subjects sub ON e.SubjectID = sub.SubjectID
+            JOIN Subjects sub ON m.SubjectID = sub.SubjectID
             ";
 
             using var cmd = new SQLiteCommand(query, conn);
@@ -78,15 +79,17 @@ namespace UnicomTicManagementSystem.Controllers
 
             return marks;
         }
-        public static bool MarkExists(int studentId, int examId)
+        public static bool MarkExists(int studentId, int examId, string subjectId)
         {
             using var conn = DbConfig.GetConnection();
             conn.Open();
-            string query = "SELECT COUNT(*) FROM Marks WHERE StudentID = @studentId AND ExamID = @examId";
+
+            string query = "SELECT COUNT(*) FROM Marks WHERE StudentID = @studentId AND ExamID = @examId AND SubjectID = @subjectId";
 
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@studentId", studentId);
             cmd.Parameters.AddWithValue("@examId", examId);
+            cmd.Parameters.AddWithValue("@subjectId", subjectId);
 
             long count = (long)cmd.ExecuteScalar();
             return count > 0;

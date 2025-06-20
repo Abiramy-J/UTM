@@ -57,7 +57,8 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-
+            CreateAdmin createAdmin = new CreateAdmin();
+            LoadFormIntoPanel(createAdmin);
         }
 
         private void btnCloseCU_Click(object sender, EventArgs e)

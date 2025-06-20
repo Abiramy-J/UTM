@@ -29,33 +29,83 @@ namespace UnicomTicManagementSystem.Views
         }
         private void SetupRoleBasedAccess()
         {
-            // 📌 Everyone can view timetable
-            dgvTimetable.Visible = true;
+            // Hide everything first
+            IbDate.Visible = false;
+            IbSubject.Visible = false;
+            lbRoomName.Visible = false;
+            lbTimeSlot.Visible = false;
 
-            // 👑 Admin — full access
-            if (userRole == "Admin")
+            dtpTTDate.Visible = false;
+            cmbSubject.Visible = false;
+            cmbRoomName.Visible = false;
+            cmbTimeSlot.Visible = false;
+
+            btnTAdd.Visible = false;
+            btnTUpdate.Visible = false;
+            btnTDelete.Visible = false;
+
+            // Always visible
+            dgvTimetable.Visible = true;
+            btnTBack.Visible = true;
+
+            if (userRole == "Admin" || userRole == "Staff")
             {
+                // Full access
+                IbDate.Visible = true;
+                IbSubject.Visible = true;
+                lbRoomName.Visible = true;
+                lbTimeSlot.Visible = true;
+
+                dtpTTDate.Visible = true;
                 cmbSubject.Visible = true;
                 cmbRoomName.Visible = true;
-                dtpTTDate.Visible = true;
                 cmbTimeSlot.Visible = true;
 
                 btnTAdd.Visible = true;
                 btnTUpdate.Visible = true;
                 btnTDelete.Visible = true;
             }
-            else // 🧑‍🏫 Staff, 🧑‍🎓 Student, 👨‍🏫 Lecturer — view only
+            else if (userRole == "Lecturer")
             {
+                // View-only
+                dgvTimetable.Visible = true;
+                btnTBack.Visible = true;
+
+                // Hide inputs and controls
+                IbDate.Visible = false;
+                IbSubject.Visible = false;
+                lbRoomName.Visible = false;
+                lbTimeSlot.Visible = false;
+
+                dtpTTDate.Visible = false;
                 cmbSubject.Visible = false;
                 cmbRoomName.Visible = false;
-                dtpTTDate.Visible = false;
                 cmbTimeSlot.Visible = false;
 
                 btnTAdd.Visible = false;
                 btnTUpdate.Visible = false;
                 btnTDelete.Visible = false;
+            }
+            else if (userRole == "Student")
+            {
+                // View "My Timetable" only
+                dgvTimetable.Visible = true;
+                btnTBack.Visible = true;
 
-                MessageBox.Show("🔒 View-only access to timetable.");
+                // Everything else hidden
+                IbDate.Visible = false;
+                IbSubject.Visible = false;
+                lbRoomName.Visible = false;
+                lbTimeSlot.Visible = false;
+
+                dtpTTDate.Visible = false;
+                cmbSubject.Visible = false;
+                cmbRoomName.Visible = false;
+                cmbTimeSlot.Visible = false;
+
+                btnTAdd.Visible = false;
+                btnTUpdate.Visible = false;
+                btnTDelete.Visible = false;
             }
         }
 

@@ -76,9 +76,11 @@ namespace UnicomTicManagementSystem.Repositories
                 MarkID INTEGER PRIMARY KEY AUTOINCREMENT,
                 StudentID INTEGER NOT NULL,
                 ExamID INTEGER NOT NULL,
+                SubjectID TEXT NOT NULL,
                 Score INTEGER CHECK(Score >= 0 AND Score <= 100),
                 FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
-                FOREIGN KEY (ExamID) REFERENCES Exams(ExamID)
+                FOREIGN KEY (ExamID) REFERENCES Exams(ExamID),
+                FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
             );",
 
             // 7. Rooms Table

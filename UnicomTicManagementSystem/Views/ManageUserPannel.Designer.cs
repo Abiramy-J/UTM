@@ -34,7 +34,6 @@
             panel2 = new Panel();
             pictureBoxMUser = new PictureBox();
             lbManageUsers = new Label();
-            btnAdminManage = new Button();
             btnStudentManage = new Button();
             btnLecturerManage = new Button();
             btnStaffManage = new Button();
@@ -74,7 +73,6 @@
             panel2.BackColor = SystemColors.ActiveBorder;
             panel2.Controls.Add(pictureBoxMUser);
             panel2.Controls.Add(lbManageUsers);
-            panel2.Controls.Add(btnAdminManage);
             panel2.Controls.Add(btnStudentManage);
             panel2.Controls.Add(btnLecturerManage);
             panel2.Controls.Add(btnStaffManage);
@@ -103,24 +101,12 @@
             lbManageUsers.TabIndex = 0;
             lbManageUsers.Text = "Manage Users";
             // 
-            // btnAdminManage
-            // 
-            btnAdminManage.BackColor = SystemColors.ActiveCaption;
-            btnAdminManage.FlatStyle = FlatStyle.Flat;
-            btnAdminManage.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAdminManage.Location = new Point(12, 380);
-            btnAdminManage.Name = "btnAdminManage";
-            btnAdminManage.Size = new Size(178, 38);
-            btnAdminManage.TabIndex = 3;
-            btnAdminManage.Text = "Admin";
-            btnAdminManage.UseVisualStyleBackColor = false;
-            // 
             // btnStudentManage
             // 
             btnStudentManage.BackColor = SystemColors.ActiveCaption;
             btnStudentManage.FlatStyle = FlatStyle.Flat;
             btnStudentManage.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStudentManage.Location = new Point(12, 182);
+            btnStudentManage.Location = new Point(12, 223);
             btnStudentManage.Name = "btnStudentManage";
             btnStudentManage.Size = new Size(178, 38);
             btnStudentManage.TabIndex = 1;
@@ -133,7 +119,7 @@
             btnLecturerManage.BackColor = SystemColors.ActiveCaption;
             btnLecturerManage.FlatStyle = FlatStyle.Flat;
             btnLecturerManage.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLecturerManage.Location = new Point(12, 314);
+            btnLecturerManage.Location = new Point(12, 375);
             btnLecturerManage.Name = "btnLecturerManage";
             btnLecturerManage.Size = new Size(178, 38);
             btnLecturerManage.TabIndex = 2;
@@ -146,7 +132,7 @@
             btnStaffManage.BackColor = SystemColors.ActiveCaption;
             btnStaffManage.FlatStyle = FlatStyle.Flat;
             btnStaffManage.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStaffManage.Location = new Point(12, 248);
+            btnStaffManage.Location = new Point(12, 300);
             btnStaffManage.Name = "btnStaffManage";
             btnStaffManage.Size = new Size(178, 38);
             btnStaffManage.TabIndex = 0;
@@ -198,7 +184,6 @@
         private Panel panel1;
         private Panel panel2;
         private Panel pnlManageUser;
-        private Button btnAdminManage;
         private Button btnStudentManage;
         private Button btnLecturerManage;
         private Button btnStaffManage;

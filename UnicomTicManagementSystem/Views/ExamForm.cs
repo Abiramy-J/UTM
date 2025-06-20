@@ -30,34 +30,75 @@ namespace UnicomTicManagementSystem.Views
         }
         private void SetupRoleBasedAccess()
         {
-            if (userRole == "Student" || userRole == "Lecturer")
+            // Hide all form controls initially
+            lbExamName.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
+
+            txtExamName.Visible = false;
+            cmbSubject.Visible = false;
+            dtpExamDate.Visible = false;
+
+            btnAdd.Visible = false;
+            btnUpdate.Visible = false;
+            btnDelete.Visible = false;
+
+            // Always visible controls
+            dgvExam.Visible = true;
+            btnBack.Visible = true;
+
+            // Show/hide based on role
+            if (userRole == "Admin" || userRole == "Staff")
             {
-                // View-only
-                dgvExam.Visible = true;
-
-                // Hide input controls
-                txtExamName.Visible = false;
-                cmbSubject.Visible = false;
-
-                btnAdd.Visible = false;
-                btnUpdate.Visible = false;
-                btnDelete.Visible = false;
-
-                MessageBox.Show("View-only mode for exams.");
-            }
-            else if (userRole == "Admin" || userRole == "Staff")
-            {
-                // Full access
-                dgvExam.Visible = true;
+                lbExamName.Visible = true;
+                label1.Visible = true;
+                label2.Visible = true;
 
                 txtExamName.Visible = true;
                 cmbSubject.Visible = true;
+                dtpExamDate.Visible = true;
 
                 btnAdd.Visible = true;
                 btnUpdate.Visible = true;
                 btnDelete.Visible = true;
             }
+            else if (userRole == "Lecturer")
+            {
+                // View-only access: show labels, no editing
+                lbExamName.Visible = true;
+                label1.Visible = true;
+                label2.Visible = true;
+
+                txtExamName.Visible = false; // can't edit
+                cmbSubject.Visible = false;
+                dtpExamDate.Visible = false;
+
+                // No add/delete/update
+                btnAdd.Visible = false;
+                btnUpdate.Visible = false;
+                btnDelete.Visible = false;
+            }
+            else if (userRole == "Student")
+            {
+                // Student sees only the exam list
+                dgvExam.Visible = true;
+                btnBack.Visible = true;
+
+                // Hide everything else
+                lbExamName.Visible = false;
+                label1.Visible = false;
+                label2.Visible = false;
+
+                txtExamName.Visible = false;
+                cmbSubject.Visible = false;
+                dtpExamDate.Visible = false;
+
+                btnAdd.Visible = false;
+                btnUpdate.Visible = false;
+                btnDelete.Visible = false;
+            }
         }
+
 
         private void LoadSubjectsIntoComboBox()
         {

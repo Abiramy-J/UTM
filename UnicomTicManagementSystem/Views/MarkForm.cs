@@ -36,42 +36,82 @@ namespace UnicomTicManagementSystem.Views
         }
         private void SetupRoleBasedAccess()
         {
-            if (userRole == "Student")
+            // Hide everything by default
+            lblStudent.Visible = false;
+            lblExam.Visible = false;
+            lblScore.Visible = false;
+            lbMSubject.Visible = false;
+
+            cmbStudent.Visible = false;
+            cmbExam.Visible = false;
+            cmbSubjects.Visible = false;
+            txtScore.Visible = false;
+
+            btnMAdd.Visible = false;
+            btnUpdate.Visible = false;
+            btnDelete.Visible = false;
+
+            // Always visible
+            dgvMarks.Visible = true;
+            btnBack.Visible = true;
+
+            // Role-specific logic
+            if (userRole == "Admin" || userRole == "Staff")
             {
-                // ✅ Show ONLY the DataGridView
-                dgvMarks.Visible = true;
-
-                // ❌ Hide all other controls
-                lblStudent.Visible = false;
-                lblExam.Visible = false;
-                lblScore.Visible = false;
-
-                cmbStudent.Visible = false;
-                cmbExam.Visible = false;
-                txtScore.Visible = false;
-
-                btnMAdd.Visible = false;
-                btnUpdate.Visible = false;
-                btnDelete.Visible = false;
-
-                MessageBox.Show("Welcome! You can only view your marks.");
-            }
-            else
-            {
-                // For Admin/Staff/Lecturer → everything visible
-                dgvMarks.Visible = true;
-
+                // Full access
                 lblStudent.Visible = true;
                 lblExam.Visible = true;
                 lblScore.Visible = true;
+                lbMSubject.Visible = true;
 
                 cmbStudent.Visible = true;
                 cmbExam.Visible = true;
+                cmbSubjects.Visible = true;
                 txtScore.Visible = true;
 
                 btnMAdd.Visible = true;
                 btnUpdate.Visible = true;
                 btnDelete.Visible = true;
+            }
+            else if (userRole == "Lecturer")
+            {
+                // Can enter/update marks for their subjects only
+                lblStudent.Visible = true;
+                lblExam.Visible = true;
+                lblScore.Visible = true;
+                lbMSubject.Visible = true;
+
+                cmbStudent.Visible = true;
+                cmbExam.Visible = true;
+                cmbSubjects.Visible = true;
+                txtScore.Visible = true;
+
+                btnMAdd.Visible = true;
+                btnUpdate.Visible = true;
+
+                // ❌ No delete option
+                btnDelete.Visible = false;
+            }
+            else if (userRole == "Student")
+            {
+                // View-only
+                dgvMarks.Visible = true;
+                btnBack.Visible = true;
+
+                // ❌ No editing fields
+                lblStudent.Visible = false;
+                lblExam.Visible = false;
+                lblScore.Visible = false;
+                lbMSubject.Visible = false;
+
+                cmbStudent.Visible = false;
+                cmbExam.Visible = false;
+                cmbSubjects.Visible = false;
+                txtScore.Visible = false;
+
+                btnMAdd.Visible = false;
+                btnUpdate.Visible = false;
+                btnDelete.Visible = false;
             }
         }
 
@@ -176,20 +216,21 @@ namespace UnicomTicManagementSystem.Views
 
             int studentId = int.Parse(((ComboBoxItem)cmbStudent.SelectedItem).Value);
             int examId = int.Parse(((ComboBoxItem)cmbExam.SelectedItem).Value);
-
-            if (MarkController.MarkExists(studentId, examId))
+            string subjectId = ((ComboBoxItem)cmbSubjects.SelectedItem).Value;
+            if (MarkController.MarkExists(studentId, examId, subjectId))
             {
-                MessageBox.Show("⚠️ This student already has a mark for this exam. Use 'Update' instead.");
+                MessageBox.Show("⚠️ This student already has a mark for this subject in this exam.");
                 return;
             }
+
 
             var newMark = new Mark
             {
                 StudentID = studentId,
                 ExamID = examId,
+                SubjectID = subjectId,
                 Score = score
             };
-
             bool success = MarkController.AddMark(newMark);
             if (success)
             {
@@ -225,14 +266,16 @@ namespace UnicomTicManagementSystem.Views
 
             int studentId = int.Parse(((ComboBoxItem)cmbStudent.SelectedItem).Value);
             int examId = int.Parse(((ComboBoxItem)cmbExam.SelectedItem).Value);
+            string subjectId = ((ComboBoxItem)cmbSubjects.SelectedItem).Value;
 
             var updatedMark = new Mark
             {
                 MarkID = selectedMarkId,
                 StudentID = studentId,
                 ExamID = examId,
+                SubjectID = subjectId,
                 Score = score
-            };
+            }; 
 
             bool success = MarkController.UpdateMark(updatedMark);
             if (success)

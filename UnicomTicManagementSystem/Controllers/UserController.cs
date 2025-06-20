@@ -9,7 +9,7 @@ using UnicomTicManagementSystem.Repositories;
 
 namespace UnicomTicManagementSystem.Controllers
 {
-    public static class UserController//test
+    public static class UserController
     {
         public static bool CreateAdmin(string username, string password)
         {
@@ -35,6 +35,27 @@ namespace UnicomTicManagementSystem.Controllers
                 int result = insertCmd.ExecuteNonQuery();
                 return result > 0;
             }
+        }
+        public static List<User> GetAllAdmins()
+        {
+            var admins = new List<User>();
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = "SELECT UserID, Username FROM Users WHERE Role = 'Admin'";
+            using var cmd = new SQLiteCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                admins.Add(new User
+                {
+                    UserId = Convert.ToInt32(reader["UserID"]),
+                    Username = reader["Username"].ToString()
+                });
+            }
+
+            return admins;
         }
 
         public static string Login(string username, string password)

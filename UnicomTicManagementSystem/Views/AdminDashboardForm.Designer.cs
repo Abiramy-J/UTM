@@ -106,6 +106,7 @@
             btnLogout.TabIndex = 9;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnManageRooms
             // 
@@ -132,6 +133,7 @@
             Controls.Add(btnCreateUsers);
             Name = "AdminDashboardForm";
             Text = "AdminDashboardForm";
+            Load += AdminDashboardForm_Load;
             ResumeLayout(false);
         }
 

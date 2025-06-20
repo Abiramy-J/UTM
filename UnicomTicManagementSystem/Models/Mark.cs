@@ -16,7 +16,9 @@ namespace UnicomTicManagementSystem.Models
         //  for display purposes
         public string StudentName { get; set; }
         public string ExamName { get; set; }
-        public string SubjectName { get; set; }
+        public string SubjectID { get; set; }
+        public string SubjectName { get; set; }  // Optional: for display
+
     }
 }
 

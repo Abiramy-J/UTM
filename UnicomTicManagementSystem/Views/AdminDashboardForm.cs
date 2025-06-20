@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
 using UnicomTicManagementSystem.Models;
 
 namespace UnicomTicManagementSystem.Views
@@ -67,7 +68,7 @@ namespace UnicomTicManagementSystem.Views
         }
         private void SetupRoleBasedUI()
         {
-            // 🌑 First: Hide all buttons
+            //  First: Hide all buttons
             btnCreateUsers.Visible = false;
             btnManageUser.Visible = false;
             btnManageCourseAndSubject.Visible = false;
@@ -76,7 +77,7 @@ namespace UnicomTicManagementSystem.Views
             btnManageMarks.Visible = false;
             btnManageTimetable.Visible = false;
 
-            // 🌞 Then show + rename based on role
+            //  Then show + rename based on role
             if (userRole == "Admin")
             {
                 btnCreateUsers.Visible = true;
@@ -127,6 +128,38 @@ namespace UnicomTicManagementSystem.Views
                 btnManageTimetable.Text = "My Timetable";
             }
         }
+
+        private void AdminDashboardForm_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            // Clear session
+            AppSession.Clear();
+
+            // Ask user if they want to login again
+            var result = MessageBox.Show(
+                "Session ended. Do you wish to log in again?",
+                "Logout Successful",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Show login again
+                this.Hide();
+                new LoginForm().Show();
+            }
+            else
+            {
+                // Close entire app
+                Application.Exit();
+            }
+        }
+        
 
     }
 }
