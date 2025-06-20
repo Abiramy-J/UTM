@@ -14,10 +14,10 @@ namespace UnicomTicManagementSystem.Models
         public int Score { get; set; } // between 0 and 100
 
         //  for display purposes
-        public string StudentName { get; set; }
-        public string ExamName { get; set; }
-        public string SubjectID { get; set; }
-        public string SubjectName { get; set; }  // Optional: for display
+        public string StudentName { get; set; } = string.Empty;
+        public string ExamName { get; set; } = string.Empty;
+        public string SubjectID { get; set; } = string.Empty;
+        public string SubjectName { get; set; } = string.Empty;  // Optional: for display
 
     }
 }

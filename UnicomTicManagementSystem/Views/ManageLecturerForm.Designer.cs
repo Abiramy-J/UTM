@@ -32,16 +32,19 @@
             btnLeUpdate = new Button();
             btnLeDelete = new Button();
             btnLeBack = new Button();
+            labelMLect = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvLecturers).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgvLecturers
             // 
             dgvLecturers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvLecturers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLecturers.Location = new Point(240, 30);
+            dgvLecturers.Location = new Point(240, 99);
             dgvLecturers.Name = "dgvLecturers";
-            dgvLecturers.Size = new Size(686, 340);
+            dgvLecturers.Size = new Size(686, 271);
             dgvLecturers.TabIndex = 2;
             dgvLecturers.CellClick += dgvLecturers_CellClick;
             // 
@@ -83,11 +86,34 @@
             btnLeBack.UseVisualStyleBackColor = false;
             btnLeBack.Click += btnLeBack_Click;
             // 
+            // labelMLect
+            // 
+            labelMLect.BackColor = SystemColors.ControlLight;
+            labelMLect.Font = new Font("Segoe UI Historic", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            labelMLect.ForeColor = Color.Navy;
+            labelMLect.Location = new Point(504, 38);
+            labelMLect.Name = "labelMLect";
+            labelMLect.Size = new Size(289, 47);
+            labelMLect.TabIndex = 6;
+            labelMLect.Text = "Manage Lecturer Records";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.icons8_admin_48__1_1;
+            pictureBox1.Location = new Point(455, 23);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(54, 50);
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            // 
             // ManageLecturerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(968, 459);
+            Controls.Add(pictureBox1);
+            Controls.Add(labelMLect);
             Controls.Add(btnLeBack);
             Controls.Add(btnLeDelete);
             Controls.Add(btnLeUpdate);
@@ -95,6 +121,7 @@
             Name = "ManageLecturerForm";
             Text = "ManageLecturerForm";
             ((System.ComponentModel.ISupportInitialize)dgvLecturers).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -104,5 +131,7 @@
         private Button btnLeUpdate;
         private Button btnLeDelete;
         private Button btnLeBack;
+        private Label labelMLect;
+        private PictureBox pictureBox1;
     }
 }

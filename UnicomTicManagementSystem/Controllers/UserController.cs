@@ -51,7 +51,7 @@ namespace UnicomTicManagementSystem.Controllers
                 admins.Add(new User
                 {
                     UserId = Convert.ToInt32(reader["UserID"]),
-                    Username = reader["Username"].ToString()
+                    Username = reader["Username"].ToString() ?? string.Empty
                 });
             }
 
@@ -73,7 +73,7 @@ namespace UnicomTicManagementSystem.Controllers
                 if (reader.Read())
                 { 
                     AppSession.UserId = Convert.ToInt32(reader["UserID"]);
-                    AppSession.Role = reader["Role"].ToString();
+                    AppSession.Role = reader["Role"].ToString() ?? string.Empty;
 
                     //  If it's a student, set the StudentID also:
                     if (AppSession.Role == "Student")

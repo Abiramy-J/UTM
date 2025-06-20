@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageUserPannel));
             panel1 = new Panel();
-            btnMClose = new Button();
             panel2 = new Panel();
             pictureBoxMUser = new PictureBox();
             lbManageUsers = new Label();
@@ -39,7 +38,6 @@
             btnStaffManage = new Button();
             pnlManageUser = new Panel();
             label1 = new Label();
-            panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMUser).BeginInit();
             pnlManageUser.SuspendLayout();
@@ -48,25 +46,11 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveBorder;
-            panel1.Controls.Add(btnMClose);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(984, 30);
             panel1.TabIndex = 0;
-            // 
-            // btnMClose
-            // 
-            btnMClose.BackColor = SystemColors.ActiveBorder;
-            btnMClose.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnMClose.ForeColor = Color.Red;
-            btnMClose.Location = new Point(946, 0);
-            btnMClose.Name = "btnMClose";
-            btnMClose.Size = new Size(38, 30);
-            btnMClose.TabIndex = 1;
-            btnMClose.Text = "X";
-            btnMClose.UseVisualStyleBackColor = false;
-            btnMClose.Click += btnMClose_Click;
             // 
             // panel2
             // 
@@ -157,7 +141,7 @@
             label1.Name = "label1";
             label1.Size = new Size(568, 168);
             label1.TabIndex = 0;
-            label1.Text = "Welcome to the User Management Panel. Please select a category to proceed";
+            label1.Text = "Welcome to the User Management Panel. Please select a category to proceed!\r\n";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ManageUserPannel
@@ -171,7 +155,6 @@
             Name = "ManageUserPannel";
             Text = "ManageUserPannel";
             Load += ManageUserPannel_Load;
-            panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMUser).EndInit();
@@ -190,6 +173,5 @@
         private Label lbManageUsers;
         private PictureBox pictureBoxMUser;
         private Label label1;
-        private Button btnMClose;
     }
 }

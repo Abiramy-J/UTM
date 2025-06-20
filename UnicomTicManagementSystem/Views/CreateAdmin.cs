@@ -73,11 +73,12 @@ namespace UnicomTicManagementSystem.Views
 
             dgvAdmin.Columns.Add("UserId", "ID");
             dgvAdmin.Columns.Add("Username", "Username");
+            dgvAdmin.Columns.Add("PasswordName", "Password"); // Optional, if you want to show passwords
 
             var admins = UserController.GetAllAdmins();
             foreach (var admin in admins)
             {
-                dgvAdmin.Rows.Add(admin.UserId, admin.Username);
+                dgvAdmin.Rows.Add(admin.UserId, admin.Username,admin.Password);
             }
         }
 

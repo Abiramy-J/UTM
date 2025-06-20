@@ -9,15 +9,15 @@ namespace UnicomTicManagementSystem.Models
     public class Student
     {
         public int StudentID { get; set; }//pk
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
         public DateTime DOB { get; set; }
-        public string Gender { get; set; }
-        public string CourseID { get; set; }
+        public string Gender { get; set; } = string.Empty;
+        public string CourseID { get; set; } = string.Empty;
         public int UserID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

@@ -39,6 +39,7 @@
             lbPwNote = new Label();
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             lbUsername.AutoSize = true;
             lbUsername.Font = new Font("Segoe UI", 15F);
             lbUsername.ForeColor = SystemColors.ControlText;
-            lbUsername.Location = new Point(12, 167);
+            lbUsername.Location = new Point(30, 167);
             lbUsername.Name = "lbUsername";
             lbUsername.Size = new Size(99, 28);
             lbUsername.TabIndex = 0;
@@ -57,7 +58,7 @@
             // 
             lbPassword.AutoSize = true;
             lbPassword.Font = new Font("Segoe UI", 15F);
-            lbPassword.Location = new Point(12, 244);
+            lbPassword.Location = new Point(30, 244);
             lbPassword.Name = "lbPassword";
             lbPassword.Size = new Size(93, 28);
             lbPassword.TabIndex = 1;
@@ -67,7 +68,7 @@
             // 
             txtUsername.BackColor = SystemColors.Window;
             txtUsername.Font = new Font("Segoe UI", 13F);
-            txtUsername.Location = new Point(12, 198);
+            txtUsername.Location = new Point(30, 198);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(370, 31);
             txtUsername.TabIndex = 2;
@@ -76,7 +77,7 @@
             // 
             txtPassword.BackColor = SystemColors.Window;
             txtPassword.Font = new Font("Segoe UI", 13F);
-            txtPassword.Location = new Point(12, 275);
+            txtPassword.Location = new Point(30, 275);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(370, 31);
             txtPassword.TabIndex = 3;
@@ -84,7 +85,7 @@
             // txtConfirm
             // 
             txtConfirm.Font = new Font("Segoe UI", 13F);
-            txtConfirm.Location = new Point(12, 378);
+            txtConfirm.Location = new Point(30, 378);
             txtConfirm.Name = "txtConfirm";
             txtConfirm.Size = new Size(370, 31);
             txtConfirm.TabIndex = 4;
@@ -93,7 +94,7 @@
             // 
             lbConfirm.AutoSize = true;
             lbConfirm.Font = new Font("Segoe UI", 15F);
-            lbConfirm.Location = new Point(12, 347);
+            lbConfirm.Location = new Point(30, 347);
             lbConfirm.Name = "lbConfirm";
             lbConfirm.Size = new Size(168, 28);
             lbConfirm.TabIndex = 5;
@@ -102,9 +103,9 @@
             // btnCreateAdmin
             // 
             btnCreateAdmin.BackColor = SystemColors.ActiveCaption;
-            btnCreateAdmin.Font = new Font("Segoe UI", 11F);
+            btnCreateAdmin.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCreateAdmin.ForeColor = SystemColors.ControlText;
-            btnCreateAdmin.Location = new Point(74, 446);
+            btnCreateAdmin.Location = new Point(115, 453);
             btnCreateAdmin.Name = "btnCreateAdmin";
             btnCreateAdmin.Size = new Size(242, 37);
             btnCreateAdmin.TabIndex = 6;
@@ -116,7 +117,7 @@
             // 
             lbPwNote.AutoSize = true;
             lbPwNote.Font = new Font("Segoe UI", 9F);
-            lbPwNote.Location = new Point(12, 312);
+            lbPwNote.Location = new Point(30, 309);
             lbPwNote.Name = "lbPwNote";
             lbPwNote.Size = new Size(370, 15);
             lbPwNote.TabIndex = 7;
@@ -125,7 +126,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(139, 21);
+            pictureBox1.Location = new Point(157, 21);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(129, 94);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -136,18 +137,31 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F);
-            label1.Location = new Point(93, 107);
+            label1.ForeColor = Color.Navy;
+            label1.Location = new Point(102, 118);
             label1.Name = "label1";
             label1.Size = new Size(235, 37);
             label1.TabIndex = 9;
             label1.Text = "Create First Admin";
             // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ControlLight;
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(421, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(242, 521);
+            panel1.TabIndex = 10;
+            // 
             // FirstAdminSignupForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(414, 511);
+            BackColor = SystemColors.ControlLight;
+            ClientSize = new Size(663, 521);
+            Controls.Add(panel1);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(lbPwNote);
@@ -161,6 +175,7 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "FirstAdminSignupForm";
             Text = "FirstAdminSignupForm";
+            Load += FirstAdminSignupForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -178,5 +193,6 @@
         private Label lbPwNote;
         private PictureBox pictureBox1;
         private Label label1;
+        private Panel panel1;
     }
 }

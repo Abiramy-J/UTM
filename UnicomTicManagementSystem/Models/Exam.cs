@@ -9,8 +9,8 @@ namespace UnicomTicManagementSystem.Models
     public class Exam
     {
         public int ExamID { get; set; }
-        public string SubjectID { get; set; }
-        public string ExamName { get; set; }
+        public string SubjectID { get; set; }= string.Empty; // Foreign key to Subject table
+        public string ExamName { get; set; } = string.Empty;
         public DateTime ExamDate { get; set; }
     }
 }

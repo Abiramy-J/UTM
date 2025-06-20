@@ -106,12 +106,12 @@ namespace UnicomTicManagementSystem.Controllers
                 return new Staff
                 {
                     StaffID = Convert.ToInt32(rdr["StaffID"]),
-                    Name = rdr["FullName"].ToString(),
-                    Address = rdr["Address"].ToString(),
-                    Email = rdr["Email"].ToString(),
-                    Phone = rdr["Phone"].ToString(),
+                    Name = rdr["FullName"].ToString() ?? string.Empty,
+                    Address = rdr["Address"].ToString() ?? string.Empty,
+                    Email = rdr["Email"].ToString() ?? string.Empty,
+                    Phone = rdr["Phone"].ToString() ?? string.Empty,
                     UserID = Convert.ToInt32(rdr["UserID"]),
-                    username = rdr["Username"].ToString()
+                    username = rdr["Username"].ToString() ?? string.Empty
                 };
             }
 

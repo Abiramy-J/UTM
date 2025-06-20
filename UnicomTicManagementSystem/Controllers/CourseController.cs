@@ -83,8 +83,8 @@ namespace UnicomTicManagementSystem.Controllers
             {
                 list.Add(new Course
                 {
-                    CourseID = rdr["CourseID"].ToString(),
-                    CourseName = rdr["CourseName"].ToString()
+                    CourseID = rdr["CourseID"].ToString()?? string.Empty, // Handle nulls gracefully
+                    CourseName = rdr["CourseName"].ToString() ?? string.Empty
                 });
             }
 

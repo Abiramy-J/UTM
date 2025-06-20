@@ -32,16 +32,19 @@
             btnStaffUpdate = new Button();
             btnStaffDelete = new Button();
             btnStaffBack = new Button();
+            labelMStaff = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvStaff).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgvStaff
             // 
             dgvStaff.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStaff.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStaff.Location = new Point(225, 35);
+            dgvStaff.Location = new Point(225, 106);
             dgvStaff.Name = "dgvStaff";
-            dgvStaff.Size = new Size(686, 340);
+            dgvStaff.Size = new Size(686, 269);
             dgvStaff.TabIndex = 1;
             dgvStaff.CellClick += dgvStaff_CellClick;
             dgvStaff.CellContentClick += dgvStaff_CellClick;
@@ -84,11 +87,35 @@
             btnStaffBack.UseVisualStyleBackColor = false;
             btnStaffBack.Click += btnStaffBack_Click;
             // 
+            // labelMStaff
+            // 
+            labelMStaff.BackColor = SystemColors.ControlLight;
+            labelMStaff.Font = new Font("Segoe UI Historic", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            labelMStaff.ForeColor = Color.Navy;
+            labelMStaff.Location = new Point(491, 39);
+            labelMStaff.Name = "labelMStaff";
+            labelMStaff.Size = new Size(263, 47);
+            labelMStaff.TabIndex = 7;
+            labelMStaff.Text = "Manage Staff Records";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.icons8_staff_100__1_;
+            pictureBox1.Location = new Point(437, 27);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(58, 50);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
             // ManageStaffForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(968, 459);
+            Controls.Add(pictureBox1);
+            Controls.Add(labelMStaff);
             Controls.Add(btnStaffBack);
             Controls.Add(btnStaffDelete);
             Controls.Add(btnStaffUpdate);
@@ -96,6 +123,7 @@
             Name = "ManageStaffForm";
             Text = "ManageStaffForm";
             ((System.ComponentModel.ISupportInitialize)dgvStaff).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -105,5 +133,7 @@
         private Button btnStaffUpdate;
         private Button btnStaffDelete;
         private Button btnStaffBack;
+        private Label labelMStaff;
+        private PictureBox pictureBox1;
     }
 }

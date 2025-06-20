@@ -44,6 +44,9 @@
             txtPassword = new TextBox();
             lbSubject = new Label();
             cmbSubject = new ComboBox();
+            lbLecDeForm = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lbSFullName
@@ -58,7 +61,7 @@
             // lbAddress
             // 
             lbAddress.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbAddress.Location = new Point(96, 155);
+            lbAddress.Location = new Point(96, 140);
             lbAddress.Name = "lbAddress";
             lbAddress.Size = new Size(100, 23);
             lbAddress.TabIndex = 2;
@@ -67,7 +70,7 @@
             // lbEmail
             // 
             lbEmail.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbEmail.Location = new Point(96, 204);
+            lbEmail.Location = new Point(96, 182);
             lbEmail.Name = "lbEmail";
             lbEmail.Size = new Size(100, 23);
             lbEmail.TabIndex = 3;
@@ -76,7 +79,7 @@
             // lbPhoneNo
             // 
             lbPhoneNo.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbPhoneNo.Location = new Point(96, 252);
+            lbPhoneNo.Location = new Point(96, 219);
             lbPhoneNo.Name = "lbPhoneNo";
             lbPhoneNo.Size = new Size(100, 23);
             lbPhoneNo.TabIndex = 4;
@@ -85,7 +88,7 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(96, 293);
+            label1.Location = new Point(96, 264);
             label1.Name = "label1";
             label1.Size = new Size(100, 23);
             label1.TabIndex = 5;
@@ -94,7 +97,7 @@
             // label2
             // 
             label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(96, 329);
+            label2.Location = new Point(96, 308);
             label2.Name = "label2";
             label2.Size = new Size(100, 23);
             label2.TabIndex = 6;
@@ -102,7 +105,7 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(202, 99);
+            txtName.Location = new Point(202, 100);
             txtName.Name = "txtName";
             txtName.Size = new Size(361, 23);
             txtName.TabIndex = 7;
@@ -110,9 +113,10 @@
             // btnSave
             // 
             btnSave.BackColor = SystemColors.ActiveCaption;
-            btnSave.Location = new Point(561, 394);
+            btnSave.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.Location = new Point(486, 383);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 23);
+            btnSave.Size = new Size(100, 34);
             btnSave.TabIndex = 13;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -121,9 +125,10 @@
             // btnBack
             // 
             btnBack.BackColor = SystemColors.ActiveCaption;
-            btnBack.Location = new Point(689, 394);
+            btnBack.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(631, 383);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(75, 23);
+            btnBack.Size = new Size(100, 34);
             btnBack.TabIndex = 14;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = false;
@@ -131,35 +136,35 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(202, 193);
+            txtEmail.Location = new Point(202, 182);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(361, 23);
             txtEmail.TabIndex = 15;
             // 
             // txtAddress
             // 
-            txtAddress.Location = new Point(202, 140);
+            txtAddress.Location = new Point(202, 139);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(361, 23);
             txtAddress.TabIndex = 16;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(202, 251);
+            txtPhone.Location = new Point(202, 218);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(361, 23);
             txtPhone.TabIndex = 17;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(202, 293);
+            txtUsername.Location = new Point(202, 264);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(361, 23);
             txtUsername.TabIndex = 18;
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(202, 328);
+            txtPassword.Location = new Point(202, 308);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(361, 23);
             txtPassword.TabIndex = 19;
@@ -167,7 +172,7 @@
             // lbSubject
             // 
             lbSubject.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbSubject.Location = new Point(96, 368);
+            lbSubject.Location = new Point(96, 354);
             lbSubject.Name = "lbSubject";
             lbSubject.Size = new Size(100, 23);
             lbSubject.TabIndex = 20;
@@ -176,16 +181,39 @@
             // cmbSubject
             // 
             cmbSubject.FormattingEnabled = true;
-            cmbSubject.Location = new Point(202, 368);
+            cmbSubject.Location = new Point(202, 354);
             cmbSubject.Name = "cmbSubject";
             cmbSubject.Size = new Size(213, 23);
             cmbSubject.TabIndex = 21;
+            // 
+            // lbLecDeForm
+            // 
+            lbLecDeForm.Font = new Font("Segoe UI Historic", 18F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lbLecDeForm.ForeColor = Color.Navy;
+            lbLecDeForm.Location = new Point(310, 29);
+            lbLecDeForm.Name = "lbLecDeForm";
+            lbLecDeForm.Size = new Size(367, 41);
+            lbLecDeForm.TabIndex = 22;
+            lbLecDeForm.Text = "Lecturer Details Form";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.icons8_lecturer_1001;
+            pictureBox1.Location = new Point(270, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(43, 46);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 23;
+            pictureBox1.TabStop = false;
             // 
             // AddLecturerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
+            Controls.Add(lbLecDeForm);
             Controls.Add(cmbSubject);
             Controls.Add(lbSubject);
             Controls.Add(txtPassword);
@@ -205,6 +233,7 @@
             Name = "AddLecturerForm";
             Text = "AddLecturerForm";
             Load += AddLecturerForm_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -227,5 +256,7 @@
         private TextBox txtPassword;
         private Label lbSubject;
         private ComboBox cmbSubject;
+        private Label lbLecDeForm;
+        private PictureBox pictureBox1;
     }
 }

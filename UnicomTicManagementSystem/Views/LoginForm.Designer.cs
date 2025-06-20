@@ -35,18 +35,17 @@
             txtUsername = new TextBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // btnLogin
             // 
             btnLogin.BackColor = SystemColors.ActiveCaption;
-            btnLogin.Font = new Font("Segoe UI", 12F);
-            btnLogin.Location = new Point(169, 344);
+            btnLogin.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogin.Location = new Point(99, 410);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(146, 32);
+            btnLogin.Size = new Size(176, 45);
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = false;
@@ -56,7 +55,7 @@
             // 
             lb1Username.AutoSize = true;
             lb1Username.Font = new Font("Segoe UI", 15F);
-            lb1Username.Location = new Point(24, 153);
+            lb1Username.Location = new Point(24, 185);
             lb1Username.Name = "lb1Username";
             lb1Username.Size = new Size(99, 28);
             lb1Username.TabIndex = 1;
@@ -66,7 +65,7 @@
             // 
             Ib1Password.AutoSize = true;
             Ib1Password.Font = new Font("Segoe UI", 15F);
-            Ib1Password.Location = new Point(24, 235);
+            Ib1Password.Location = new Point(24, 284);
             Ib1Password.Name = "Ib1Password";
             Ib1Password.Size = new Size(93, 28);
             Ib1Password.TabIndex = 2;
@@ -75,56 +74,56 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Segoe UI", 13F);
-            txtPassword.Location = new Point(24, 266);
+            txtPassword.Location = new Point(24, 328);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(240, 31);
+            txtPassword.Size = new Size(310, 31);
             txtPassword.TabIndex = 3;
             // 
             // txtUsername
             // 
             txtUsername.Font = new Font("Segoe UI", 13F);
-            txtUsername.Location = new Point(24, 184);
+            txtUsername.Location = new Point(24, 227);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(240, 31);
+            txtUsername.Size = new Size(310, 31);
             txtUsername.TabIndex = 4;
             // 
             // label1
             // 
-            label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(57, 97);
+            label1.ForeColor = Color.Navy;
+            label1.Location = new Point(69, 128);
             label1.Name = "label1";
-            label1.Size = new Size(227, 30);
+            label1.Size = new Size(237, 47);
             label1.TabIndex = 6;
             label1.Text = "Login to Your Account";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.icons8_lock_50;
-            pictureBox1.Location = new Point(123, 44);
+            pictureBox1.Location = new Point(142, 53);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 50);
+            pictureBox1.Size = new Size(77, 81);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // panel1
             // 
-            pictureBox2.Image = Properties.Resources._400029157_122102106932103975_8374243604086202124_n1;
-            pictureBox2.Location = new Point(307, 97);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(122, 125);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 8;
-            pictureBox2.TabStop = false;
+            panel1.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_06_21_at_00_09_19_f34a488c;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(384, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(253, 545);
+            panel1.TabIndex = 8;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(490, 440);
-            Controls.Add(pictureBox2);
+            ClientSize = new Size(637, 545);
+            Controls.Add(panel1);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(txtUsername);
@@ -136,7 +135,6 @@
             Text = "LoginForm";
             Load += LoginForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -150,6 +148,6 @@
         private TextBox txtUsername;
         private Label label1;
         private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
+        private Panel panel1;
     }
 }

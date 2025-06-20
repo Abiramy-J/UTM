@@ -11,7 +11,7 @@ namespace UnicomTicManagementSystem.Models
         public int UserId { get; set; }//PK
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-        public string Role { get; set; }//Admin, Student, Staff, Lecturer
+        public string Role { get; set; } = string.Empty;//Admin, Student, Staff, Lecturer
     }
     public class ComboBoxItem
     {

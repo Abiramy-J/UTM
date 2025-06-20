@@ -66,8 +66,8 @@ namespace UnicomTicManagementSystem.Controllers
                 return new Exam
                 {
                     ExamID = Convert.ToInt32(rdr["ExamID"]),
-                    SubjectID = rdr["SubjectID"].ToString(),
-                    ExamName = rdr["ExamName"].ToString(),
+                    SubjectID = rdr["SubjectID"].ToString() ?? string.Empty,
+                    ExamName = rdr["ExamName"].ToString() ?? string.Empty,
                     ExamDate = Convert.ToDateTime(rdr["ExamDate"])
                 };
             }
@@ -86,7 +86,7 @@ namespace UnicomTicManagementSystem.Controllers
                 exams.Add(new Exam
                 {
                     ExamID = Convert.ToInt32(rdr["ExamID"]),
-                    ExamName = rdr["ExamName"].ToString()
+                    ExamName = rdr["ExamName"].ToString() ?? string.Empty
                 });
             }
             return exams;

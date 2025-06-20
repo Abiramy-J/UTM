@@ -36,93 +36,123 @@
             btnManageTimetable = new Button();
             btnLogout = new Button();
             btnManageRooms = new Button();
+            panel1 = new Panel();
             SuspendLayout();
             // 
             // btnCreateUsers
             // 
-            btnCreateUsers.Location = new Point(29, 63);
+            btnCreateUsers.BackColor = Color.Lavender;
+            btnCreateUsers.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCreateUsers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCreateUsers.Location = new Point(412, 41);
             btnCreateUsers.Name = "btnCreateUsers";
-            btnCreateUsers.Size = new Size(173, 23);
+            btnCreateUsers.Size = new Size(250, 32);
             btnCreateUsers.TabIndex = 0;
             btnCreateUsers.Text = "Create Users";
-            btnCreateUsers.UseVisualStyleBackColor = true;
+            btnCreateUsers.UseVisualStyleBackColor = false;
             btnCreateUsers.Click += btnCreateUers_Click;
             // 
             // btnManageUser
             // 
-            btnManageUser.Location = new Point(29, 92);
+            btnManageUser.BackColor = Color.Lavender;
+            btnManageUser.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnManageUser.Location = new Point(412, 102);
             btnManageUser.Name = "btnManageUser";
-            btnManageUser.Size = new Size(173, 23);
+            btnManageUser.Size = new Size(250, 32);
             btnManageUser.TabIndex = 1;
             btnManageUser.Text = "Manage User";
-            btnManageUser.UseVisualStyleBackColor = true;
+            btnManageUser.UseVisualStyleBackColor = false;
             btnManageUser.Click += btnManageUser_Click;
             // 
             // btnManageCourseAndSubject
             // 
-            btnManageCourseAndSubject.Location = new Point(12, 130);
+            btnManageCourseAndSubject.BackColor = Color.Lavender;
+            btnManageCourseAndSubject.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnManageCourseAndSubject.Location = new Point(412, 220);
             btnManageCourseAndSubject.Name = "btnManageCourseAndSubject";
-            btnManageCourseAndSubject.Size = new Size(190, 23);
+            btnManageCourseAndSubject.Size = new Size(250, 32);
             btnManageCourseAndSubject.TabIndex = 4;
             btnManageCourseAndSubject.Text = "Manage Course and Subject";
-            btnManageCourseAndSubject.UseVisualStyleBackColor = true;
+            btnManageCourseAndSubject.UseVisualStyleBackColor = false;
             btnManageCourseAndSubject.Click += btnManageCourseAndSubject_Click;
             // 
             // btnManageExam
             // 
-            btnManageExam.Location = new Point(42, 192);
+            btnManageExam.BackColor = Color.Lavender;
+            btnManageExam.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnManageExam.Location = new Point(412, 163);
             btnManageExam.Name = "btnManageExam";
-            btnManageExam.Size = new Size(123, 23);
+            btnManageExam.Size = new Size(250, 32);
             btnManageExam.TabIndex = 6;
             btnManageExam.Text = "Manage Exam";
-            btnManageExam.UseVisualStyleBackColor = true;
+            btnManageExam.UseVisualStyleBackColor = false;
             btnManageExam.Click += btnManageExam_Click;
             // 
             // btnManageMarks
             // 
-            btnManageMarks.Location = new Point(42, 221);
+            btnManageMarks.BackColor = Color.Lavender;
+            btnManageMarks.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnManageMarks.Location = new Point(412, 279);
             btnManageMarks.Name = "btnManageMarks";
-            btnManageMarks.Size = new Size(123, 23);
+            btnManageMarks.Size = new Size(250, 32);
             btnManageMarks.TabIndex = 7;
             btnManageMarks.Text = "Manage Marks";
-            btnManageMarks.UseVisualStyleBackColor = true;
+            btnManageMarks.UseVisualStyleBackColor = false;
             btnManageMarks.Click += btnManageMarks_Click;
             // 
             // btnManageTimetable
             // 
-            btnManageTimetable.Location = new Point(29, 295);
+            btnManageTimetable.BackColor = Color.Lavender;
+            btnManageTimetable.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnManageTimetable.Location = new Point(412, 404);
             btnManageTimetable.Name = "btnManageTimetable";
-            btnManageTimetable.Size = new Size(123, 23);
+            btnManageTimetable.Size = new Size(250, 32);
             btnManageTimetable.TabIndex = 8;
             btnManageTimetable.Text = "Manage Timetable";
-            btnManageTimetable.UseVisualStyleBackColor = true;
+            btnManageTimetable.UseVisualStyleBackColor = false;
             btnManageTimetable.Click += btnManageTimetable_Click;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(29, 333);
+            btnLogout.BackColor = Color.Lavender;
+            btnLogout.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogout.Location = new Point(412, 471);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(123, 23);
+            btnLogout.Size = new Size(250, 32);
             btnLogout.TabIndex = 9;
             btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.UseVisualStyleBackColor = false;
             btnLogout.Click += btnLogout_Click;
             // 
             // btnManageRooms
             // 
-            btnManageRooms.Location = new Point(42, 250);
+            btnManageRooms.BackColor = Color.Lavender;
+            btnManageRooms.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnManageRooms.Location = new Point(412, 345);
             btnManageRooms.Name = "btnManageRooms";
-            btnManageRooms.Size = new Size(123, 23);
+            btnManageRooms.Size = new Size(250, 32);
             btnManageRooms.TabIndex = 10;
             btnManageRooms.Text = "ManageRooms";
-            btnManageRooms.UseVisualStyleBackColor = true;
+            btnManageRooms.UseVisualStyleBackColor = false;
             btnManageRooms.Click += btnManageRooms_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_06_20_at_22_47_51_3515973c;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(254, 536);
+            panel1.TabIndex = 11;
             // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 481);
+            BackColor = Color.FromArgb(192, 192, 255);
+            ClientSize = new Size(945, 536);
+            Controls.Add(panel1);
             Controls.Add(btnManageRooms);
             Controls.Add(btnLogout);
             Controls.Add(btnManageTimetable);
@@ -131,6 +161,7 @@
             Controls.Add(btnManageCourseAndSubject);
             Controls.Add(btnManageUser);
             Controls.Add(btnCreateUsers);
+            ForeColor = SystemColors.ActiveCaptionText;
             Name = "AdminDashboardForm";
             Text = "AdminDashboardForm";
             Load += AdminDashboardForm_Load;
@@ -147,5 +178,6 @@
         private Button btnManageTimetable;
         private Button btnLogout;
         private Button btnManageRooms;
+        private Panel panel1;
     }
 }

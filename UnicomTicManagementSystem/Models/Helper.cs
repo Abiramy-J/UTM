@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace UnicomTicManagementSystem.Models
 {
-    public class Course
+    public class Helper
     {
-        public string CourseID { get; set; } = string.Empty;
-        public string CourseName { get; set; } = string.Empty;
+        
     }
 }

@@ -25,8 +25,8 @@ namespace UnicomTicManagementSystem.Controllers
                 list.Add(new Room
                 {
                     RoomID = Convert.ToInt32(rdr["RoomID"]),
-                    RoomName = rdr["RoomName"].ToString(),
-                    RoomType = rdr["RoomType"].ToString()
+                    RoomName = rdr["RoomName"].ToString() ?? string.Empty,
+                    RoomType = rdr["RoomType"].ToString() ?? string.Empty
                 });
             }
             return list;

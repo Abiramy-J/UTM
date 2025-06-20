@@ -74,9 +74,9 @@ namespace UnicomTicManagementSystem.Controllers
                 {
                     TimetableID = Convert.ToInt32(rdr["TimetableID"]),
                     Date = Convert.ToDateTime(rdr["Date"]),
-                    TimeSlot = rdr["TimeSlot"].ToString(),
-                    SubjectName = rdr["SubjectName"].ToString(),
-                    RoomName = rdr["RoomName"].ToString()
+                    TimeSlot = rdr["TimeSlot"].ToString() ?? string.Empty,
+                    SubjectName = rdr["SubjectName"].ToString() ?? string.Empty,
+                    RoomName = rdr["RoomName"].ToString() ?? string.Empty
                 });
             }
             return list;

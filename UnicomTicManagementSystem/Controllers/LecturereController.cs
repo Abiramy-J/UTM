@@ -117,13 +117,13 @@ namespace UnicomTicManagementSystem.Controllers
                     return new Lecturer
                     {
                         LecturerID = Convert.ToInt32(rdr["LecturerID"]),
-                        Name = rdr["Name"].ToString(),
-                        Address = rdr["Address"].ToString(),
-                        Email = rdr["Email"].ToString(),
-                        Phone = rdr["Phone"].ToString(),
-                        SubjectID = rdr["SubjectID"].ToString(), // Corrected property name
+                        Name = rdr["Name"].ToString() ?? string.Empty,
+                        Address = rdr["Address"].ToString() ?? string.Empty,
+                        Email = rdr["Email"].ToString() ?? string.Empty,
+                        Phone = rdr["Phone"].ToString() ?? string.Empty,
+                        SubjectID = rdr["SubjectID"].ToString() ?? string.Empty, // Corrected property name
                         UserID = Convert.ToInt32(rdr["UserID"]),
-                        Username = rdr["Username"].ToString()
+                        Username = rdr["Username"].ToString() ?? string.Empty
                     };
                 }
 

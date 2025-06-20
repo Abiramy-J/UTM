@@ -69,9 +69,9 @@ namespace UnicomTicManagementSystem.Controllers
                 marks.Add(new Mark
                 {
                     MarkID = Convert.ToInt32(rdr["MarkID"]),
-                    StudentName = rdr["StudentName"].ToString(),
-                    ExamName = rdr["ExamName"].ToString(),
-                    SubjectName = rdr["SubjectName"].ToString(),
+                    StudentName = rdr["StudentName"].ToString() ?? string.Empty,
+                    ExamName = rdr["ExamName"].ToString() ?? string.Empty,
+                    SubjectName = rdr["SubjectName"].ToString() ?? string.Empty,
                     Score = Convert.ToInt32(rdr["Score"]),
 
                 });
@@ -116,8 +116,8 @@ namespace UnicomTicManagementSystem.Controllers
                 marks.Add(new Mark
                 {
                     MarkID = Convert.ToInt32(rdr["MarkID"]),
-                    StudentName = rdr["StudentName"].ToString(),
-                    ExamName = rdr["ExamName"].ToString(),
+                    StudentName = rdr["StudentName"].ToString() ?? string.Empty,
+                    ExamName = rdr["ExamName"].ToString() ?? string.Empty,
                     Score = Convert.ToInt32(rdr["Score"])
                 });
             }

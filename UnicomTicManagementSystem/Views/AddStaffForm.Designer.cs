@@ -42,12 +42,15 @@
             txtPhone = new TextBox();
             btnSave = new Button();
             btnBack = new Button();
+            label3 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lbSFullName
             // 
             lbSFullName.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbSFullName.Location = new Point(55, 69);
+            lbSFullName.Location = new Point(92, 108);
             lbSFullName.Name = "lbSFullName";
             lbSFullName.Size = new Size(100, 23);
             lbSFullName.TabIndex = 0;
@@ -56,7 +59,7 @@
             // lbAddress
             // 
             lbAddress.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbAddress.Location = new Point(66, 107);
+            lbAddress.Location = new Point(92, 158);
             lbAddress.Name = "lbAddress";
             lbAddress.Size = new Size(100, 23);
             lbAddress.TabIndex = 1;
@@ -65,16 +68,16 @@
             // lbEmail
             // 
             lbEmail.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbEmail.Location = new Point(80, 159);
+            lbEmail.Location = new Point(92, 203);
             lbEmail.Name = "lbEmail";
-            lbEmail.Size = new Size(100, 23);
+            lbEmail.Size = new Size(63, 23);
             lbEmail.TabIndex = 2;
             lbEmail.Text = "Email : ";
             // 
             // lbPhoneNo
             // 
             lbPhoneNo.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbPhoneNo.Location = new Point(32, 212);
+            lbPhoneNo.Location = new Point(92, 250);
             lbPhoneNo.Name = "lbPhoneNo";
             lbPhoneNo.Size = new Size(100, 23);
             lbPhoneNo.TabIndex = 3;
@@ -83,7 +86,7 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(54, 271);
+            label1.Location = new Point(92, 295);
             label1.Name = "label1";
             label1.Size = new Size(100, 23);
             label1.TabIndex = 4;
@@ -92,7 +95,7 @@
             // label2
             // 
             label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(54, 326);
+            label2.Location = new Point(92, 343);
             label2.Name = "label2";
             label2.Size = new Size(100, 23);
             label2.TabIndex = 5;
@@ -100,28 +103,28 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(138, 69);
+            txtName.Location = new Point(198, 107);
             txtName.Name = "txtName";
             txtName.Size = new Size(361, 23);
             txtName.TabIndex = 6;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(138, 158);
+            txtEmail.Location = new Point(198, 202);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(361, 23);
             txtEmail.TabIndex = 7;
             // 
             // txtAddress
             // 
-            txtAddress.Location = new Point(138, 107);
+            txtAddress.Location = new Point(198, 158);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(361, 23);
             txtAddress.TabIndex = 8;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(138, 271);
+            txtUsername.Location = new Point(198, 294);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(361, 23);
             txtUsername.TabIndex = 9;
@@ -129,14 +132,14 @@
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(138, 326);
+            txtPassword.Location = new Point(198, 343);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(361, 23);
             txtPassword.TabIndex = 10;
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(138, 212);
+            txtPhone.Location = new Point(198, 250);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(361, 23);
             txtPhone.TabIndex = 11;
@@ -144,9 +147,10 @@
             // btnSave
             // 
             btnSave.BackColor = SystemColors.ActiveCaption;
-            btnSave.Location = new Point(565, 377);
+            btnSave.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.Location = new Point(507, 389);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 23);
+            btnSave.Size = new Size(100, 35);
             btnSave.TabIndex = 12;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -155,19 +159,43 @@
             // btnBack
             // 
             btnBack.BackColor = SystemColors.ActiveCaption;
-            btnBack.Location = new Point(670, 377);
+            btnBack.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(668, 389);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(75, 23);
+            btnBack.Size = new Size(100, 35);
             btnBack.TabIndex = 13;
             btnBack.Text = "Back";
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
+            // label3
+            // 
+            label3.Font = new Font("Segoe UI Historic", 18F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Navy;
+            label3.Location = new Point(323, 42);
+            label3.Name = "label3";
+            label3.Size = new Size(236, 38);
+            label3.TabIndex = 14;
+            label3.Text = "Staff Details Form";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.icons8_staff_1001;
+            pictureBox1.Location = new Point(274, 27);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(53, 53);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 15;
+            pictureBox1.TabStop = false;
+            // 
             // AddStaffForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
+            Controls.Add(label3);
             Controls.Add(btnBack);
             Controls.Add(btnSave);
             Controls.Add(txtPhone);
@@ -185,6 +213,7 @@
             Name = "AddStaffForm";
             Text = "AddStaffForm";
             Load += AddStaffForm_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,5 +234,7 @@
         private TextBox txtPhone;
         private Button btnSave;
         private Button btnBack;
+        private Label label3;
+        private PictureBox pictureBox1;
     }
 }

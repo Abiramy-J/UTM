@@ -93,6 +93,16 @@ namespace UnicomTicManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _400029157_122102106932103975_8374243604086202124_n__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("400029157_122102106932103975_8374243604086202124_n (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _400029157_122102106932103975_8374243604086202124_n1 {
             get {
                 object obj = ResourceManager.GetObject("400029157_122102106932103975_8374243604086202124_n1", resourceCulture);
@@ -126,6 +136,16 @@ namespace UnicomTicManagementSystem.Properties {
         internal static System.Drawing.Bitmap download1 {
             get {
                 object obj = ResourceManager.GetObject("download1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download2 {
+            get {
+                object obj = ResourceManager.GetObject("download2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -174,6 +194,26 @@ namespace UnicomTicManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_admin_48__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-admin-48 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_admin_48__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-admin-48 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_admin_481 {
             get {
                 object obj = ResourceManager.GetObject("icons8-admin-481", resourceCulture);
@@ -204,9 +244,39 @@ namespace UnicomTicManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_books_641 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-books-641", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_course_assign_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-course-assign-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_lecturer_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-lecturer-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_lecturer_1001 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-lecturer-1001", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -274,6 +344,26 @@ namespace UnicomTicManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_staff_100__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-staff-100 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_staff_1001 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-staff-1001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_student_90 {
             get {
                 object obj = ResourceManager.GetObject("icons8-student-90", resourceCulture);
@@ -314,6 +404,16 @@ namespace UnicomTicManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_timetable_64 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-timetable-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_welcome_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-welcome-100", resourceCulture);
@@ -337,6 +437,66 @@ namespace UnicomTicManagementSystem.Properties {
         internal static System.Drawing.Bitmap icons8_welcome_641 {
             get {
                 object obj = ResourceManager.GetObject("icons8-welcome-641", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stu {
+            get {
+                object obj = ResourceManager.GetObject("stu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_17_at_11_55_21_63fc83c3 {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-17 at 11.55.21_63fc83c3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_20_at_22_47_51_3515973c {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-20 at 22.47.51_3515973c", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_20_at_22_47_51_90f333f8 {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-20 at 22.47.51_90f333f8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_20_at_22_471 {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-20 at 22.471", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2025_06_21_at_00_09_19_f34a488c {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp Image 2025-06-21 at 00.09.19_f34a488c", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -33,16 +33,18 @@
             btnDelete = new Button();
             btnBack = new Button();
             lbMStudentRecords = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvStudents).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgvStudents
             // 
             dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudents.Location = new Point(251, 61);
+            dgvStudents.Location = new Point(251, 110);
             dgvStudents.Name = "dgvStudents";
-            dgvStudents.Size = new Size(686, 340);
+            dgvStudents.Size = new Size(686, 287);
             dgvStudents.TabIndex = 0;
             dgvStudents.CellClick += dgvStudents_CellClick;
             dgvStudents.CellContentClick += dgvStudents_CellClick;
@@ -87,9 +89,9 @@
             // 
             // lbMStudentRecords
             // 
-            lbMStudentRecords.Font = new Font("Segoe UI Variable Display", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbMStudentRecords.ForeColor = Color.RoyalBlue;
-            lbMStudentRecords.Location = new Point(432, 9);
+            lbMStudentRecords.Font = new Font("Segoe UI Historic", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            lbMStudentRecords.ForeColor = Color.Black;
+            lbMStudentRecords.Location = new Point(469, 42);
             lbMStudentRecords.Name = "lbMStudentRecords";
             lbMStudentRecords.Size = new Size(344, 36);
             lbMStudentRecords.TabIndex = 4;
@@ -97,11 +99,22 @@
             lbMStudentRecords.TextAlign = ContentAlignment.MiddleCenter;
             lbMStudentRecords.Click += lbMStudentRecords_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.stu;
+            pictureBox1.Location = new Point(446, 29);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(65, 58);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
             // ManageStudentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(968, 459);
+            Controls.Add(pictureBox1);
             Controls.Add(lbMStudentRecords);
             Controls.Add(btnBack);
             Controls.Add(btnDelete);
@@ -111,6 +124,7 @@
             Text = "ManageStudentForm";
             Load += ManageStudentForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvStudents).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -121,5 +135,6 @@
         private Button btnDelete;
         private Button btnBack;
         private Label lbMStudentRecords;
+        private PictureBox pictureBox1;
     }
 }

@@ -35,11 +35,11 @@
             btnLecturer = new Button();
             btnStaff = new Button();
             panelHead = new Panel();
-            btnCloseCU = new Button();
             pnlCreateUser = new Panel();
+            labelWlcome = new Label();
             panelside.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelHead.SuspendLayout();
+            pnlCreateUser.SuspendLayout();
             SuspendLayout();
             // 
             // panelside
@@ -132,35 +132,34 @@
             // panelHead
             // 
             panelHead.BackColor = SystemColors.ActiveBorder;
-            panelHead.Controls.Add(btnCloseCU);
             panelHead.Dock = DockStyle.Top;
             panelHead.Location = new Point(0, 0);
             panelHead.Name = "panelHead";
             panelHead.Size = new Size(984, 30);
             panelHead.TabIndex = 1;
             // 
-            // btnCloseCU
-            // 
-            btnCloseCU.BackColor = SystemColors.ActiveBorder;
-            btnCloseCU.FlatStyle = FlatStyle.Flat;
-            btnCloseCU.Font = new Font("Century Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCloseCU.ForeColor = Color.Red;
-            btnCloseCU.Location = new Point(944, 0);
-            btnCloseCU.Name = "btnCloseCU";
-            btnCloseCU.Size = new Size(40, 30);
-            btnCloseCU.TabIndex = 7;
-            btnCloseCU.Text = "X";
-            btnCloseCU.UseVisualStyleBackColor = false;
-            btnCloseCU.Click += btnCloseCU_Click;
-            // 
             // pnlCreateUser
             // 
+            pnlCreateUser.Controls.Add(labelWlcome);
             pnlCreateUser.Dock = DockStyle.Fill;
             pnlCreateUser.Location = new Point(200, 30);
             pnlCreateUser.Name = "pnlCreateUser";
             pnlCreateUser.Size = new Size(784, 498);
             pnlCreateUser.TabIndex = 2;
             pnlCreateUser.Paint += pnlCreateUser_Paint;
+            // 
+            // labelWlcome
+            // 
+            labelWlcome.Font = new Font("Segoe UI Semibold", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            labelWlcome.ForeColor = Color.FromArgb(128, 128, 255);
+            labelWlcome.Image = Properties.Resources.icons8_welcome_64;
+            labelWlcome.ImageAlign = ContentAlignment.TopCenter;
+            labelWlcome.Location = new Point(106, 156);
+            labelWlcome.Name = "labelWlcome";
+            labelWlcome.Size = new Size(578, 191);
+            labelWlcome.TabIndex = 0;
+            labelWlcome.Text = "Welcome to the User Panel. Please select a category to proceed.";
+            labelWlcome.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // CreateUserPannel
             // 
@@ -176,7 +175,7 @@
             panelside.ResumeLayout(false);
             panelside.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelHead.ResumeLayout(false);
+            pnlCreateUser.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -190,8 +189,8 @@
         private Button btnStaff;
         private PictureBox pictureBox1;
         private Label lbCreateUser;
-        private Button btnCloseCU;
         private Panel pnlCreateUser;
+        private Label labelWlcome;
 
         // Add this method to handle the btnLecturer_Click event
         /*private void btnLecturer_Click(object sender, EventArgs e)

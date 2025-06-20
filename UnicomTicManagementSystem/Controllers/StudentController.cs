@@ -127,16 +127,16 @@ namespace UnicomTicManagementSystem.Controllers
                 return new Student
                 {
                     StudentID = Convert.ToInt32(rdr["StudentID"]),
-                    Name = rdr["Name"].ToString(),
-                    Address = rdr["Address"].ToString(),
-                    Email = rdr["Email"].ToString(),
-                    Phone = rdr["Phone"].ToString(),
-                    DOB = Convert.ToDateTime(rdr["DOB"]),
-                    Gender = rdr["Gender"].ToString(),
-                    CourseID = rdr["CourseID"].ToString(),
+                    Name = rdr["Name"].ToString() ?? string.Empty,
+                    Address = rdr["Address"].ToString() ?? string.Empty,
+                    Email = rdr["Email"].ToString() ?? string.Empty,
+                    Phone = rdr["Phone"].ToString() ?? string.Empty,
+                    DOB = Convert.ToDateTime(rdr["DOB"]) ,
+                    Gender = rdr["Gender"].ToString() ?? string.Empty,
+                    CourseID = rdr["CourseID"].ToString() ?? string.Empty,
                     UserID = Convert.ToInt32(rdr["UserID"]),
-                    Username = rdr["Username"].ToString(),
-                    Password = rdr["Password"].ToString() // here you grab password
+                    Username = rdr["Username"].ToString() ?? string.Empty,
+                    Password = rdr["Password"].ToString() ?? string.Empty// here you grab password
                 };
             }
             return null;
@@ -155,7 +155,7 @@ namespace UnicomTicManagementSystem.Controllers
                 students.Add(new Student
                 {
                     StudentID = Convert.ToInt32(rdr["StudentID"]),
-                    Name = rdr["Name"].ToString()
+                    Name = rdr["Name"].ToString() ?? string.Empty
                 });
             }
             return students;

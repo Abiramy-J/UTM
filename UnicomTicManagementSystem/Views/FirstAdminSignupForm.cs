@@ -64,6 +64,10 @@ namespace UnicomTicManagementSystem.Views
             }
         }
 
+        private void FirstAdminSignupForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

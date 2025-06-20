@@ -37,32 +37,35 @@
             btnRDelete = new Button();
             btnRUpdate = new Button();
             btnRAdd = new Button();
+            labelMLect = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvRooms).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dgvRooms
             // 
             dgvRooms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRooms.Location = new Point(37, 173);
+            dgvRooms.Location = new Point(29, 116);
             dgvRooms.Name = "dgvRooms";
-            dgvRooms.Size = new Size(410, 222);
+            dgvRooms.Size = new Size(466, 317);
             dgvRooms.TabIndex = 0;
             dgvRooms.CellClick += dgvRooms_CellClick;
             // 
             // cmbRoomType
             // 
             cmbRoomType.FormattingEnabled = true;
-            cmbRoomType.Location = new Point(626, 137);
+            cmbRoomType.Location = new Point(621, 209);
             cmbRoomType.Name = "cmbRoomType";
-            cmbRoomType.Size = new Size(121, 23);
+            cmbRoomType.Size = new Size(142, 23);
             cmbRoomType.TabIndex = 4;
             // 
             // lbRoomName
             // 
             lbRoomName.AutoSize = true;
             lbRoomName.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbRoomName.Location = new Point(506, 80);
+            lbRoomName.Location = new Point(517, 158);
             lbRoomName.Name = "lbRoomName";
             lbRoomName.Size = new Size(98, 20);
             lbRoomName.TabIndex = 5;
@@ -72,7 +75,7 @@
             // 
             lbRoomType.AutoSize = true;
             lbRoomType.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbRoomType.Location = new Point(519, 140);
+            lbRoomType.Location = new Point(522, 208);
             lbRoomType.Name = "lbRoomType";
             lbRoomType.Size = new Size(93, 20);
             lbRoomType.TabIndex = 6;
@@ -80,9 +83,9 @@
             // 
             // txtRoomName
             // 
-            txtRoomName.Location = new Point(626, 77);
+            txtRoomName.Location = new Point(621, 159);
             txtRoomName.Name = "txtRoomName";
-            txtRoomName.Size = new Size(100, 23);
+            txtRoomName.Size = new Size(142, 23);
             txtRoomName.TabIndex = 8;
             // 
             // btnRBack
@@ -90,9 +93,9 @@
             btnRBack.BackColor = SystemColors.ActiveCaption;
             btnRBack.Cursor = Cursors.Hand;
             btnRBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRBack.Location = new Point(519, 344);
+            btnRBack.Location = new Point(522, 411);
             btnRBack.Name = "btnRBack";
-            btnRBack.Size = new Size(168, 33);
+            btnRBack.Size = new Size(148, 33);
             btnRBack.TabIndex = 11;
             btnRBack.Text = "BACK";
             btnRBack.UseVisualStyleBackColor = false;
@@ -103,9 +106,9 @@
             btnRDelete.BackColor = SystemColors.ActiveCaption;
             btnRDelete.Cursor = Cursors.Hand;
             btnRDelete.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRDelete.Location = new Point(519, 293);
+            btnRDelete.Location = new Point(522, 362);
             btnRDelete.Name = "btnRDelete";
-            btnRDelete.Size = new Size(168, 33);
+            btnRDelete.Size = new Size(148, 33);
             btnRDelete.TabIndex = 12;
             btnRDelete.Text = "DELETE";
             btnRDelete.UseVisualStyleBackColor = false;
@@ -116,9 +119,9 @@
             btnRUpdate.BackColor = SystemColors.ActiveCaption;
             btnRUpdate.Cursor = Cursors.Hand;
             btnRUpdate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRUpdate.Location = new Point(519, 236);
+            btnRUpdate.Location = new Point(522, 311);
             btnRUpdate.Name = "btnRUpdate";
-            btnRUpdate.Size = new Size(168, 33);
+            btnRUpdate.Size = new Size(148, 33);
             btnRUpdate.TabIndex = 13;
             btnRUpdate.Text = "UPDATE";
             btnRUpdate.UseVisualStyleBackColor = false;
@@ -129,19 +132,43 @@
             btnRAdd.BackColor = SystemColors.ActiveCaption;
             btnRAdd.Cursor = Cursors.Hand;
             btnRAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRAdd.Location = new Point(519, 182);
+            btnRAdd.Location = new Point(522, 263);
             btnRAdd.Name = "btnRAdd";
-            btnRAdd.Size = new Size(168, 33);
+            btnRAdd.Size = new Size(148, 33);
             btnRAdd.TabIndex = 14;
             btnRAdd.Text = "ADD";
             btnRAdd.UseVisualStyleBackColor = false;
             btnRAdd.Click += btnRAdd_Click;
             // 
+            // labelMLect
+            // 
+            labelMLect.BackColor = SystemColors.ControlLight;
+            labelMLect.Font = new Font("Segoe UI Historic", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            labelMLect.ForeColor = Color.Navy;
+            labelMLect.Location = new Point(309, 54);
+            labelMLect.Name = "labelMLect";
+            labelMLect.Size = new Size(271, 47);
+            labelMLect.TabIndex = 15;
+            labelMLect.Text = "Room Control Panel";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.icons8_timetable_64;
+            pictureBox1.Location = new Point(267, 44);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(45, 44);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 16;
+            pictureBox1.TabStop = false;
+            // 
             // RoomManagementForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.ControlLight;
+            ClientSize = new Size(800, 464);
+            Controls.Add(pictureBox1);
+            Controls.Add(labelMLect);
             Controls.Add(btnRAdd);
             Controls.Add(btnRUpdate);
             Controls.Add(btnRDelete);
@@ -154,6 +181,7 @@
             Name = "RoomManagementForm";
             Text = "RoomManagementForm";
             ((System.ComponentModel.ISupportInitialize)dgvRooms).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -169,5 +197,7 @@
         private Button btnRDelete;
         private Button btnRUpdate;
         private Button btnRAdd;
+        private Label labelMLect;
+        private PictureBox pictureBox1;
     }
 }

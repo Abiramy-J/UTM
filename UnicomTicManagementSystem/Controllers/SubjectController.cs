@@ -38,9 +38,9 @@ namespace UnicomTicManagementSystem.Controllers
             {
                 list.Add(new Subject
                 {
-                    SubjectID = reader["SubjectID"].ToString(),
-                    SubjectName = reader["SubjectName"].ToString(),
-                    CourseName = reader["CourseName"].ToString()
+                    SubjectID = reader["SubjectID"].ToString() ?? string.Empty,
+                    SubjectName = reader["SubjectName"].ToString() ?? string.Empty,
+                    CourseName = reader["CourseName"].ToString() ?? string.Empty
                 });
             }
 
