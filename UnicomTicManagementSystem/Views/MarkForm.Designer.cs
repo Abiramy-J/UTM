@@ -180,7 +180,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(908, 524);
+            ClientSize = new Size(945, 536);
             Controls.Add(cmbSubjects);
             Controls.Add(lbMSubject);
             Controls.Add(btnBack);

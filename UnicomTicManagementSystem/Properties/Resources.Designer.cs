@@ -414,6 +414,16 @@ namespace UnicomTicManagementSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_timetable_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-timetable-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_welcome_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-welcome-100", resourceCulture);

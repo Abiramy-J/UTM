@@ -125,7 +125,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(945, 536);
             Controls.Add(btnBack);
             Controls.Add(btnCreateAdmin);
             Controls.Add(txtCPassword);

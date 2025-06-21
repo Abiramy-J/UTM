@@ -54,7 +54,7 @@
             panelside.Dock = DockStyle.Left;
             panelside.Location = new Point(0, 30);
             panelside.Name = "panelside";
-            panelside.Size = new Size(200, 498);
+            panelside.Size = new Size(200, 506);
             panelside.TabIndex = 0;
             // 
             // pictureBox1
@@ -135,7 +135,7 @@
             panelHead.Dock = DockStyle.Top;
             panelHead.Location = new Point(0, 0);
             panelHead.Name = "panelHead";
-            panelHead.Size = new Size(984, 30);
+            panelHead.Size = new Size(949, 30);
             panelHead.TabIndex = 1;
             // 
             // pnlCreateUser
@@ -144,7 +144,7 @@
             pnlCreateUser.Dock = DockStyle.Fill;
             pnlCreateUser.Location = new Point(200, 30);
             pnlCreateUser.Name = "pnlCreateUser";
-            pnlCreateUser.Size = new Size(784, 498);
+            pnlCreateUser.Size = new Size(749, 506);
             pnlCreateUser.TabIndex = 2;
             pnlCreateUser.Paint += pnlCreateUser_Paint;
             // 
@@ -165,7 +165,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(984, 528);
+            ClientSize = new Size(949, 536);
             Controls.Add(pnlCreateUser);
             Controls.Add(panelside);
             Controls.Add(panelHead);

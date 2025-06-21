@@ -49,7 +49,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(984, 30);
+            panel1.Size = new Size(945, 30);
             panel1.TabIndex = 0;
             // 
             // panel2
@@ -63,7 +63,7 @@
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 30);
             panel2.Name = "panel2";
-            panel2.Size = new Size(204, 498);
+            panel2.Size = new Size(204, 506);
             panel2.TabIndex = 0;
             // 
             // pictureBoxMUser
@@ -130,14 +130,14 @@
             pnlManageUser.Dock = DockStyle.Fill;
             pnlManageUser.Location = new Point(0, 30);
             pnlManageUser.Name = "pnlManageUser";
-            pnlManageUser.Size = new Size(984, 498);
+            pnlManageUser.Size = new Size(945, 506);
             pnlManageUser.TabIndex = 0;
             // 
             // label1
             // 
             label1.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.RoyalBlue;
-            label1.Location = new Point(309, 128);
+            label1.Location = new Point(311, 144);
             label1.Name = "label1";
             label1.Size = new Size(568, 168);
             label1.TabIndex = 0;
@@ -148,7 +148,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(984, 528);
+            ClientSize = new Size(945, 536);
             Controls.Add(panel2);
             Controls.Add(pnlManageUser);
             Controls.Add(panel1);

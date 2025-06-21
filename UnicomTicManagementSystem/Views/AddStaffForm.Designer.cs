@@ -103,7 +103,7 @@
             // 
             // txtName
             // 
-            txtName.Location = new Point(198, 107);
+            txtName.Location = new Point(198, 108);
             txtName.Name = "txtName";
             txtName.Size = new Size(361, 23);
             txtName.TabIndex = 6;
@@ -148,7 +148,7 @@
             // 
             btnSave.BackColor = SystemColors.ActiveCaption;
             btnSave.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(507, 389);
+            btnSave.Location = new Point(515, 419);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 35);
             btnSave.TabIndex = 12;
@@ -160,7 +160,7 @@
             // 
             btnBack.BackColor = SystemColors.ActiveCaption;
             btnBack.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBack.Location = new Point(668, 389);
+            btnBack.Location = new Point(687, 419);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(100, 35);
             btnBack.TabIndex = 13;
@@ -193,7 +193,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(945, 536);
             Controls.Add(pictureBox1);
             Controls.Add(label3);
             Controls.Add(btnBack);

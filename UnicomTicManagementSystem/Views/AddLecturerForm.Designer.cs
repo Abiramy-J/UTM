@@ -211,7 +211,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(945, 536);
             Controls.Add(pictureBox1);
             Controls.Add(lbLecDeForm);
             Controls.Add(cmbSubject);

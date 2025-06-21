@@ -74,7 +74,7 @@
             panelHeader.Dock = DockStyle.Top;
             panelHeader.Location = new Point(0, 0);
             panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(801, 83);
+            panelHeader.Size = new Size(945, 83);
             panelHeader.TabIndex = 0;
             // 
             // btnClose
@@ -82,7 +82,7 @@
             btnClose.BackColor = SystemColors.ActiveCaption;
             btnClose.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClose.ForeColor = Color.Red;
-            btnClose.Location = new Point(771, 0);
+            btnClose.Location = new Point(916, 0);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(29, 27);
             btnClose.TabIndex = 20;
@@ -116,7 +116,7 @@
             panelSectionHeader.Dock = DockStyle.Top;
             panelSectionHeader.Location = new Point(0, 83);
             panelSectionHeader.Name = "panelSectionHeader";
-            panelSectionHeader.Size = new Size(801, 20);
+            panelSectionHeader.Size = new Size(945, 20);
             panelSectionHeader.TabIndex = 1;
             // 
             // panel4
@@ -133,7 +133,7 @@
             labelCourse.ForeColor = SystemColors.ControlLightLight;
             labelCourse.Location = new Point(-2, -2);
             labelCourse.Name = "labelCourse";
-            labelCourse.Size = new Size(395, 30);
+            labelCourse.Size = new Size(464, 30);
             labelCourse.TabIndex = 1;
             labelCourse.Text = "Manage Course";
             labelCourse.TextAlign = ContentAlignment.MiddleCenter;
@@ -145,7 +145,7 @@
             lbManageSubject.ForeColor = SystemColors.ControlLightLight;
             lbManageSubject.Location = new Point(-2, -2);
             lbManageSubject.Name = "lbManageSubject";
-            lbManageSubject.Size = new Size(406, 30);
+            lbManageSubject.Size = new Size(481, 30);
             lbManageSubject.TabIndex = 2;
             lbManageSubject.Text = "Manage Subject";
             lbManageSubject.TextAlign = ContentAlignment.TopCenter;
@@ -165,7 +165,7 @@
             panelCourse.Dock = DockStyle.Left;
             panelCourse.Location = new Point(0, 103);
             panelCourse.Name = "panelCourse";
-            panelCourse.Size = new Size(395, 443);
+            panelCourse.Size = new Size(464, 433);
             panelCourse.TabIndex = 2;
             // 
             // btnCUpdate
@@ -220,9 +220,9 @@
             // 
             dgvCourses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCourses.Location = new Point(12, 204);
+            dgvCourses.Location = new Point(31, 195);
             dgvCourses.Name = "dgvCourses";
-            dgvCourses.Size = new Size(362, 225);
+            dgvCourses.Size = new Size(392, 225);
             dgvCourses.TabIndex = 12;
             dgvCourses.CellClick += dgvCourses_CellClick;
             // 
@@ -264,9 +264,9 @@
             panelSubject.Controls.Add(dgvSubject);
             panelSubject.Controls.Add(txtSubjectName);
             panelSubject.Dock = DockStyle.Fill;
-            panelSubject.Location = new Point(395, 103);
+            panelSubject.Location = new Point(464, 103);
             panelSubject.Name = "panelSubject";
-            panelSubject.Size = new Size(406, 443);
+            panelSubject.Size = new Size(481, 433);
             panelSubject.TabIndex = 3;
             // 
             // btnSDelete
@@ -274,7 +274,7 @@
             btnSDelete.BackColor = SystemColors.ActiveCaption;
             btnSDelete.FlatStyle = FlatStyle.Flat;
             btnSDelete.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSDelete.Location = new Point(253, 156);
+            btnSDelete.Location = new Point(354, 163);
             btnSDelete.Name = "btnSDelete";
             btnSDelete.Size = new Size(75, 26);
             btnSDelete.TabIndex = 23;
@@ -287,7 +287,7 @@
             btnSUpdate.BackColor = SystemColors.ActiveCaption;
             btnSUpdate.FlatStyle = FlatStyle.Flat;
             btnSUpdate.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSUpdate.Location = new Point(141, 156);
+            btnSUpdate.Location = new Point(191, 163);
             btnSUpdate.Name = "btnSUpdate";
             btnSUpdate.Size = new Size(75, 26);
             btnSUpdate.TabIndex = 22;
@@ -300,7 +300,7 @@
             btnSAdd.BackColor = SystemColors.ActiveCaption;
             btnSAdd.FlatStyle = FlatStyle.Flat;
             btnSAdd.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSAdd.Location = new Point(36, 156);
+            btnSAdd.Location = new Point(45, 163);
             btnSAdd.Name = "btnSAdd";
             btnSAdd.Size = new Size(75, 26);
             btnSAdd.TabIndex = 21;
@@ -338,9 +338,9 @@
             // cmbCourses
             // 
             cmbCourses.FormattingEnabled = true;
-            cmbCourses.Location = new Point(157, 111);
+            cmbCourses.Location = new Point(147, 116);
             cmbCourses.Name = "cmbCourses";
-            cmbCourses.Size = new Size(235, 23);
+            cmbCourses.Size = new Size(245, 23);
             cmbCourses.TabIndex = 13;
             // 
             // txtSubjectID
@@ -354,9 +354,9 @@
             // 
             dgvSubject.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvSubject.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSubject.Location = new Point(26, 204);
+            dgvSubject.Location = new Point(45, 214);
             dgvSubject.Name = "dgvSubject";
-            dgvSubject.Size = new Size(366, 225);
+            dgvSubject.Size = new Size(384, 206);
             dgvSubject.TabIndex = 11;
             dgvSubject.CellClick += dgvSubject_CellClick;
             // 
@@ -371,7 +371,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(801, 546);
+            ClientSize = new Size(945, 536);
             Controls.Add(panelSubject);
             Controls.Add(panelCourse);
             Controls.Add(panelSectionHeader);
