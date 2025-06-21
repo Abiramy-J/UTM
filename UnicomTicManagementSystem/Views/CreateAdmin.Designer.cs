@@ -43,7 +43,7 @@
             // lbUsername
             // 
             lbUsername.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbUsername.Location = new Point(241, 47);
+            lbUsername.Location = new Point(188, 46);
             lbUsername.Name = "lbUsername";
             lbUsername.Size = new Size(100, 23);
             lbUsername.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(358, 47);
+            txtUsername.Location = new Point(294, 47);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(224, 23);
             txtUsername.TabIndex = 1;
@@ -61,7 +61,7 @@
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmin.Location = new Point(43, 198);
             dgvAdmin.Name = "dgvAdmin";
-            dgvAdmin.Size = new Size(539, 223);
+            dgvAdmin.Size = new Size(480, 223);
             dgvAdmin.TabIndex = 2;
             dgvAdmin.CellClick += dgvAdmin_CellClick;
             dgvAdmin.CellContentClick += dgvAdmin_CellContentClick;
@@ -69,7 +69,7 @@
             // lbPassword
             // 
             lbPassword.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbPassword.Location = new Point(241, 87);
+            lbPassword.Location = new Point(188, 86);
             lbPassword.Name = "lbPassword";
             lbPassword.Size = new Size(100, 23);
             lbPassword.TabIndex = 4;
@@ -78,7 +78,7 @@
             // lbCPassword
             // 
             lbCPassword.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbCPassword.Location = new Point(188, 127);
+            lbCPassword.Location = new Point(124, 127);
             lbCPassword.Name = "lbCPassword";
             lbCPassword.Size = new Size(164, 23);
             lbCPassword.TabIndex = 5;
@@ -86,14 +86,14 @@
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(358, 87);
+            txtPassword.Location = new Point(294, 87);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(224, 23);
             txtPassword.TabIndex = 6;
             // 
             // txtCPassword
             // 
-            txtCPassword.Location = new Point(358, 128);
+            txtCPassword.Location = new Point(294, 128);
             txtCPassword.Name = "txtCPassword";
             txtCPassword.Size = new Size(224, 23);
             txtCPassword.TabIndex = 7;
@@ -102,7 +102,7 @@
             // 
             btnCreateAdmin.BackColor = SystemColors.ActiveCaption;
             btnCreateAdmin.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAdmin.Location = new Point(635, 242);
+            btnCreateAdmin.Location = new Point(564, 232);
             btnCreateAdmin.Name = "btnCreateAdmin";
             btnCreateAdmin.Size = new Size(143, 34);
             btnCreateAdmin.TabIndex = 8;
@@ -114,7 +114,7 @@
             // 
             btnBack.BackColor = SystemColors.ActiveCaption;
             btnBack.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBack.Location = new Point(635, 319);
+            btnBack.Location = new Point(564, 302);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(143, 34);
             btnBack.TabIndex = 9;
@@ -125,7 +125,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 536);
+            ClientSize = new Size(736, 492);
             Controls.Add(btnBack);
             Controls.Add(btnCreateAdmin);
             Controls.Add(txtCPassword);

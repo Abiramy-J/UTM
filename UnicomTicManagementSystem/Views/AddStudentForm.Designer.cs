@@ -57,7 +57,7 @@
             // 
             lbName.AutoSize = true;
             lbName.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbName.Location = new Point(60, 109);
+            lbName.Location = new Point(48, 109);
             lbName.Name = "lbName";
             lbName.Size = new Size(76, 17);
             lbName.TabIndex = 0;
@@ -67,7 +67,7 @@
             // 
             lbAddress.AutoSize = true;
             lbAddress.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbAddress.Location = new Point(60, 161);
+            lbAddress.Location = new Point(48, 161);
             lbAddress.Name = "lbAddress";
             lbAddress.Size = new Size(64, 17);
             lbAddress.TabIndex = 1;
@@ -76,7 +76,7 @@
             // lnPhoneNo
             // 
             lnPhoneNo.AutoSize = true;
-            lnPhoneNo.Location = new Point(60, 200);
+            lnPhoneNo.Location = new Point(48, 203);
             lnPhoneNo.Name = "lnPhoneNo";
             lnPhoneNo.Size = new Size(60, 15);
             lnPhoneNo.TabIndex = 2;
@@ -85,7 +85,7 @@
             // lbDateOfBirth
             // 
             lbDateOfBirth.AutoSize = true;
-            lbDateOfBirth.Location = new Point(56, 250);
+            lbDateOfBirth.Location = new Point(48, 250);
             lbDateOfBirth.Name = "lbDateOfBirth";
             lbDateOfBirth.Size = new Size(73, 15);
             lbDateOfBirth.TabIndex = 3;
@@ -94,7 +94,7 @@
             // lbCourse
             // 
             lbCourse.AutoSize = true;
-            lbCourse.Location = new Point(60, 306);
+            lbCourse.Location = new Point(48, 306);
             lbCourse.Name = "lbCourse";
             lbCourse.Size = new Size(44, 15);
             lbCourse.TabIndex = 4;
@@ -103,7 +103,7 @@
             // lbGender
             // 
             lbGender.AutoSize = true;
-            lbGender.Location = new Point(59, 354);
+            lbGender.Location = new Point(48, 354);
             lbGender.Name = "lbGender";
             lbGender.Size = new Size(45, 15);
             lbGender.TabIndex = 6;
@@ -112,7 +112,7 @@
             // lbUserName
             // 
             lbUserName.AutoSize = true;
-            lbUserName.Location = new Point(480, 224);
+            lbUserName.Location = new Point(448, 224);
             lbUserName.Name = "lbUserName";
             lbUserName.Size = new Size(60, 15);
             lbUserName.TabIndex = 7;
@@ -121,7 +121,7 @@
             // lbPassword
             // 
             lbPassword.AutoSize = true;
-            lbPassword.Location = new Point(480, 270);
+            lbPassword.Location = new Point(451, 275);
             lbPassword.Name = "lbPassword";
             lbPassword.Size = new Size(57, 15);
             lbPassword.TabIndex = 8;
@@ -130,7 +130,7 @@
             // lbEmail
             // 
             lbEmail.AutoSize = true;
-            lbEmail.Location = new Point(65, 396);
+            lbEmail.Location = new Point(54, 396);
             lbEmail.Name = "lbEmail";
             lbEmail.Size = new Size(39, 15);
             lbEmail.TabIndex = 9;
@@ -138,42 +138,42 @@
             // 
             // txtFullname
             // 
-            txtFullname.Location = new Point(170, 103);
+            txtFullname.Location = new Point(139, 109);
             txtFullname.Name = "txtFullname";
             txtFullname.Size = new Size(326, 23);
             txtFullname.TabIndex = 10;
             // 
             // txtAddress
             // 
-            txtAddress.Location = new Point(170, 155);
+            txtAddress.Location = new Point(139, 161);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(326, 23);
             txtAddress.TabIndex = 11;
             // 
             // txtPhoneNo
             // 
-            txtPhoneNo.Location = new Point(170, 200);
+            txtPhoneNo.Location = new Point(139, 203);
             txtPhoneNo.Name = "txtPhoneNo";
             txtPhoneNo.Size = new Size(257, 23);
             txtPhoneNo.TabIndex = 12;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(559, 216);
+            txtUsername.Location = new Point(514, 221);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(216, 23);
+            txtUsername.Size = new Size(194, 23);
             txtUsername.TabIndex = 13;
             // 
             // txtPw
             // 
-            txtPw.Location = new Point(559, 267);
+            txtPw.Location = new Point(514, 275);
             txtPw.Name = "txtPw";
-            txtPw.Size = new Size(216, 23);
+            txtPw.Size = new Size(194, 23);
             txtPw.TabIndex = 14;
             // 
             // txtMail
             // 
-            txtMail.Location = new Point(170, 388);
+            txtMail.Location = new Point(139, 393);
             txtMail.Name = "txtMail";
             txtMail.Size = new Size(257, 23);
             txtMail.TabIndex = 15;
@@ -181,7 +181,7 @@
             // cmbCourse
             // 
             cmbCourse.FormattingEnabled = true;
-            cmbCourse.Location = new Point(170, 298);
+            cmbCourse.Location = new Point(139, 303);
             cmbCourse.Name = "cmbCourse";
             cmbCourse.Size = new Size(257, 23);
             cmbCourse.TabIndex = 16;
@@ -189,7 +189,7 @@
             // cmbGender
             // 
             cmbGender.FormattingEnabled = true;
-            cmbGender.Location = new Point(170, 346);
+            cmbGender.Location = new Point(139, 354);
             cmbGender.Name = "cmbGender";
             cmbGender.Size = new Size(257, 23);
             cmbGender.TabIndex = 18;
@@ -197,7 +197,7 @@
             // dtpDOB
             // 
             dtpDOB.Format = DateTimePickerFormat.Short;
-            dtpDOB.Location = new Point(170, 250);
+            dtpDOB.Location = new Point(139, 250);
             dtpDOB.Name = "dtpDOB";
             dtpDOB.Size = new Size(257, 23);
             dtpDOB.TabIndex = 19;
@@ -206,7 +206,7 @@
             // 
             btnSave.BackColor = SystemColors.ActiveCaption;
             btnSave.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(559, 354);
+            btnSave.Location = new Point(471, 381);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(85, 42);
             btnSave.TabIndex = 20;
@@ -219,7 +219,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Historic", 18F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(297, 31);
+            label1.Location = new Point(297, 39);
             label1.Name = "label1";
             label1.Size = new Size(259, 32);
             label1.TabIndex = 21;
@@ -228,7 +228,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.icons8_student_903;
-            pictureBox1.Location = new Point(249, 23);
+            pictureBox1.Location = new Point(249, 31);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(51, 40);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -239,7 +239,7 @@
             // 
             btnBack.BackColor = SystemColors.ActiveCaption;
             btnBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBack.Location = new Point(690, 354);
+            btnBack.Location = new Point(604, 381);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(85, 42);
             btnBack.TabIndex = 23;
@@ -252,7 +252,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(945, 536);
+            ClientSize = new Size(736, 493);
             Controls.Add(btnBack);
             Controls.Add(pictureBox1);
             Controls.Add(label1);

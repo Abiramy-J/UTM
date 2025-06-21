@@ -99,6 +99,7 @@
             // 
             // dgvMarks
             // 
+            dgvMarks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMarks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMarks.Location = new Point(25, 82);
             dgvMarks.Name = "dgvMarks";

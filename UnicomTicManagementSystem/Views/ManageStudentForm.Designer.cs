@@ -42,7 +42,7 @@
             // 
             dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvStudents.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStudents.Location = new Point(251, 110);
+            dgvStudents.Location = new Point(239, 93);
             dgvStudents.Name = "dgvStudents";
             dgvStudents.Size = new Size(686, 287);
             dgvStudents.TabIndex = 0;

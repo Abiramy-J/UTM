@@ -114,7 +114,7 @@
             // 
             btnSave.BackColor = SystemColors.ActiveCaption;
             btnSave.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(486, 383);
+            btnSave.Location = new Point(446, 398);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 34);
             btnSave.TabIndex = 13;
@@ -126,7 +126,7 @@
             // 
             btnBack.BackColor = SystemColors.ActiveCaption;
             btnBack.Font = new Font("Century Gothic", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBack.Location = new Point(631, 383);
+            btnBack.Location = new Point(592, 398);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(100, 34);
             btnBack.TabIndex = 14;
@@ -211,7 +211,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(945, 536);
+            ClientSize = new Size(736, 493);
             Controls.Add(pictureBox1);
             Controls.Add(lbLecDeForm);
             Controls.Add(cmbSubject);
