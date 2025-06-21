@@ -133,6 +133,7 @@
             Controls.Add(btnLogin);
             Name = "LoginForm";
             Text = "LoginForm";
+            FormClosing += LoginForm_FormClosing;
             Load += LoginForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

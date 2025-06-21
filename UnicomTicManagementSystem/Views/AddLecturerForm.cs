@@ -66,7 +66,8 @@ namespace UnicomTicManagementSystem.Views
                 Address = txtAddress.Text.Trim(),
                 Email = txtEmail.Text.Trim(),
                 Phone = txtPhone.Text.Trim(),
-                SubjectID = ((ComboBoxItem)cmbSubject.SelectedItem).Value
+                SubjectID = cmbSubject.SelectedValue.ToString()
+
             };
 
             if (isEditMode)
@@ -93,59 +94,71 @@ namespace UnicomTicManagementSystem.Views
             cmbSubject.SelectedIndex = -1;
             txtUsername.Text = LecturerController.GenerateUsername();
             txtPassword.Text = LecturerController.GeneratePassword();
+            txtUsername.ReadOnly = true;
+            txtPassword.ReadOnly = true;
+            txtPassword.UseSystemPasswordChar = false;
         }
+
 
 
         private void AddLecturerForm_Load(object sender, EventArgs e)
         {
-            LoadSubjects();
+            LoadSubjects(); // 🔥 This MUST come FIRST
 
             if (!HasAnySubjects())
             {
                 MessageBox.Show("No subjects found. Please add subjects first!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ManageCourse_SubjectForm manageForm = new ManageCourse_SubjectForm();
                 manageForm.ShowDialog();
+
                 if (!HasAnySubjects())
                 {
-                    MessageBox.Show("No subjects available. please add course and subject the form.");
-                    this.Hide();
-                    ManageCourse_SubjectForm manageForm1 = new ManageCourse_SubjectForm();
-                    manageForm1.ShowDialog();
-
+                    MessageBox.Show("Still no subjects. Closing form.");
+                    this.Close();
+                    return;
                 }
+
+                LoadSubjects(); // 🔁 Reload after adding subjects
             }
 
-            LoadSubjects(); // Reload subjects after adding
-            
-
-            if (!isEditMode)
+            if (isEditMode)
             {
-                txtUsername.Text = LecturerController.GenerateUsername();
-                txtPassword.Text = LecturerController.GeneratePassword();
+                LoadLecturerData(); // ✅ Only AFTER subjects are loaded
             }
             else
             {
-                LoadLecturerData();
+                txtUsername.Text = LecturerController.GenerateUsername();
+                txtPassword.Text = LecturerController.GeneratePassword();
             }
         }
 
         private void LoadSubjects()
         {
-            cmbSubject.Items.Clear();
-
             using var conn = DbConfig.GetConnection();
             conn.Open();
             string query = "SELECT SubjectID, SubjectName FROM Subjects";
             using var cmd = new SQLiteCommand(query, conn);
             using var rdr = cmd.ExecuteReader();
 
+            var subjectList = new List<ComboBoxItem>();
             while (rdr.Read())
             {
-                cmbSubject.Items.Add(new ComboBoxItem(
-                    rdr["SubjectName"].ToString(),
-                    rdr["SubjectID"].ToString()));
+                string name = rdr["SubjectName"].ToString();
+                string id = rdr["SubjectID"].ToString();
+
+               
+
+                subjectList.Add(new ComboBoxItem(name, id));
             }
+
+            cmbSubject.DataSource = subjectList;
+            cmbSubject.DisplayMember = "Text";
+            cmbSubject.ValueMember = "Value";
+
+            
         }
+
+
 
         private bool HasAnySubjects()
         {
@@ -159,25 +172,24 @@ namespace UnicomTicManagementSystem.Views
 
         private void LoadLecturerData()
         {
+            
+
             txtName.Text = editingLecturer.Name;
             txtAddress.Text = editingLecturer.Address;
             txtEmail.Text = editingLecturer.Email;
             txtPhone.Text = editingLecturer.Phone;
 
-            foreach (ComboBoxItem item in cmbSubject.Items)
-            {
-                if (item.Value == editingLecturer.SubjectID)
-                {
-                    cmbSubject.SelectedItem = item;
-                    break;
-                }
-            }
+            cmbSubject.SelectedValue = editingLecturer.SubjectID; // <- Now works if ComboBox is loaded
+
+            
 
             txtUsername.Text = editingLecturer.Username;
-            txtPassword.Text = "Hidden";
+            txtPassword.Text = editingLecturer.Password;
             txtUsername.ReadOnly = true;
             txtPassword.ReadOnly = true;
+            txtPassword.UseSystemPasswordChar = false;
         }
+
 
         private void btnBack_Click(object sender, EventArgs e)
         {

@@ -113,10 +113,11 @@ namespace UnicomTicManagementSystem.Controllers
             using var conn = DbConfig.GetConnection();
             conn.Open();
 
-            string query = @"SELECT s.*, u.Username, u.Password 
-                     FROM Students s
-                     JOIN Users u ON s.UserID = u.UserID
-                     WHERE s.StudentID = @id";
+            string query = @"SELECT s.*, u.Username, u.Password, c.CourseName, c.CourseID
+                            FROM Students s
+                            JOIN Users u ON s.UserID = u.UserID
+                            JOIN Courses c ON s.CourseID = c.CourseID
+                            WHERE s.StudentID = @id";
 
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@id", studentId);

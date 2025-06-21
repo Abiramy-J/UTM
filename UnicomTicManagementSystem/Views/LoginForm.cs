@@ -46,14 +46,19 @@ namespace UnicomTicManagementSystem.Views
             AdminDashboardForm dashboard = new AdminDashboardForm(role);
             dashboard.Show();
         }
-            
-            
 
-        
+
+
+
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

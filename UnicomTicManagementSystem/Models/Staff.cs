@@ -15,6 +15,7 @@ namespace UnicomTicManagementSystem.Models
         public string Email { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public string username { get; set; } = string.Empty;// Username for login,for view only
+        public string password { get; set; }// Password for login,for view only
 
     }
 }

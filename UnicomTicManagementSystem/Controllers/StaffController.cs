@@ -92,7 +92,7 @@ namespace UnicomTicManagementSystem.Controllers
             conn.Open();
 
             var q = @"SELECT s.StaffID, s.FullName, s.Address, s.Email, s.Phone,
-                         s.UserID, u.Username
+                         s.UserID, u.Username , u.Password
                   FROM Staffs s
                   JOIN Users u ON s.UserID = u.UserID
                   WHERE s.StaffID = @id";
@@ -111,7 +111,8 @@ namespace UnicomTicManagementSystem.Controllers
                     Email = rdr["Email"].ToString() ?? string.Empty,
                     Phone = rdr["Phone"].ToString() ?? string.Empty,
                     UserID = Convert.ToInt32(rdr["UserID"]),
-                    username = rdr["Username"].ToString() ?? string.Empty
+                    username = rdr["Username"].ToString() ?? string.Empty,
+                    password = rdr["Password"].ToString() ?? string.Empty
                 };
             }
 

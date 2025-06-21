@@ -58,6 +58,7 @@
             // 
             // dgvAdmin
             // 
+            dgvAdmin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvAdmin.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvAdmin.Location = new Point(43, 198);
             dgvAdmin.Name = "dgvAdmin";

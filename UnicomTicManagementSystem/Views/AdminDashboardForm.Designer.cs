@@ -164,6 +164,7 @@
             ForeColor = SystemColors.ActiveCaptionText;
             Name = "AdminDashboardForm";
             Text = "AdminDashboardForm";
+            FormClosing += AdminDashboardForm_FormClosing;
             Load += AdminDashboardForm_Load;
             ResumeLayout(false);
         }

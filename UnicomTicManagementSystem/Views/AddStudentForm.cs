@@ -40,74 +40,55 @@ namespace UnicomTicManagementSystem.Views
 
         private void LoadFormDefaults()
         {
-            // Clear gender to prevent duplicates
+            // Gender ComboBox
             cmbGender.Items.Clear();
             cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
 
-
-            // Clear courses before loading
-            cmbCourse.Items.Clear();
-
+            // Course ComboBox – new clean way
             using var conn = DbConfig.GetConnection();
             conn.Open();
             var cmd = new SQLiteCommand("SELECT CourseID, CourseName FROM Courses", conn);
             using var rdr = cmd.ExecuteReader();
+
+            var courseList = new List<ComboBoxItem>();
             while (rdr.Read())
             {
-                cmbCourse.Items.Add(new ComboBoxItem(
+                courseList.Add(new ComboBoxItem(
                     rdr["CourseName"].ToString(),
                     rdr["CourseID"].ToString()));
             }
-            // AFTER loading → check if it's still empty
-            if (cmbCourse.Items.Count == 0)
-                {
-                    MessageBox.Show("⚠️ No courses found in database. Please create at least one .");
-                }
+
+            cmbCourse.DataSource = courseList;
+            cmbCourse.DisplayMember = "Text";   // 👈 CourseName
+            cmbCourse.ValueMember = "Value";    // 👈 CourseID
+
+            if (courseList.Count == 0)
+            {
+                MessageBox.Show("⚠️ No courses found in database. Please create at least one.");
+            }
         }
+
 
 
         private void LoadStudentDataIntoForm()
         {
             if (editingStudent == null) return;
 
-            // Load gender options
+            // Gender
             cmbGender.Items.Clear();
             cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
-
-            // Select gender
             cmbGender.SelectedItem = editingStudent.Gender;
 
-            // Load courses FIRST
-            cmbCourse.Items.Clear();
-            using var conn = DbConfig.GetConnection();
-            conn.Open();
-            var cmd = new SQLiteCommand("SELECT CourseID, CourseName FROM Courses", conn);
-            using var rdr = cmd.ExecuteReader();
-            while (rdr.Read())
-            {
-                cmbCourse.Items.Add(new ComboBoxItem(
-                    rdr["CourseName"].ToString(),
-                    rdr["CourseID"].ToString()));
-            }
+            // 🎯 ComboBox is already bound with Course list, so just:
+            cmbCourse.SelectedValue = editingStudent.CourseID;
 
-            // Select course using SelectedIndex for better matching
-            foreach (ComboBoxItem item in cmbCourse.Items)
-            {
-                if (item.Value == editingStudent.CourseID)
-                {
-                    cmbCourse.SelectedIndex = cmbCourse.Items.IndexOf(item);
-                    break;
-                }
-            }
-
-            // Fill textboxes
+            // Textboxes
             txtFullname.Text = editingStudent.Name;
             txtAddress.Text = editingStudent.Address;
             txtMail.Text = editingStudent.Email;
             txtPhoneNo.Text = editingStudent.Phone;
             dtpDOB.Value = editingStudent.DOB;
 
-            // Username and password fields (read-only in edit mode)
             txtUsername.Text = editingStudent.Username;
             txtUsername.ReadOnly = true;
 
@@ -115,6 +96,7 @@ namespace UnicomTicManagementSystem.Views
             txtPw.ReadOnly = true;
             txtPw.UseSystemPasswordChar = false;
         }
+
 
 
         private void AddStudentForm_Load(object sender, EventArgs e)

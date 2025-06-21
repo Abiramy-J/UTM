@@ -36,7 +36,7 @@ namespace UnicomTicManagementSystem.Views
         {
             txtUsername.Text = StaffController.GenerateUsername();
             txtPassword.Text = StaffController.GeneratePassword();
-           // txtPassword.UseSystemPasswordChar = true; // Optional: hides password like ●●●
+            txtPassword.UseSystemPasswordChar = true; // Optional: hides password like ●●●
         }
 
         private void LoadStaffDataIntoForm()
@@ -47,11 +47,13 @@ namespace UnicomTicManagementSystem.Views
             txtAddress.Text = editingStaff.Address;
             txtEmail.Text = editingStaff.Email;
             txtPhone.Text = editingStaff.Phone;
+
             txtUsername.Text = editingStaff.username;
-            txtPassword.Text = "Hidden";
+            txtPassword.Text = editingStaff.password;
 
             txtUsername.ReadOnly = true;
             txtPassword.ReadOnly = true;
+            txtPassword.UseSystemPasswordChar = false;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -121,6 +123,9 @@ namespace UnicomTicManagementSystem.Views
             LoadFormDefaults();
             txtUsername.Text = StudentController.GenerateUsername();
             txtPassword.Text = StudentController.GeneratePassword();
+            txtUsername.ReadOnly = true;
+            txtPassword.ReadOnly = true;
+            txtPassword.UseSystemPasswordChar = false;
         }
 
         private void btnBack_Click(object sender, EventArgs e)

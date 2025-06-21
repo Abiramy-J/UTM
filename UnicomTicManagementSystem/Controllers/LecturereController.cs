@@ -103,10 +103,12 @@ namespace UnicomTicManagementSystem.Controllers
                 using var conn = DbConfig.GetConnection();
                 conn.Open();
 
-                string query = @"SELECT l.*, u.Username 
-                         FROM Lecturers l 
-                         JOIN Users u ON l.UserID = u.UserID 
-                         WHERE l.LecturerID = @id";
+                string query = @"
+                    SELECT l.*, u.Username, u.Password, s.SubjectID, s.SubjectName
+                        FROM Lecturers l 
+                        JOIN Users u ON l.UserID = u.UserID 
+                        JOIN Subjects s ON l.SubjectID = s.SubjectID 
+                        WHERE l.LecturerID = @id";
 
                 var cmd = new SQLiteCommand(query, conn);
                 cmd.Parameters.AddWithValue("@id", lecturerId);
@@ -114,6 +116,10 @@ namespace UnicomTicManagementSystem.Controllers
                 using var rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
+                    string subjId = rdr["SubjectID"].ToString() ?? "";
+
+                   
+
                     return new Lecturer
                     {
                         LecturerID = Convert.ToInt32(rdr["LecturerID"]),
@@ -121,14 +127,16 @@ namespace UnicomTicManagementSystem.Controllers
                         Address = rdr["Address"].ToString() ?? string.Empty,
                         Email = rdr["Email"].ToString() ?? string.Empty,
                         Phone = rdr["Phone"].ToString() ?? string.Empty,
-                        SubjectID = rdr["SubjectID"].ToString() ?? string.Empty, // Corrected property name
+                        SubjectID = rdr["SubjectID"].ToString() ?? string.Empty, // NOW this works 🎯
                         UserID = Convert.ToInt32(rdr["UserID"]),
-                        Username = rdr["Username"].ToString() ?? string.Empty
+                        Username = rdr["Username"].ToString() ?? string.Empty,
+                        Password = rdr["Password"].ToString() ?? string.Empty
                     };
                 }
 
                 return null;
             }
+
         }
 
     }

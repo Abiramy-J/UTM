@@ -120,7 +120,7 @@ namespace UnicomTicManagementSystem.Repositories
                 Address TEXT,
                 Email TEXT,
                 Phone TEXT,
-                SubjectID INTEGER, -- Foreign Key
+                SubjectID TEXT, -- Foreign Key
                 UserID INTEGER,
                 FOREIGN KEY (UserID) REFERENCES Users(UserID),
                 FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)

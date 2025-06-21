@@ -15,7 +15,8 @@ namespace UnicomTicManagementSystem.Models
         public string Phone { get; set; } = string.Empty;
         public string SubjectID { get; set; } = string.Empty;
         public string Username { get; set; } = string.Empty;
-    
+        public string Password { get; set; } = string.Empty;
+
         public string subjects { get; set; } = string.Empty;
         public int UserID { get; set; } // Foreign key to Users table
     }

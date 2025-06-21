@@ -42,7 +42,7 @@ namespace UnicomTicManagementSystem.Controllers
             using var conn = DbConfig.GetConnection();
             conn.Open();
 
-            string query = "SELECT UserID, Username FROM Users WHERE Role = 'Admin'";
+            string query = "SELECT UserID, Username , Password FROM Users WHERE Role = 'Admin'";
             using var cmd = new SQLiteCommand(query, conn);
             using var reader = cmd.ExecuteReader();
 
@@ -51,7 +51,8 @@ namespace UnicomTicManagementSystem.Controllers
                 admins.Add(new User
                 {
                     UserId = Convert.ToInt32(reader["UserID"]),
-                    Username = reader["Username"].ToString() ?? string.Empty
+                    Username = reader["Username"].ToString() ?? string.Empty,
+                    Password = reader["Password"].ToString() ?? string.Empty
                 });
             }
 
