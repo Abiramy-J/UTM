@@ -16,8 +16,10 @@ namespace UnicomTicManagementSystem.Views
 {
     public partial class AddStaffForm : Form
     {
+        public bool IsViewMode { get; set; } = false;
         private bool isEditMode = false;
         private Staff editingStaff;
+        
 
         public AddStaffForm()
         {
@@ -30,13 +32,17 @@ namespace UnicomTicManagementSystem.Views
             isEditMode = true;
             editingStaff = staffToEdit;
             LoadStaffDataIntoForm();
+            LoadStaffData();
+
+            if (IsViewMode)
+                MakeFormReadOnly();
 
         }
         private void LoadFormDefaults()
         {
             txtUsername.Text = StaffController.GenerateUsername();
             txtPassword.Text = StaffController.GeneratePassword();
-            txtPassword.UseSystemPasswordChar = true; // Optional: hides password like ●●●
+            txtPassword.UseSystemPasswordChar = false; // Optional: hides password like ●●●
         }
 
         private void LoadStaffDataIntoForm()
@@ -58,29 +64,45 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            bool isValid = true; // Reset validation flag
             if (string.IsNullOrWhiteSpace(txtName.Text) ||
             string.IsNullOrWhiteSpace(txtAddress.Text) ||
             string.IsNullOrWhiteSpace(txtEmail.Text) ||
             string.IsNullOrWhiteSpace(txtPhone.Text))
             {
+                lblFullnameError.Text = "Full name is required.";
+                lblFullnameError.Visible = true;
+                lblAddressError.Text = "Address is required.";
+                lblAddressError.Visible = true;
+
                 MessageBox.Show("Please fill in all staff details.");
-                return;
-            }
 
-            // Phone number validation (10–15 digits only)
-            if (!Regex.IsMatch(txtPhone.Text, @"^(07|021)\d{8}$"))
+            }
+            else
             {
-                MessageBox.Show("Phone number must start with 07 or 021 and be 10 digits.");
-                return;
+                lblFullnameError.Visible = false;
+                lblAddressError.Visible = false;
             }
-
-
-            // Email format validation
-            if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            if (!Regex.IsMatch(txtEmail.Text.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                MessageBox.Show("Invalid email address.");
+                lblEmailError.Text = "Invalid email address format.";
+                lblEmailError.Visible = true;
+                isValid = false;
+            }
+            else
+            {
+                lblEmailError.Visible = false;
+
+
+            }
+            if (!Regex.IsMatch(txtPhone.Text.Trim(), @"^(07|021)\d{8}$"))
+            {
+                lblPhoneError.Text = "Phone number must start with 07 or 021 and be 10 digits";
+                lblPhoneError.Visible = true;
                 return;
             }
+
+            lblPhoneError.Visible = false;
 
             // Model
             var staff = new Staff
@@ -141,8 +163,36 @@ namespace UnicomTicManagementSystem.Views
         private void AddStaffForm_Load(object sender, EventArgs e)
         {
             if (!isEditMode)
+            {
                 LoadFormDefaults();
+            }
+            
         }
-    }
+        private void MakeFormReadOnly()
+        {
+            txtName.ReadOnly = true;
+            txtPhone.ReadOnly = true;
+            txtEmail.ReadOnly = true;
+            
+            txtUsername.ReadOnly = true;
+            txtPassword.ReadOnly = true;
+            txtPassword.UseSystemPasswordChar = true;
+            btnSave.Visible = false;
+        }
+        private void LoadStaffData()
+        {
+            if (editingStaff == null) return;
 
+            txtName.Text = editingStaff.Name;
+            txtPhone.Text = editingStaff.Phone;
+            txtEmail.Text = editingStaff.Email;
+           
+            txtUsername.Text = editingStaff.username;
+            txtPassword.Text = editingStaff.password;
+            txtPassword.UseSystemPasswordChar = true;
+        }
+
+
+
+    }
 }

@@ -50,6 +50,14 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             btnBack = new Button();
+            lblPhoneError = new Label();
+            lblEmailError = new Label();
+            lblDOBError = new Label();
+            IbFullNameError = new Label();
+            lb1GenderError = new Label();
+            lblCourseError = new Label();
+            lblFullnameError = new Label();
+            lblAddressError = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -76,7 +84,7 @@
             // lnPhoneNo
             // 
             lnPhoneNo.AutoSize = true;
-            lnPhoneNo.Location = new Point(48, 203);
+            lnPhoneNo.Location = new Point(48, 216);
             lnPhoneNo.Name = "lnPhoneNo";
             lnPhoneNo.Size = new Size(60, 15);
             lnPhoneNo.TabIndex = 2;
@@ -85,7 +93,7 @@
             // lbDateOfBirth
             // 
             lbDateOfBirth.AutoSize = true;
-            lbDateOfBirth.Location = new Point(48, 250);
+            lbDateOfBirth.Location = new Point(48, 275);
             lbDateOfBirth.Name = "lbDateOfBirth";
             lbDateOfBirth.Size = new Size(73, 15);
             lbDateOfBirth.TabIndex = 3;
@@ -94,7 +102,7 @@
             // lbCourse
             // 
             lbCourse.AutoSize = true;
-            lbCourse.Location = new Point(48, 306);
+            lbCourse.Location = new Point(48, 324);
             lbCourse.Name = "lbCourse";
             lbCourse.Size = new Size(44, 15);
             lbCourse.TabIndex = 4;
@@ -103,7 +111,7 @@
             // lbGender
             // 
             lbGender.AutoSize = true;
-            lbGender.Location = new Point(48, 354);
+            lbGender.Location = new Point(48, 381);
             lbGender.Name = "lbGender";
             lbGender.Size = new Size(45, 15);
             lbGender.TabIndex = 6;
@@ -130,7 +138,7 @@
             // lbEmail
             // 
             lbEmail.AutoSize = true;
-            lbEmail.Location = new Point(54, 396);
+            lbEmail.Location = new Point(48, 436);
             lbEmail.Name = "lbEmail";
             lbEmail.Size = new Size(39, 15);
             lbEmail.TabIndex = 9;
@@ -152,10 +160,11 @@
             // 
             // txtPhoneNo
             // 
-            txtPhoneNo.Location = new Point(139, 203);
+            txtPhoneNo.Location = new Point(139, 216);
             txtPhoneNo.Name = "txtPhoneNo";
             txtPhoneNo.Size = new Size(257, 23);
             txtPhoneNo.TabIndex = 12;
+            txtPhoneNo.TextChanged += txtPhoneNo_TextChanged;
             // 
             // txtUsername
             // 
@@ -173,7 +182,7 @@
             // 
             // txtMail
             // 
-            txtMail.Location = new Point(139, 393);
+            txtMail.Location = new Point(139, 428);
             txtMail.Name = "txtMail";
             txtMail.Size = new Size(257, 23);
             txtMail.TabIndex = 15;
@@ -181,7 +190,7 @@
             // cmbCourse
             // 
             cmbCourse.FormattingEnabled = true;
-            cmbCourse.Location = new Point(139, 303);
+            cmbCourse.Location = new Point(139, 321);
             cmbCourse.Name = "cmbCourse";
             cmbCourse.Size = new Size(257, 23);
             cmbCourse.TabIndex = 16;
@@ -189,7 +198,7 @@
             // cmbGender
             // 
             cmbGender.FormattingEnabled = true;
-            cmbGender.Location = new Point(139, 354);
+            cmbGender.Location = new Point(139, 378);
             cmbGender.Name = "cmbGender";
             cmbGender.Size = new Size(257, 23);
             cmbGender.TabIndex = 18;
@@ -197,7 +206,7 @@
             // dtpDOB
             // 
             dtpDOB.Format = DateTimePickerFormat.Short;
-            dtpDOB.Location = new Point(139, 250);
+            dtpDOB.Location = new Point(139, 269);
             dtpDOB.Name = "dtpDOB";
             dtpDOB.Size = new Size(257, 23);
             dtpDOB.TabIndex = 19;
@@ -247,12 +256,107 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
+            // lblPhoneError
+            // 
+            lblPhoneError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPhoneError.ForeColor = Color.Red;
+            lblPhoneError.Location = new Point(139, 242);
+            lblPhoneError.Name = "lblPhoneError";
+            lblPhoneError.Size = new Size(224, 15);
+            lblPhoneError.TabIndex = 24;
+            lblPhoneError.Text = "Phone must start with 07 and be 10 digits";
+            lblPhoneError.Visible = false;
+            lblPhoneError.TextChanged += lblPhoneError_TextChanged;
+            // 
+            // lblEmailError
+            // 
+            lblEmailError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEmailError.ForeColor = Color.Red;
+            lblEmailError.Location = new Point(139, 454);
+            lblEmailError.Name = "lblEmailError";
+            lblEmailError.Size = new Size(224, 15);
+            lblEmailError.TabIndex = 25;
+            lblEmailError.Text = "Invalid email address format";
+            lblEmailError.Visible = false;
+            // 
+            // lblDOBError
+            // 
+            lblDOBError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDOBError.ForeColor = Color.Red;
+            lblDOBError.Location = new Point(139, 295);
+            lblDOBError.Name = "lblDOBError";
+            lblDOBError.Size = new Size(224, 15);
+            lblDOBError.TabIndex = 26;
+            lblDOBError.Text = "Student must be at least 17 years old";
+            lblDOBError.Visible = false;
+            // 
+            // IbFullNameError
+            // 
+            IbFullNameError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            IbFullNameError.ForeColor = Color.Red;
+            IbFullNameError.Location = new Point(139, 135);
+            IbFullNameError.Name = "IbFullNameError";
+            IbFullNameError.Size = new Size(224, 15);
+            IbFullNameError.TabIndex = 27;
+            // 
+            // lb1GenderError
+            // 
+            lb1GenderError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lb1GenderError.ForeColor = Color.Red;
+            lb1GenderError.Location = new Point(139, 404);
+            lb1GenderError.Name = "lb1GenderError";
+            lb1GenderError.Size = new Size(224, 15);
+            lb1GenderError.TabIndex = 29;
+            lb1GenderError.Text = "Please select a gender";
+            lb1GenderError.Visible = false;
+            // 
+            // lblCourseError
+            // 
+            lblCourseError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCourseError.ForeColor = Color.Red;
+            lblCourseError.Location = new Point(139, 347);
+            lblCourseError.Name = "lblCourseError";
+            lblCourseError.Size = new Size(224, 15);
+            lblCourseError.TabIndex = 30;
+            lblCourseError.Text = "Please select a valid course";
+            lblCourseError.Visible = false;
+            // 
+            // lblFullnameError
+            // 
+            lblFullnameError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFullnameError.ForeColor = Color.Red;
+            lblFullnameError.Location = new Point(139, 135);
+            lblFullnameError.Name = "lblFullnameError";
+            lblFullnameError.Size = new Size(224, 15);
+            lblFullnameError.TabIndex = 31;
+            lblFullnameError.Text = "Full name is required";
+            lblFullnameError.Visible = false;
+            // 
+            // lblAddressError
+            // 
+            lblAddressError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAddressError.ForeColor = Color.Red;
+            lblAddressError.Location = new Point(139, 187);
+            lblAddressError.Name = "lblAddressError";
+            lblAddressError.Size = new Size(224, 15);
+            lblAddressError.TabIndex = 32;
+            lblAddressError.Text = "Address  is required";
+            lblAddressError.Visible = false;
+            // 
             // AddStudentForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(736, 493);
+            Controls.Add(lblAddressError);
+            Controls.Add(lblFullnameError);
+            Controls.Add(lblCourseError);
+            Controls.Add(lb1GenderError);
+            Controls.Add(IbFullNameError);
+            Controls.Add(lblDOBError);
+            Controls.Add(lblEmailError);
+            Controls.Add(lblPhoneError);
             Controls.Add(btnBack);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
@@ -307,5 +411,13 @@
         private Label label1;
         private PictureBox pictureBox1;
         private Button btnBack;
+        private Label lblPhoneError;
+        private Label lblEmailError;
+        private Label lblDOBError;
+        private Label IbFullNameError;
+        private Label lb1GenderError;
+        private Label lblCourseError;
+        private Label lblFullnameError;
+        private Label lblAddressError;
     }
 }

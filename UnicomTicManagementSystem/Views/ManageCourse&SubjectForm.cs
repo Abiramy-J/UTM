@@ -21,7 +21,7 @@ namespace UnicomTicManagementSystem.Views
             dgvCourses.Columns.Add("CourseID", "Course ID");
             dgvCourses.Columns.Add("CourseName", "Course Name");
 
-            // 🔥 NOW SETUP for Subjects DataGridView
+            // NOW SETUP for Subjects DataGridView
             dgvSubject.Columns.Add("SubjectID", "Subject ID");
             dgvSubject.Columns.Add("SubjectName", "Subject Name");
             dgvSubject.Columns.Add("CourseName", "Course Name");
@@ -57,6 +57,17 @@ namespace UnicomTicManagementSystem.Views
                 MessageBox.Show("Please enter course name.");
                 return;
             }
+            string courseName = txtCourseName.Text.Trim();
+
+            if (CourseController.IsCourseExists(courseName))
+            {
+                lblCourseError.Text = "Course already exists.";
+                lblCourseError.Visible = true;
+                return;
+            }
+
+            // 3. All good – hide error, prepare model and save
+            lblSubjectError.Visible = false;
 
             // Create a course object
             var course = new Course
@@ -72,7 +83,7 @@ namespace UnicomTicManagementSystem.Views
             {
                 MessageBox.Show("Course added successfully!");
                 LoadCourseData(); // Refresh DGV
-                LoadCoursesIntoDropdown();   // 💡 Refresh dropdown for subjects
+                LoadCoursesIntoDropdown();   // Refresh dropdown for subjects
                 ClearCourseForm(); // Reset form
             }
             else
@@ -109,7 +120,7 @@ namespace UnicomTicManagementSystem.Views
             {
                 MessageBox.Show("Course updated.");
                 LoadCourseData();
-                LoadCoursesIntoDropdown();   // 💡 Refresh dropdown for subjects
+                LoadCoursesIntoDropdown();   //  Refresh dropdown for subjects
                 ClearCourseForm();
             }
             else
@@ -137,7 +148,7 @@ namespace UnicomTicManagementSystem.Views
                 {
                     MessageBox.Show("Course deleted.");
                     LoadCourseData();
-                    LoadCoursesIntoDropdown();   // 💡 Refresh dropdown for subjects
+                    LoadCoursesIntoDropdown();   //  Refresh dropdown for subjects
                     ClearCourseForm();
                 }
                 else
@@ -165,12 +176,12 @@ namespace UnicomTicManagementSystem.Views
         }
         private void LoadSubjectData()
         {
-            dgvSubject.Rows.Clear(); // ✅ Correct DGV to clear
+            dgvSubject.Rows.Clear(); //  Correct DGV to clear
 
             // Get all subjects from the database
             var subject = SubjectController.GetAllSubjects();
 
-            // ✅ Add each subject to dgvSubject (NOT dgvCourses!)
+            // Add each subject to dgvSubject (NOT dgvCourses!)
             foreach (var s in subject)
             {
                 dgvSubject.Rows.Add(s.SubjectID, s.SubjectName, s.CourseName);
@@ -195,6 +206,19 @@ namespace UnicomTicManagementSystem.Views
                 MessageBox.Show("Please enter subject name and select a course.");
                 return;
             }
+            string subjectName = txtSubjectName.Text.Trim();
+
+            if (SubjectController.IsSubjectExists(subjectName))
+            {
+                lblSubjectError.Text = "Subject already exists.";
+                lblSubjectError.Visible = true;
+                return;
+            }
+
+            // 3. All good – hide error, prepare model and save
+            lblSubjectError.Visible = false;
+
+
 
             var subject = new Subject
             {

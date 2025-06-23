@@ -80,13 +80,49 @@ namespace UnicomTicManagementSystem.Controllers
             cmd.Parameters.AddWithValue("@id", subjectId);
             return cmd.ExecuteNonQuery() > 0;
         }
+        public static List<Subject> GetSubjectsForLoggedInLecturer(int lecturerID)
+        {
+            var subjects = new List<Subject>();
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
 
-        // 📋 Get all subjects (with course name for UI display)
-        
+            string query = @"
+                SELECT s.SubjectID, s.SubjectName 
+        FROM LecturerSubjects ls
+        JOIN Subjects s ON ls.SubjectID = s.SubjectID
+        WHERE ls.LecturerID = @LecturerID";
 
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@LecturerID", lecturerID);
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                subjects.Add(new Subject
+                {
+                    SubjectID = reader["SubjectID"].ToString(),
+                    SubjectName = reader["SubjectName"].ToString() ?? string.Empty
+                });
+            }
+
+            return subjects;
+        }
+        public static bool IsSubjectExists(string subjectName)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = "SELECT COUNT(*) FROM Subjects WHERE LOWER(SubjectName) = @name";
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@name", subjectName.ToLower());
+
+            long count = (long)cmd.ExecuteScalar();
+            return count > 0;
+        }
 
 
 
     }
 }
+
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboardForm));
             btnCreateUsers = new Button();
             btnManageUser = new Button();
             btnManageCourseAndSubject = new Button();
@@ -37,6 +38,7 @@
             btnLogout = new Button();
             btnManageRooms = new Button();
             panel1 = new Panel();
+            btnMyProfile = new Button();
             SuspendLayout();
             // 
             // btnCreateUsers
@@ -138,13 +140,25 @@
             // 
             // panel1
             // 
-            panel1.BackgroundImage = Properties.Resources.WhatsApp_Image_2025_06_20_at_22_47_51_3515973c;
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(254, 536);
+            panel1.Size = new Size(283, 536);
             panel1.TabIndex = 11;
+            // 
+            // btnMyProfile
+            // 
+            btnMyProfile.BackColor = Color.Lavender;
+            btnMyProfile.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnMyProfile.Location = new Point(412, 334);
+            btnMyProfile.Name = "btnMyProfile";
+            btnMyProfile.Size = new Size(250, 32);
+            btnMyProfile.TabIndex = 12;
+            btnMyProfile.Text = "My Profile";
+            btnMyProfile.UseVisualStyleBackColor = false;
+            btnMyProfile.Click += btnMyProfile_Click;
             // 
             // AdminDashboardForm
             // 
@@ -152,6 +166,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(945, 536);
+            Controls.Add(btnMyProfile);
             Controls.Add(panel1);
             Controls.Add(btnManageRooms);
             Controls.Add(btnLogout);
@@ -180,5 +195,6 @@
         private Button btnLogout;
         private Button btnManageRooms;
         private Panel panel1;
+        private Button btnMyProfile;
     }
 }

@@ -78,7 +78,7 @@ namespace UnicomTicManagementSystem.Views
             var admins = UserController.GetAllAdmins();
             foreach (var admin in admins)
             {
-                dgvAdmin.Rows.Add(admin.UserId, admin.Username,admin.Password);
+                dgvAdmin.Rows.Add(admin.UserId, admin.Username, admin.Password);
             }
         }
 
@@ -94,7 +94,7 @@ namespace UnicomTicManagementSystem.Views
 
             }
         }
-        
+
 
         private void dgvAdmin_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -104,6 +104,11 @@ namespace UnicomTicManagementSystem.Views
         private void CreateAdmin_Load(object sender, EventArgs e)
         {
             LoadAdminsToGrid();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 

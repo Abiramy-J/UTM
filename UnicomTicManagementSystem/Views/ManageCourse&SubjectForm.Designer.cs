@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panelHeader = new Panel();
-            btnClose = new Button();
             pictureBox1 = new PictureBox();
             labelHeader = new Label();
             panelSectionHeader = new Panel();
@@ -37,6 +36,8 @@
             labelCourse = new Label();
             lbManageSubject = new Label();
             panelCourse = new Panel();
+            lblSubjectError = new Label();
+            lblCourseError = new Label();
             btnCUpdate = new Button();
             btnCDelete = new Button();
             btnCAdd = new Button();
@@ -68,7 +69,6 @@
             // panelHeader
             // 
             panelHeader.BackColor = SystemColors.ActiveCaption;
-            panelHeader.Controls.Add(btnClose);
             panelHeader.Controls.Add(pictureBox1);
             panelHeader.Controls.Add(labelHeader);
             panelHeader.Dock = DockStyle.Top;
@@ -76,19 +76,6 @@
             panelHeader.Name = "panelHeader";
             panelHeader.Size = new Size(945, 83);
             panelHeader.TabIndex = 0;
-            // 
-            // btnClose
-            // 
-            btnClose.BackColor = SystemColors.ActiveCaption;
-            btnClose.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnClose.ForeColor = Color.Red;
-            btnClose.Location = new Point(916, 0);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(29, 27);
-            btnClose.TabIndex = 20;
-            btnClose.Text = "X";
-            btnClose.UseVisualStyleBackColor = false;
-            btnClose.Click += btnClose_Click;
             // 
             // pictureBox1
             // 
@@ -153,6 +140,7 @@
             // panelCourse
             // 
             panelCourse.BorderStyle = BorderStyle.Fixed3D;
+            panelCourse.Controls.Add(lblCourseError);
             panelCourse.Controls.Add(labelCourse);
             panelCourse.Controls.Add(btnCUpdate);
             panelCourse.Controls.Add(btnCDelete);
@@ -167,6 +155,28 @@
             panelCourse.Name = "panelCourse";
             panelCourse.Size = new Size(464, 433);
             panelCourse.TabIndex = 2;
+            // 
+            // lblSubjectError
+            // 
+            lblSubjectError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubjectError.ForeColor = Color.Red;
+            lblSubjectError.Location = new Point(221, 101);
+            lblSubjectError.Name = "lblSubjectError";
+            lblSubjectError.Size = new Size(126, 15);
+            lblSubjectError.TabIndex = 38;
+            lblSubjectError.Text = "Subject already exists!";
+            lblSubjectError.Visible = false;
+            // 
+            // lblCourseError
+            // 
+            lblCourseError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCourseError.ForeColor = Color.Red;
+            lblCourseError.Location = new Point(196, 123);
+            lblCourseError.Name = "lblCourseError";
+            lblCourseError.Size = new Size(126, 15);
+            lblCourseError.TabIndex = 37;
+            lblCourseError.Text = "Course already exists!";
+            lblCourseError.Visible = false;
             // 
             // btnCUpdate
             // 
@@ -252,6 +262,7 @@
             // panelSubject
             // 
             panelSubject.BorderStyle = BorderStyle.Fixed3D;
+            panelSubject.Controls.Add(lblSubjectError);
             panelSubject.Controls.Add(lbManageSubject);
             panelSubject.Controls.Add(btnSDelete);
             panelSubject.Controls.Add(btnSUpdate);
@@ -274,7 +285,7 @@
             btnSDelete.BackColor = SystemColors.ActiveCaption;
             btnSDelete.FlatStyle = FlatStyle.Flat;
             btnSDelete.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSDelete.Location = new Point(354, 163);
+            btnSDelete.Location = new Point(354, 172);
             btnSDelete.Name = "btnSDelete";
             btnSDelete.Size = new Size(75, 26);
             btnSDelete.TabIndex = 23;
@@ -287,7 +298,7 @@
             btnSUpdate.BackColor = SystemColors.ActiveCaption;
             btnSUpdate.FlatStyle = FlatStyle.Flat;
             btnSUpdate.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSUpdate.Location = new Point(191, 163);
+            btnSUpdate.Location = new Point(206, 172);
             btnSUpdate.Name = "btnSUpdate";
             btnSUpdate.Size = new Size(75, 26);
             btnSUpdate.TabIndex = 22;
@@ -300,7 +311,7 @@
             btnSAdd.BackColor = SystemColors.ActiveCaption;
             btnSAdd.FlatStyle = FlatStyle.Flat;
             btnSAdd.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSAdd.Location = new Point(45, 163);
+            btnSAdd.Location = new Point(45, 172);
             btnSAdd.Name = "btnSAdd";
             btnSAdd.Size = new Size(75, 26);
             btnSAdd.TabIndex = 21;
@@ -329,7 +340,7 @@
             // lbCourse
             // 
             lbCourse.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbCourse.Location = new Point(36, 111);
+            lbCourse.Location = new Point(36, 124);
             lbCourse.Name = "lbCourse";
             lbCourse.Size = new Size(93, 27);
             lbCourse.TabIndex = 14;
@@ -338,7 +349,7 @@
             // cmbCourses
             // 
             cmbCourses.FormattingEnabled = true;
-            cmbCourses.Location = new Point(147, 116);
+            cmbCourses.Location = new Point(147, 124);
             cmbCourses.Name = "cmbCourses";
             cmbCourses.Size = new Size(245, 23);
             cmbCourses.TabIndex = 13;
@@ -420,6 +431,7 @@
         private Button btnSDelete;
         private Button btnSUpdate;
         private PictureBox pictureBox1;
-        private Button btnClose;
+        private Label lblCourseError;
+        private Label lblSubjectError;
     }
 }

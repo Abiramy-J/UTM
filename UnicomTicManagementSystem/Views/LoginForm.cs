@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UnicomTicManagementSystem.Controllers;
+using UnicomTicManagementSystem.Models;
 using UnicomTicManagementSystem.Repositories;
 
 namespace UnicomTicManagementSystem.Views
@@ -31,21 +32,28 @@ namespace UnicomTicManagementSystem.Views
                 return;
             }
 
-            string role = UserController.Login(username, password);
+            User user = UserController.Login(username, password);
+            ;
 
-            if (role == null)
+            if (user == null)
             {
                 MessageBox.Show("Invalid credentials. Please try again.");
                 return;
             }
 
-            MessageBox.Show($"Welcome {role}!");
-            this.Hide(); // Hide Login Form
+            // ✅ Set session!
+            AppSession.UserId = user.UserId;
+            AppSession.Role = user.Role;
+            AppSession.Username= user.Username;
 
-            //  OPEN THE COMMON DASHBOARD AND PASS THE ROLE
-            AdminDashboardForm dashboard = new AdminDashboardForm(role);
+            MessageBox.Show($"Welcome {user.Role}!");
+            this.Hide();
+
+            // Open the dashboard (you can still pass role if needed)
+            var dashboard = new AdminDashboardForm(user.Role); // or use AppSession.Role directly inside
             dashboard.Show();
         }
+
 
 
 

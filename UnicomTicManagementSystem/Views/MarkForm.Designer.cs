@@ -41,6 +41,7 @@
             btnBack = new Button();
             lbMSubject = new Label();
             cmbSubjects = new ComboBox();
+            lblNoExamWarning = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMarks).BeginInit();
             SuspendLayout();
             // 
@@ -79,7 +80,7 @@
             cmbStudent.FormattingEnabled = true;
             cmbStudent.Location = new Point(109, 378);
             cmbStudent.Name = "cmbStudent";
-            cmbStudent.Size = new Size(188, 23);
+            cmbStudent.Size = new Size(224, 23);
             cmbStudent.TabIndex = 3;
             // 
             // cmbExam
@@ -87,7 +88,7 @@
             cmbExam.FormattingEnabled = true;
             cmbExam.Location = new Point(109, 433);
             cmbExam.Name = "cmbExam";
-            cmbExam.Size = new Size(188, 23);
+            cmbExam.Size = new Size(224, 23);
             cmbExam.TabIndex = 4;
             // 
             // txtScore
@@ -177,11 +178,23 @@
             cmbSubjects.Size = new Size(188, 23);
             cmbSubjects.TabIndex = 12;
             // 
+            // lblNoExamWarning
+            // 
+            lblNoExamWarning.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoExamWarning.ForeColor = Color.Red;
+            lblNoExamWarning.Location = new Point(97, 468);
+            lblNoExamWarning.Name = "lblNoExamWarning";
+            lblNoExamWarning.Size = new Size(310, 15);
+            lblNoExamWarning.TabIndex = 32;
+            lblNoExamWarning.Text = "No exams available. Please create an exam first";
+            lblNoExamWarning.Visible = false;
+            // 
             // MarkForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(945, 536);
+            Controls.Add(lblNoExamWarning);
             Controls.Add(cmbSubjects);
             Controls.Add(lbMSubject);
             Controls.Add(btnBack);
@@ -218,5 +231,6 @@
         private Button btnBack;
         private Label lbMSubject;
         private ComboBox cmbSubjects;
+        private Label lblNoExamWarning;
     }
 }

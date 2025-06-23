@@ -18,6 +18,7 @@ namespace UnicomTicManagementSystem.Models
         public string ExamName { get; set; } = string.Empty;
         public string SubjectID { get; set; } = string.Empty;
         public string SubjectName { get; set; } = string.Empty;  // Optional: for display
+        public int LecturerID { get; set; } // link mark to lec 
 
     }
 }

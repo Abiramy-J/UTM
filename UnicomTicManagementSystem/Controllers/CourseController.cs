@@ -90,6 +90,19 @@ namespace UnicomTicManagementSystem.Controllers
 
             return list; // Return full list of courses
         }
+        public static bool IsCourseExists(string courseName)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = "SELECT COUNT(*) FROM Courses WHERE LOWER(CourseName) = @name";
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@name", courseName.ToLower());
+
+            long count = (long)cmd.ExecuteScalar();
+            return count > 0;
+        }
+
     }
 }
 

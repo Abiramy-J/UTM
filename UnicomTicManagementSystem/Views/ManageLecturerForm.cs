@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UnicomTicManagementSystem.Controllers;
 using UnicomTicManagementSystem.Repositories;
-using static UnicomTicManagementSystem.Controllers.LecturereController;
+using static UnicomTicManagementSystem.Controllers.LecturerController;
 
 namespace UnicomTicManagementSystem.Views
 {
@@ -38,11 +39,15 @@ namespace UnicomTicManagementSystem.Views
             using var conn = DbConfig.GetConnection();
             conn.Open();
 
-            var q = @"SELECT l.LecturerID, l.Name, l.Address, l.Email, l.Phone, 
-                         s.SubjectName, u.Username
-                  FROM Lecturers l
-                  JOIN Subjects s ON l.SubjectID = s.SubjectID
-                  JOIN Users u ON l.UserID = u.UserID";
+            var q = @"
+SELECT l.LecturerID, l.Name, l.Address, l.Email, l.Phone, u.Username,
+       GROUP_CONCAT(s.SubjectName, ', ') as SubjectNames
+FROM Lecturers l
+JOIN Users u ON l.UserID = u.UserID
+LEFT JOIN LecturerSubjects ls ON l.LecturerID = ls.LecturerID
+LEFT JOIN Subjects s ON ls.SubjectID = s.SubjectID
+GROUP BY l.LecturerID, l.Name, l.Address, l.Email, l.Phone, u.Username";
+
 
             using var cmd = new SQLiteCommand(q, conn);
             using var rdr = cmd.ExecuteReader();
@@ -55,7 +60,7 @@ namespace UnicomTicManagementSystem.Views
                     rdr["Address"],
                     rdr["Email"],
                     rdr["Phone"],
-                    rdr["SubjectName"],
+                    rdr["SubjectNames"],  // Might be incomplete if multi-subjects are possible
                     rdr["Username"]
                 );
             }

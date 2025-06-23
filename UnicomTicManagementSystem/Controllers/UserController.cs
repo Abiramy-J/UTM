@@ -59,36 +59,32 @@ namespace UnicomTicManagementSystem.Controllers
             return admins;
         }
 
-        public static string Login(string username, string password)
+        public static User Login(string username, string password)
         {
-            using (var conn = DbConfig.GetConnection())
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = "SELECT * FROM Users WHERE Username = @username AND Password = @password";
+
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
             {
-                conn.Open();
-                string query = "SELECT UserID, Role FROM Users WHERE Username = @Username AND Password = @Password";
-                using var cmd = new SQLiteCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@Password", password);
-
-                using var reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                { 
-                    AppSession.UserId = Convert.ToInt32(reader["UserID"]);
-                    AppSession.Role = reader["Role"].ToString() ?? string.Empty;
-
-                    //  If it's a student, set the StudentID also:
-                    if (AppSession.Role == "Student")
-                    {
-                        AppSession.StudentID = StudentController.GetStudentIDByUserId(AppSession.UserId);
-                    }
-
-                    return AppSession.Role; // 👈 return it so you know where to redirect
-                }
-                else
+                return new User
                 {
-                    return null;
-                }
+                    UserId = Convert.ToInt32(reader["UserID"]),
+                    Username = reader["Username"].ToString(),
+                    Role = reader["Role"].ToString()
+                };
             }
+
+            return null; // login failed
         }
+
+
     }
 }
+   

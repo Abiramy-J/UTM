@@ -58,6 +58,7 @@ namespace UnicomTicManagementSystem.Repositories
                 Gender TEXT,
                 CourseID TEXT,
                 UserID INTEGER,
+                
                 FOREIGN KEY(CourseID) REFERENCES Courses(CourseID),
                 FOREIGN KEY(UserID) REFERENCES Users(UserID)
              );",
@@ -78,6 +79,8 @@ namespace UnicomTicManagementSystem.Repositories
                 ExamID INTEGER NOT NULL,
                 SubjectID TEXT NOT NULL,
                 Score INTEGER CHECK(Score >= 0 AND Score <= 100),
+                LecturerID INTEGER,
+                FOREIGN KEY (LecturerID) REFERENCES Lecturers(LecturerID),
                 FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
                 FOREIGN KEY (ExamID) REFERENCES Exams(ExamID),
                 FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
@@ -113,26 +116,27 @@ namespace UnicomTicManagementSystem.Repositories
                 FOREIGN KEY (UserID) REFERENCES Users(UserID)
             );",
 
-
+             //10.Lecturers Table
             @"CREATE TABLE IF NOT EXISTS Lecturers (
                 LecturerID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name TEXT NOT NULL,
                 Address TEXT,
                 Email TEXT,
                 Phone TEXT,
-                SubjectID TEXT, -- Foreign Key
                 UserID INTEGER,
                 FOREIGN KEY (UserID) REFERENCES Users(UserID),
                 FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
             );",
-
-               /*         @"CREATE TABLE LecturerSubjects (
+            // 11. LecturerSubjects Table
+            @"CREATE TABLE IF NOT EXISTS LecturerSubjects (
                 LecturerID INTEGER,
-                SubjectID INTEGER,
+                SubjectID TEXT,
                 PRIMARY KEY (LecturerID, SubjectID),
                 FOREIGN KEY (LecturerID) REFERENCES Lecturers(LecturerID),
                 FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
-            );",*/
+           );"
+
+
 
         };
 

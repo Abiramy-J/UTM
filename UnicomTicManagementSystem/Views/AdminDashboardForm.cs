@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
+using UnicomTicManagementSystem.Controllers;
 using UnicomTicManagementSystem.Models;
 
 namespace UnicomTicManagementSystem.Views
@@ -98,6 +99,7 @@ namespace UnicomTicManagementSystem.Views
             btnManageUser.Visible = false;
             btnManageCourseAndSubject.Visible = false;
             btnManageRooms.Visible = false;
+            btnMyProfile.Visible = false;
             btnManageExam.Visible = false;
             btnManageMarks.Visible = false;
             btnManageTimetable.Visible = false;
@@ -109,6 +111,7 @@ namespace UnicomTicManagementSystem.Views
                 btnManageUser.Visible = true;
                 btnManageCourseAndSubject.Visible = true;
                 btnManageRooms.Visible = true;
+                btnMyProfile.Visible = false;
 
                 btnManageExam.Visible = true;
                 btnManageExam.Text = "Manage Exams";
@@ -127,6 +130,8 @@ namespace UnicomTicManagementSystem.Views
                 btnManageMarks.Visible = true;
                 btnManageMarks.Text = "Manage Marks";
 
+                btnMyProfile.Visible = true; // Staff can view their profile
+
                 btnManageTimetable.Visible = true;
                 btnManageTimetable.Text = "View Timetable";
             }
@@ -137,6 +142,8 @@ namespace UnicomTicManagementSystem.Views
 
                 btnManageMarks.Visible = true;
                 btnManageMarks.Text = "Manage Marks";
+
+                btnMyProfile.Visible = true;
 
                 btnManageTimetable.Visible = true;
                 btnManageTimetable.Text = "View Timetable";
@@ -149,6 +156,8 @@ namespace UnicomTicManagementSystem.Views
                 btnManageMarks.Visible = true;
                 btnManageMarks.Text = "View Marks";
 
+                btnMyProfile.Visible = true; // Students can view their profile
+
                 btnManageTimetable.Visible = true;
                 btnManageTimetable.Text = "My Timetable";
             }
@@ -156,7 +165,7 @@ namespace UnicomTicManagementSystem.Views
 
         private void AdminDashboardForm_Load(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -177,7 +186,7 @@ namespace UnicomTicManagementSystem.Views
             }
             else
             {
-                isLoggingOut = true;  
+                isLoggingOut = true;
                 Application.Exit();   // FormClosing
             }
         }
@@ -196,7 +205,44 @@ namespace UnicomTicManagementSystem.Views
             {
                 e.Cancel = true; // Cancel the close
             }
+            else
+            {
+                Application.Exit(); // Close the application
 
+
+            }
+        }
+
+        private void btnMyProfile_Click(object sender, EventArgs e)
+        {
+            string role = AppSession.Role;
+            int userId = AppSession.UserId;
+
+            if (role == "Student")
+            {
+                var student = StudentController.GetStudentByUserId(userId); // ✅ returns full student data
+                                                                            
+                var form = new AddStudentForm(student);
+                form.IsViewMode = true;
+                form.LoadStudentData(student);
+                form.ShowDialog();
+            }
+            else if (role == "Staff")
+            {
+                var staff = StaffController.GetStaffByUserId(userId);
+                var form = new AddStaffForm(staff);
+                form.IsViewMode = true;
+                form.ShowDialog();
+            }
+            else if (role == "Lecturer")
+            {
+                var lecturer = LecturerController.GetLecturerByUserId(userId);
+
+                var form = new AddLecturerForm(lecturer);
+                form.IsViewMode = true;
+                form.ShowDialog();
+            }
+            
         }
     }
 }

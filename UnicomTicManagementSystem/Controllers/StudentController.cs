@@ -161,17 +161,37 @@ namespace UnicomTicManagementSystem.Controllers
             }
             return students;
         }
-        public static int GetStudentIDByUserId(int userId)
+        public static Student GetStudentByUserId(int userId)
         {
             using var conn = DbConfig.GetConnection();
             conn.Open();
 
-            var cmd = new SQLiteCommand("SELECT StudentID FROM Students WHERE UserID = @uid", conn);
+            string query = "SELECT * FROM Students WHERE UserID = @uid";
+            using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@uid", userId);
-            var result = cmd.ExecuteScalar();
 
-            return result != null ? Convert.ToInt32(result) : 0;
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Student
+                {
+                    StudentID = Convert.ToInt32(reader["StudentID"]),
+                    UserID = Convert.ToInt32(reader["UserID"]),
+                    Name = reader["Name"].ToString(),
+                    Address = reader["Address"].ToString(),
+                    Phone = reader["Phone"].ToString(),
+                    Email = reader["Email"].ToString(),
+                    Gender = reader["Gender"].ToString(),
+                    DOB = Convert.ToDateTime(reader["DOB"]),
+                    CourseID = reader["CourseID"].ToString(),
+                    
+                    
+                };
+            }
+
+            return null;
         }
+
 
 
     }

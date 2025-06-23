@@ -65,9 +65,9 @@ namespace UnicomTicManagementSystem.Views
             else if (userRole == "Lecturer")
             {
                 // View-only access: show labels, no editing
-                lbExamName.Visible = true;
-                label1.Visible = true;
-                label2.Visible = true;
+                lbExamName.Visible = false;
+                label1.Visible = false;
+                label2.Visible = false;
 
                 txtExamName.Visible = false; // can't edit
                 cmbSubject.Visible = false;

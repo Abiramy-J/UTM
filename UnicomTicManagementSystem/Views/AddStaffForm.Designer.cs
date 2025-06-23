@@ -44,6 +44,10 @@
             btnBack = new Button();
             label3 = new Label();
             pictureBox1 = new PictureBox();
+            lblFullnameError = new Label();
+            lblAddressError = new Label();
+            lblPhoneError = new Label();
+            lblEmailError = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -188,12 +192,60 @@
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
             // 
+            // lblFullnameError
+            // 
+            lblFullnameError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFullnameError.ForeColor = Color.Red;
+            lblFullnameError.Location = new Point(198, 134);
+            lblFullnameError.Name = "lblFullnameError";
+            lblFullnameError.Size = new Size(224, 15);
+            lblFullnameError.TabIndex = 32;
+            lblFullnameError.Text = "Full name is required";
+            lblFullnameError.Visible = false;
+            // 
+            // lblAddressError
+            // 
+            lblAddressError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAddressError.ForeColor = Color.Red;
+            lblAddressError.Location = new Point(198, 184);
+            lblAddressError.Name = "lblAddressError";
+            lblAddressError.Size = new Size(224, 15);
+            lblAddressError.TabIndex = 33;
+            lblAddressError.Text = "Address  is required";
+            lblAddressError.Visible = false;
+            // 
+            // lblPhoneError
+            // 
+            lblPhoneError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPhoneError.ForeColor = Color.Red;
+            lblPhoneError.Location = new Point(198, 276);
+            lblPhoneError.Name = "lblPhoneError";
+            lblPhoneError.Size = new Size(224, 15);
+            lblPhoneError.TabIndex = 34;
+            lblPhoneError.Text = "Phone must start with 07 and be 10 digits";
+            lblPhoneError.Visible = false;
+            // 
+            // lblEmailError
+            // 
+            lblEmailError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEmailError.ForeColor = Color.Red;
+            lblEmailError.Location = new Point(198, 224);
+            lblEmailError.Name = "lblEmailError";
+            lblEmailError.Size = new Size(224, 15);
+            lblEmailError.TabIndex = 35;
+            lblEmailError.Text = "Invalid email address format";
+            lblEmailError.Visible = false;
+            // 
             // AddStaffForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(736, 493);
+            Controls.Add(lblEmailError);
+            Controls.Add(lblPhoneError);
+            Controls.Add(lblAddressError);
+            Controls.Add(lblFullnameError);
             Controls.Add(pictureBox1);
             Controls.Add(label3);
             Controls.Add(btnBack);
@@ -236,5 +288,9 @@
         private Button btnBack;
         private Label label3;
         private PictureBox pictureBox1;
+        private Label lblFullnameError;
+        private Label lblAddressError;
+        private Label lblPhoneError;
+        private Label lblEmailError;
     }
 }

@@ -118,6 +118,39 @@ namespace UnicomTicManagementSystem.Controllers
 
             return null;
         }
+        public static Staff GetStaffByUserId(int userId)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = @"
+        SELECT s.*, u.Username, u.Password
+        FROM Staffs s
+        JOIN Users u ON s.UserID = u.UserID
+        WHERE s.UserID = @uid";
+
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@uid", userId);
+
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                return new Staff
+                {
+                    StaffID = Convert.ToInt32(reader["StaffID"]),
+                    Name = reader["FullName"].ToString() ?? string.Empty,
+                    Address = reader["Address"].ToString() ?? string.Empty,
+                    Email = reader["Email"].ToString() ?? string.Empty,
+                    Phone = reader["Phone"].ToString() ?? string.Empty,
+                    UserID = Convert.ToInt32(reader["UserID"]),
+                    username = reader["Username"].ToString() ?? string.Empty,
+                    password = reader["Password"].ToString() ?? string.Empty
+                };
+            }
+
+            return null;
+        }
+
 
     }
 }

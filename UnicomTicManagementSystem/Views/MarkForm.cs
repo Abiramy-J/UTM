@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UnicomTicManagementSystem.Controllers;
 using UnicomTicManagementSystem.Models;
+using UnicomTicManagementSystem.Repositories;
 
 namespace UnicomTicManagementSystem.Views
 {
@@ -25,11 +27,11 @@ namespace UnicomTicManagementSystem.Views
         {
             InitializeComponent();
             userRole = role;
-            
+            cmbStudent.SelectedIndexChanged += cmbStudent_SelectedIndexChanged;
 
             LoadStudents();
             LoadExams();
-            LoadSubjects();
+            //LoadSubjects((int?)cmbStudent.SelectedValue);
             LoadMarks();
 
             SetupRoleBasedAccess();
@@ -75,7 +77,7 @@ namespace UnicomTicManagementSystem.Views
             }
             else if (userRole == "Lecturer")
             {
-                // Can enter/update marks for their subjects only
+                // Full access
                 lblStudent.Visible = true;
                 lblExam.Visible = true;
                 lblScore.Visible = true;
@@ -88,9 +90,7 @@ namespace UnicomTicManagementSystem.Views
 
                 btnMAdd.Visible = true;
                 btnUpdate.Visible = true;
-
-                // ❌ No delete option
-                btnDelete.Visible = false;
+                btnDelete.Visible = true;
             }
             else if (userRole == "Student")
             {
@@ -142,18 +142,27 @@ namespace UnicomTicManagementSystem.Views
                 cmbExam.Items.Add(new ComboBoxItem(exam.ExamName, exam.ExamID.ToString()));
             }
         }
-        private void LoadSubjects()
+        private void LoadSubjects(int? studentID)
         {
+            if (studentID == null)
+            {
+                MessageBox.Show("Student ID is null 🤷‍♀️");
+                return;
+            }
+
             cmbSubjects.Items.Clear();
-            var subjects = SubjectController.GetAllSubjects();
+
+            // Now that we know it's not null, use .Value
+            string courseID = MarkController.GetStudentCourseID(studentID.Value);
+            var subjects = MarkController.GetSubjectsByCourseID(courseID);
+
             foreach (var subject in subjects)
             {
-                cmbSubjects.Items.Add(new ComboBoxItem(
-                    $"{subject.SubjectName} ({subject.CourseName})",
-                    subject.SubjectID.ToString()
-                ));
+                cmbSubjects.Items.Add(new ComboBoxItem(subject.SubjectName, subject.SubjectID));
             }
         }
+
+
 
 
         private void LoadMarks()
@@ -171,11 +180,11 @@ namespace UnicomTicManagementSystem.Views
 
             if (userRole == "Student")
             {
-                marks = MarkController.GetMarksForLoggedInStudent();  // 🎯 only this student's marks
+                marks = MarkController.GetMarksForLoggedInStudent();  // only this student's marks
             }
             else
             {
-                marks = MarkController.GetAllMarks();  // 🧑‍🏫 all marks for admin/staff/lecturer
+                marks = MarkController.GetAllMarks();  //  all marks for admin/staff/lecturer
             }
 
             foreach (var mark in marks)
@@ -189,9 +198,35 @@ namespace UnicomTicManagementSystem.Views
                 );
             }
         }
+        private void LoadLecturerSubjects()
+        {
+            cmbSubjects.Items.Clear();
+
+            int lecturerID = AppSession.UserId; // ✅ assuming AppSession.UserId is int
+
+            var subjects = SubjectController.GetSubjectsForLoggedInLecturer(lecturerID);
+
+            foreach (var subject in subjects)
+            {
+                cmbSubjects.Items.Add(new ComboBoxItem(subject.SubjectName, subject.SubjectID));
+            }
+        }
+
+
 
         private void MarkForm_Load(object sender, EventArgs e)
         {
+            if (AppSession.Role == "Lecturer")
+            {
+                LoadLecturerSubjects();
+                LoadStudents();
+                LoadExams();
+            }
+            else if (AppSession.Role == "Admin" || AppSession.Role == "Staff")
+            {
+                LoadStudents();
+                LoadExams();
+            }
         }
 
         private void btnMAdd_Click(object sender, EventArgs e)
@@ -200,6 +235,17 @@ namespace UnicomTicManagementSystem.Views
             {
                 MessageBox.Show("⚠️ You're editing a mark. Click 'Update' or clear the form before adding a new one.");
                 return;
+            }
+            if (cmbExam.Items.Count == 0)
+            {
+                lblNoExamWarning.Text = "⚠️ No exams available. Please create an exam first.";
+                lblNoExamWarning.Visible = true;
+                return;
+            }
+            else
+            {
+                lblNoExamWarning.Visible = false;
+                lblNoExamWarning.Text = "";
             }
 
             if (cmbStudent.SelectedIndex == -1 || cmbExam.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtScore.Text))
@@ -342,5 +388,17 @@ namespace UnicomTicManagementSystem.Views
             dgvMarks.ClearSelection(); // Optional: to unselect any row
         }
 
+        private void cmbStudent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbStudent.SelectedItem is ComboBoxItem selectedItem)
+            {
+                int studentId = int.Parse(selectedItem.Value);
+                LoadSubjects(studentId);
+            }
+            else
+            {
+                cmbSubjects.Items.Clear();
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Data.SQLite;
 using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,36 +22,66 @@ namespace UnicomTicManagementSystem.Views
     {
         private bool isEditMode = false;
         private Student editingStudent;
+        public bool IsViewMode { get; set; } = false;// This property is used to determine if the form is in view mode or edit mode
+
+
         // Default constructor → used when adding a new student
         public AddStudentForm()
         {
             InitializeComponent();
-            
+            lblPhoneError.Visible = false;
         }
         // Overloaded constructor → used for editing an existing student
         public AddStudentForm(Student studentToEdit)
         {
             InitializeComponent();
-            
+
             isEditMode = true;
             editingStudent = studentToEdit;
             LoadFormDefaults();//FIRST load gender & course items
             LoadStudentDataIntoForm();//THEN apply selected items
         }
+        public AddStudentForm(Student studentToView, bool isViewMode)
+        {
+            InitializeComponent();
+
+            IsViewMode = isViewMode;
+            editingStudent = studentToView;
+
+            LoadFormDefaults();      // Load combos first
+
+            if (IsViewMode)
+            {
+                LoadStudentData(editingStudent);  // Load data for readonly view
+            }
+            else
+            {
+                isEditMode = true;
+                LoadStudentDataIntoForm();         // For editing
+            }
+        }
+
+
 
         private void LoadFormDefaults()
         {
             // Gender ComboBox
             cmbGender.Items.Clear();
+            cmbGender.Items.Add("-- Select Gender --");
             cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
+            cmbGender.SelectedIndex = 0;
 
-            // Course ComboBox – new clean way
+
+            // Course ComboBox
+
             using var conn = DbConfig.GetConnection();
             conn.Open();
             var cmd = new SQLiteCommand("SELECT CourseID, CourseName FROM Courses", conn);
             using var rdr = cmd.ExecuteReader();
 
+
             var courseList = new List<ComboBoxItem>();
+            courseList.Add(new ComboBoxItem("-- Select Course --", "0"));
             while (rdr.Read())
             {
                 courseList.Add(new ComboBoxItem(
@@ -59,8 +90,10 @@ namespace UnicomTicManagementSystem.Views
             }
 
             cmbCourse.DataSource = courseList;
-            cmbCourse.DisplayMember = "Text";   // 👈 CourseName
-            cmbCourse.ValueMember = "Value";    // 👈 CourseID
+            cmbCourse.DisplayMember = "Text";   //  CourseName
+            cmbCourse.ValueMember = "Value";    //  CourseID
+
+            cmbCourse.SelectedIndex = 0;
 
             if (courseList.Count == 0)
             {
@@ -74,13 +107,31 @@ namespace UnicomTicManagementSystem.Views
         {
             if (editingStudent == null) return;
 
-            // Gender
+            // Gender ComboBox - safe selection
             cmbGender.Items.Clear();
             cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
-            cmbGender.SelectedItem = editingStudent.Gender;
 
-            // 🎯 ComboBox is already bound with Course list, so just:
-            cmbCourse.SelectedValue = editingStudent.CourseID;
+            string gender = editingStudent.Gender ?? "";
+            if (cmbGender.Items.Contains(gender))
+                cmbGender.SelectedItem = gender;
+            else
+                cmbGender.SelectedIndex = 0; // default to first item if gender not found
+
+            // Course ComboBox - safe selection
+            bool courseExists = false;
+            foreach (ComboBoxItem item in cmbCourse.Items)
+            {
+                if (item.Value == editingStudent.CourseID)
+                {
+                    courseExists = true;
+                    break;
+                }
+            }
+
+            if (courseExists)
+                cmbCourse.SelectedValue = editingStudent.CourseID;
+            else
+                cmbCourse.SelectedIndex = 0; // default fallback
 
             // Textboxes
             txtFullname.Text = editingStudent.Name;
@@ -132,8 +183,47 @@ namespace UnicomTicManagementSystem.Views
                 txtUsername.ReadOnly = true;
                 txtPw.ReadOnly = true;
             }
+            if (IsViewMode)
+            {
+                
+                txtFullname.ReadOnly = true;
+                txtAddress.ReadOnly = true;
+                txtMail.ReadOnly = true;
+                txtPhoneNo.ReadOnly = true;
+                cmbGender.Enabled = false;
+                cmbCourse.Enabled = false;
+                dtpDOB.Enabled = false;
+                btnSave.Visible = false;
+
+                txtUsername.ReadOnly = true;
+                txtPw.ReadOnly = true;
+                txtPw.UseSystemPasswordChar = true;
+                LoadStudentData(editingStudent);//pass the student to load values!
+            }
         }
-        
+
+
+        public void LoadStudentData(Student student)
+        {
+            if (student == null) return;
+
+            txtFullname.Text = student.Name;
+            txtAddress.Text = student.Address;
+            txtMail.Text = student.Email;
+            txtPhoneNo.Text = student.Phone;
+            dtpDOB.Value = student.DOB;
+
+            cmbGender.SelectedIndex = cmbGender.FindStringExact(student.Gender);
+            cmbCourse.SelectedValue = student.CourseID;
+
+            txtUsername.Text = student.Username;
+            txtPw.Text = student.Password;  // THIS line is crucial
+            txtPw.UseSystemPasswordChar = true;
+            txtPw.ReadOnly = true;
+        }
+
+
+
         private bool HasAnyCourses()
         {
             using var conn = DbConfig.GetConnection();
@@ -148,89 +238,157 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // 🔎 Basic field validations
-            if (string.IsNullOrWhiteSpace(txtFullname.Text) ||
-                string.IsNullOrWhiteSpace(txtAddress.Text) ||
-                string.IsNullOrWhiteSpace(txtMail.Text) ||
-                string.IsNullOrWhiteSpace(txtPhoneNo.Text))
+            bool isValid = true;
+
+            // --- Fullname ---
+            if (string.IsNullOrWhiteSpace(txtFullname.Text))
             {
-                MessageBox.Show("Please fill in all the student details.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 📞 Phone number validation (must be 10 digits and start with 07 or 021)
-            if (!Regex.IsMatch(txtPhoneNo.Text, @"^(07|021)\d{8}$"))
-            {
-                MessageBox.Show("Phone number must start with 07 or 021 and be 10 digits.");
-                return;
-            }
-
-            // 📧 Email format validation
-            if (!Regex.IsMatch(txtMail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            {
-                MessageBox.Show("Invalid email address.");
-                return;
-            }
-
-            // ⛔ Gender validation
-            if (!cmbGender.Items.Contains(cmbGender.Text))
-            {
-                MessageBox.Show("Please select a valid gender.");
-                return;
-            }
-
-
-            //⛔ Course validation
-            if (cmbCourse.SelectedItem == null || !(cmbCourse.SelectedItem is ComboBoxItem))
-            {
-                MessageBox.Show("Please select a valid course.");
-                return;
-            }
-
-
-
-            // 🎓 Create student object
-            var student = new Student
-            {
-                Name = txtFullname.Text.Trim(),
-                Address = txtAddress.Text.Trim(),
-                Email = txtMail.Text.Trim(),
-                Phone = txtPhoneNo.Text.Trim(),
-                DOB = dtpDOB.Value,
-                Gender = cmbGender.Text,
-                CourseID = ((ComboBoxItem)cmbCourse.SelectedItem).Value
-            };
-
-            // 🔄 Save or Update logic
-            if (isEditMode)
-            {
-                student.StudentID = editingStudent.StudentID;
-
-                bool updated = StudentController.UpdateStudents(student);
-                if (updated)
-                {
-                    MessageBox.Show("✅ Student updated successfully!");
-                    this.Close(); // Close the form after editing
-                }
-                else
-                {
-                    MessageBox.Show("❌ Failed to update student.");
-                }
+                lblFullnameError.Text = "Full name is required.";
+                lblFullnameError.Visible = true;
+                isValid = false;
             }
             else
             {
-                bool added = StudentController.CreateStudent(student, txtUsername.Text, txtPw.Text);
-                if (added)
+                lblFullnameError.Visible = false;
+            }
+
+            //  Phone number validation (must be 10 digits and start with 07 or 021)
+            ValidatePhone();
+            if (lblPhoneError.Visible)
+            {
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtAddress.Text))
+            {
+                lblAddressError.Text = "Address is required.";
+                lblAddressError.Visible = true;
+                isValid = false;
+            }
+            else
+            {
+                lblAddressError.Visible = false;
+            }
+
+            // --- Email ---
+            if (string.IsNullOrWhiteSpace(txtMail.Text))
+            {
+                lblEmailError.Text = "Email is required.";
+                lblEmailError.Visible = true;
+                isValid = false;
+            }
+            else if (!Regex.IsMatch(txtMail.Text.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                lblEmailError.Text = "Invalid email address format.";
+                lblEmailError.Visible = true;
+                isValid = false;
+            }
+            else
+            {
+                lblEmailError.Visible = false;
+            }
+
+            // --- Phone Number ---
+            ValidatePhone();
+            if (lblPhoneError.Visible)
+            {
+                isValid = false;
+            }
+
+            // --- Gender ---
+            if (cmbGender.SelectedIndex == 0 || string.IsNullOrWhiteSpace(cmbGender.Text))
+            {
+                lb1GenderError.Text = "Please select a gender.";
+                lb1GenderError.Visible = true;
+                isValid = false;
+            }
+            else
+            {
+                lb1GenderError.Visible = false;
+            }
+
+            // --- DOB ---
+            int age = DateTime.Today.Year - dtpDOB.Value.Year;
+            if (dtpDOB.Value > DateTime.Today.AddYears(-age)) age--;
+            if (age < 17)
+            {
+                lblDOBError.Text = "Student must be at least 17 years old.";
+                lblDOBError.Visible = true;
+                isValid = false;
+            }
+            else
+            {
+                lblDOBError.Visible = false;
+            }
+
+            // --- Course ---
+            if (cmbCourse.SelectedValue == null || cmbCourse.SelectedValue.ToString() == "0")
+            {
+                lblCourseError.Text = "Please select a valid course.";
+                lblCourseError.Visible = true;
+                isValid = false;
+            }
+            else
+            {
+                lblCourseError.Visible = false;
+            }
+
+            // --- Final Check ---
+            if (!isValid)
+            {
+                return; // Don't proceed if there's any validation error
+            }
+
+            // 🎉 All validations passed → Save the data!
+            MessageBox.Show("Student details saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        
+
+
+
+
+        //  Create student object
+        var student = new Student
                 {
-                    MessageBox.Show("✅ Student added successfully!");
-                    ClearForm(); // Reset form after successful creation
+                    Name = txtFullname.Text.Trim(),
+                    Address = txtAddress.Text.Trim(),
+                    Email = txtMail.Text.Trim(),
+                    Phone = txtPhoneNo.Text.Trim(),
+                    DOB = dtpDOB.Value,
+                    Gender = cmbGender.Text,
+                    CourseID = ((ComboBoxItem)cmbCourse.SelectedItem).Value
+                };
+
+                // Save or Update logic
+                if (isEditMode)
+                {
+                    student.StudentID = editingStudent.StudentID;
+
+                    bool updated = StudentController.UpdateStudents(student);
+                    if (updated)
+                    {
+                        MessageBox.Show("✅ Student updated successfully!");
+                        this.Close(); // Close the form after editing
+                    }
+                    else
+                    {
+                        MessageBox.Show("❌ Failed to update student.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("❌ Failed to add student.");
+                    bool added = StudentController.CreateStudent(student, txtUsername.Text, txtPw.Text);
+                    if (added)
+                    {
+                        MessageBox.Show("✅ Student added successfully!");
+                        ClearForm(); // Reset form after successful creation
+                    }
+                    else
+                    {
+                        MessageBox.Show("❌ Failed to add student.");
+                    }
                 }
             }
-        }
+        
 
         private void ClearForm()
         {
@@ -239,8 +397,10 @@ namespace UnicomTicManagementSystem.Views
             txtMail.Clear();
             txtPhoneNo.Clear();
             cmbGender.SelectedIndex = -1;
-            cmbCourse.SelectedIndex = -1;
+            cmbCourse.SelectedIndex = 0;
             dtpDOB.Value = DateTime.Today;
+
+            LoadFormDefaults();
 
             txtUsername.Text = StudentController.GenerateUsername();
             txtPw.Text = StudentController.GeneratePassword();
@@ -254,7 +414,27 @@ namespace UnicomTicManagementSystem.Views
         {
             this.Close(); // Close the Add Student Form
         }
-        
+
+        private void lblPhoneError_TextChanged(object sender, EventArgs e)
+        {
+            ValidatePhone();
+        }
+        private void ValidatePhone()
+        {
+            if (!Regex.IsMatch(txtPhoneNo.Text.Trim(), @"^(07|021)\d{8}$"))
+            {
+                lblPhoneError.Text = "Phone number must start with 07 or 021 and be 10 digits";
+                lblPhoneError.Visible = true;
+                return;
+            }
+
+            lblPhoneError.Visible = false;
+        }
+
+        private void txtPhoneNo_TextChanged(object sender, EventArgs e)
+        {
+            ValidatePhone();
+        }
     }
 
 
