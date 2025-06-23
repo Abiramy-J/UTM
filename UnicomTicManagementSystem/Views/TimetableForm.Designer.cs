@@ -43,6 +43,7 @@
             dgvTimetable = new DataGridView();
             labelMLect = new Label();
             pictureBox1 = new PictureBox();
+            lblNoRoomWarning = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvTimetable).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -94,7 +95,7 @@
             // 
             lbTimeSlot.AutoSize = true;
             lbTimeSlot.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbTimeSlot.Location = new Point(413, 467);
+            lbTimeSlot.Location = new Point(395, 471);
             lbTimeSlot.Name = "lbTimeSlot";
             lbTimeSlot.Size = new Size(80, 20);
             lbTimeSlot.TabIndex = 18;
@@ -119,7 +120,7 @@
             // cmbTimeSlot
             // 
             cmbTimeSlot.FormattingEnabled = true;
-            cmbTimeSlot.Location = new Point(517, 464);
+            cmbTimeSlot.Location = new Point(517, 472);
             cmbTimeSlot.Name = "cmbTimeSlot";
             cmbTimeSlot.Size = new Size(169, 23);
             cmbTimeSlot.TabIndex = 21;
@@ -203,12 +204,24 @@
             pictureBox1.TabIndex = 28;
             pictureBox1.TabStop = false;
             // 
+            // lblNoRoomWarning
+            // 
+            lblNoRoomWarning.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoRoomWarning.ForeColor = Color.Red;
+            lblNoRoomWarning.Location = new Point(443, 451);
+            lblNoRoomWarning.Name = "lblNoRoomWarning";
+            lblNoRoomWarning.Size = new Size(348, 15);
+            lblNoRoomWarning.TabIndex = 33;
+            lblNoRoomWarning.Text = "No rooms found! Please add rooms in Room Management first.";
+            lblNoRoomWarning.Visible = false;
+            // 
             // TimetableForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLight;
             ClientSize = new Size(945, 536);
+            Controls.Add(lblNoRoomWarning);
             Controls.Add(pictureBox1);
             Controls.Add(labelMLect);
             Controls.Add(dgvTimetable);
@@ -249,5 +262,6 @@
         private DataGridView dgvTimetable;
         private Label labelMLect;
         private PictureBox pictureBox1;
+        private Label lblNoRoomWarning;
     }
 }

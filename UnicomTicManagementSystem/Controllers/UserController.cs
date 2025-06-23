@@ -83,6 +83,49 @@ namespace UnicomTicManagementSystem.Controllers
 
             return null; // login failed
         }
+        public static bool ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            // Verify user + old password match
+            string checkQuery = "SELECT * FROM Users WHERE Username = @uname AND Password = @oldpwd";
+            using var cmdCheck = new SQLiteCommand(checkQuery, conn);
+            cmdCheck.Parameters.AddWithValue("@uname", username);
+            cmdCheck.Parameters.AddWithValue("@oldpwd", oldPassword);
+
+            using var reader = cmdCheck.ExecuteReader();
+            if (reader.Read())
+            {
+                reader.Close(); // must close before updating
+
+                string updateQuery = "UPDATE Users SET Password = @newpwd WHERE Username = @uname";
+                using var cmdUpdate = new SQLiteCommand(updateQuery, conn);
+                cmdUpdate.Parameters.AddWithValue("@newpwd", newPassword);
+                cmdUpdate.Parameters.AddWithValue("@uname", username);
+
+                return cmdUpdate.ExecuteNonQuery() > 0; // true if updated
+            }
+
+            return false; // old password incorrect or user not found
+        }
+        
+      
+            
+
+        public static bool UsernameExists(string username)
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = "SELECT COUNT(*) FROM Users WHERE Username = @uname";
+            using var cmd = new SQLiteCommand(query, conn);
+            cmd.Parameters.AddWithValue("@uname", username);
+
+            long count = (long)cmd.ExecuteScalar();
+            return count > 0;
+        }
+
 
 
     }

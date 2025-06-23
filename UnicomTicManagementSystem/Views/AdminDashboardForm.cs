@@ -112,6 +112,7 @@ namespace UnicomTicManagementSystem.Views
                 btnManageCourseAndSubject.Visible = true;
                 btnManageRooms.Visible = true;
                 btnMyProfile.Visible = false;
+                btnChangePasword.Visible = false;
 
                 btnManageExam.Visible = true;
                 btnManageExam.Text = "Manage Exams";
@@ -132,6 +133,8 @@ namespace UnicomTicManagementSystem.Views
 
                 btnMyProfile.Visible = true; // Staff can view their profile
 
+                btnChangePasword.Visible = true; // Staff can change password
+
                 btnManageTimetable.Visible = true;
                 btnManageTimetable.Text = "View Timetable";
             }
@@ -144,6 +147,7 @@ namespace UnicomTicManagementSystem.Views
                 btnManageMarks.Text = "Manage Marks";
 
                 btnMyProfile.Visible = true;
+                btnChangePasword.Visible = true; // Lecturers can change password
 
                 btnManageTimetable.Visible = true;
                 btnManageTimetable.Text = "View Timetable";
@@ -154,12 +158,13 @@ namespace UnicomTicManagementSystem.Views
                 btnManageExam.Text = "View Exams";
 
                 btnManageMarks.Visible = true;
-                btnManageMarks.Text = "View Marks";
+                btnManageMarks.Text = "View My Marks";
 
                 btnMyProfile.Visible = true; // Students can view their profile
+                btnChangePasword.Visible = true; // Students can change password
 
                 btnManageTimetable.Visible = true;
-                btnManageTimetable.Text = "My Timetable";
+                btnManageTimetable.Text = "View Timetable";
             }
         }
 
@@ -221,7 +226,7 @@ namespace UnicomTicManagementSystem.Views
             if (role == "Student")
             {
                 var student = StudentController.GetStudentByUserId(userId); // ✅ returns full student data
-                                                                            
+
                 var form = new AddStudentForm(student);
                 form.IsViewMode = true;
                 form.LoadStudentData(student);
@@ -242,7 +247,15 @@ namespace UnicomTicManagementSystem.Views
                 form.IsViewMode = true;
                 form.ShowDialog();
             }
-            
+
+        }
+
+        private void btnChangePasword_Click(object sender, EventArgs e)
+        {
+            var changePwForm = new ChangePassword();
+            this.Hide(); // Hide the dashboard while changing password
+            changePwForm.FormClosed += (s, e) => this.Show(); // Bring it back after password change
+            changePwForm.ShowDialog();
         }
     }
 }

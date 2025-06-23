@@ -19,9 +19,9 @@ namespace UnicomTicManagementSystem.Views
 
         private int selectedMarkId = 0;
 
-     
+
         private string userRole;
-        
+
 
         public MarkForm(string role)
         {
@@ -247,12 +247,42 @@ namespace UnicomTicManagementSystem.Views
                 lblNoExamWarning.Visible = false;
                 lblNoExamWarning.Text = "";
             }
+            if (cmbStudent.Items.Count == 0)
+            {
+                lblNoStudentWarning.Text = "⚠️ No exams available. Please create an exam first.";
+                lblNoStudentWarning.Visible = true;
+                return;
+            }
+            else
+            {
+                lblNoStudentWarning.Visible = false;
+                lblNoStudentWarning.Text = "";
+            }
 
             if (cmbStudent.SelectedIndex == -1 || cmbExam.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtScore.Text))
             {
                 MessageBox.Show("Please select a student, exam, and enter score.");
                 return;
             }
+            if (cmbSubjects.Items.Count == 0) {
+                lblNoSub.Text = "⚠️ No subjects available. Please add subjects first.";
+                lblNoSub.Visible = true;
+                return;
+            }
+            else
+            {
+                lblNoSub.Visible = false;
+                lblNoSub.Text = "";
+            }
+
+            if (cmbSubjects.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a subject.");
+                return;
+            }
+
+
+
 
             if (!int.TryParse(txtScore.Text, out int score) || score < 0 || score > 100)
             {
@@ -289,7 +319,7 @@ namespace UnicomTicManagementSystem.Views
                 MessageBox.Show("❌ Failed to add mark.");
             }
         }
-        
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedMarkId == 0)
@@ -321,7 +351,7 @@ namespace UnicomTicManagementSystem.Views
                 ExamID = examId,
                 SubjectID = subjectId,
                 Score = score
-            }; 
+            };
 
             bool success = MarkController.UpdateMark(updatedMark);
             if (success)
@@ -335,7 +365,7 @@ namespace UnicomTicManagementSystem.Views
                 MessageBox.Show("❌ Failed to update mark.");
             }
         }
-        
+
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -399,6 +429,11 @@ namespace UnicomTicManagementSystem.Views
             {
                 cmbSubjects.Items.Clear();
             }
+        }
+
+        private void lblNoExamWarning_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -47,7 +47,7 @@
             // 
             dgvRooms.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvRooms.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRooms.Location = new Point(29, 116);
+            dgvRooms.Location = new Point(25, 149);
             dgvRooms.Name = "dgvRooms";
             dgvRooms.Size = new Size(466, 317);
             dgvRooms.TabIndex = 0;
@@ -58,7 +58,7 @@
             cmbRoomType.FormattingEnabled = true;
             cmbRoomType.Location = new Point(621, 209);
             cmbRoomType.Name = "cmbRoomType";
-            cmbRoomType.Size = new Size(142, 23);
+            cmbRoomType.Size = new Size(201, 23);
             cmbRoomType.TabIndex = 4;
             // 
             // lbRoomName
@@ -85,7 +85,7 @@
             // 
             txtRoomName.Location = new Point(621, 159);
             txtRoomName.Name = "txtRoomName";
-            txtRoomName.Size = new Size(142, 23);
+            txtRoomName.Size = new Size(201, 23);
             txtRoomName.TabIndex = 8;
             // 
             // btnRBack
@@ -93,7 +93,7 @@
             btnRBack.BackColor = SystemColors.ActiveCaption;
             btnRBack.Cursor = Cursors.Hand;
             btnRBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRBack.Location = new Point(522, 411);
+            btnRBack.Location = new Point(580, 452);
             btnRBack.Name = "btnRBack";
             btnRBack.Size = new Size(148, 33);
             btnRBack.TabIndex = 11;
@@ -106,7 +106,7 @@
             btnRDelete.BackColor = SystemColors.ActiveCaption;
             btnRDelete.Cursor = Cursors.Hand;
             btnRDelete.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRDelete.Location = new Point(522, 362);
+            btnRDelete.Location = new Point(580, 396);
             btnRDelete.Name = "btnRDelete";
             btnRDelete.Size = new Size(148, 33);
             btnRDelete.TabIndex = 12;
@@ -119,7 +119,7 @@
             btnRUpdate.BackColor = SystemColors.ActiveCaption;
             btnRUpdate.Cursor = Cursors.Hand;
             btnRUpdate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRUpdate.Location = new Point(522, 311);
+            btnRUpdate.Location = new Point(580, 342);
             btnRUpdate.Name = "btnRUpdate";
             btnRUpdate.Size = new Size(148, 33);
             btnRUpdate.TabIndex = 13;
@@ -132,7 +132,7 @@
             btnRAdd.BackColor = SystemColors.ActiveCaption;
             btnRAdd.Cursor = Cursors.Hand;
             btnRAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRAdd.Location = new Point(522, 263);
+            btnRAdd.Location = new Point(580, 282);
             btnRAdd.Name = "btnRAdd";
             btnRAdd.Size = new Size(148, 33);
             btnRAdd.TabIndex = 14;

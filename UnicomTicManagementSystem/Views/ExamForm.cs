@@ -17,7 +17,7 @@ namespace UnicomTicManagementSystem.Views
     public partial class ExamForm : Form
     {
         private int selectedExamId = 0;
-        
+
         private string userRole;
 
         public ExamForm(string role)
@@ -167,6 +167,24 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (selectedExamId != 0)
+            {
+                // If an exam is selected, treat it as an update instead of a new add
+                MessageBox.Show("You have selected an exam. Click Update to modify it.");
+                return;
+            }
+            if (cmbSubject.Items.Count == 0)
+            {
+                lblSubjectWarning.Text = "⚠️ No exams available. Please create an exam first.";
+                lblSubjectWarning.Visible = true;
+                return;
+            }
+            else
+            {
+                lblSubjectWarning.Visible = false;
+                lblSubjectWarning.Text = "";
+            }
+
             if (cmbSubject.SelectedIndex == -1 || string.IsNullOrWhiteSpace(txtExamName.Text))
             {
                 MessageBox.Show("Please enter exam name and select a subject.");
@@ -221,7 +239,7 @@ namespace UnicomTicManagementSystem.Views
                 }
             }
         }
-        
+
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedExamId == 0)
@@ -287,6 +305,11 @@ namespace UnicomTicManagementSystem.Views
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgvExam_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

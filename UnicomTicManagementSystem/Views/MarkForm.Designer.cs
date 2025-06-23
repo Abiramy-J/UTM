@@ -42,14 +42,20 @@
             lbMSubject = new Label();
             cmbSubjects = new ComboBox();
             lblNoExamWarning = new Label();
+            label1 = new Label();
+            labelMP = new Label();
+            pictureBox1 = new PictureBox();
+            lblNoStudentWarning = new Label();
+            lblNoSub = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvMarks).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblStudent
             // 
             lblStudent.AutoSize = true;
             lblStudent.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStudent.Location = new Point(33, 381);
+            lblStudent.Location = new Point(33, 411);
             lblStudent.Name = "lblStudent";
             lblStudent.Size = new Size(70, 20);
             lblStudent.TabIndex = 0;
@@ -59,7 +65,7 @@
             // 
             lblScore.AutoSize = true;
             lblScore.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblScore.Location = new Point(387, 377);
+            lblScore.Location = new Point(399, 414);
             lblScore.Name = "lblScore";
             lblScore.Size = new Size(55, 20);
             lblScore.TabIndex = 1;
@@ -69,7 +75,7 @@
             // 
             lblExam.AutoSize = true;
             lblExam.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblExam.Location = new Point(33, 432);
+            lblExam.Location = new Point(33, 465);
             lblExam.Name = "lblExam";
             lblExam.Size = new Size(54, 20);
             lblExam.TabIndex = 2;
@@ -78,7 +84,7 @@
             // cmbStudent
             // 
             cmbStudent.FormattingEnabled = true;
-            cmbStudent.Location = new Point(109, 378);
+            cmbStudent.Location = new Point(109, 411);
             cmbStudent.Name = "cmbStudent";
             cmbStudent.Size = new Size(224, 23);
             cmbStudent.TabIndex = 3;
@@ -86,14 +92,14 @@
             // cmbExam
             // 
             cmbExam.FormattingEnabled = true;
-            cmbExam.Location = new Point(109, 433);
+            cmbExam.Location = new Point(109, 462);
             cmbExam.Name = "cmbExam";
             cmbExam.Size = new Size(224, 23);
             cmbExam.TabIndex = 4;
             // 
             // txtScore
             // 
-            txtScore.Location = new Point(462, 377);
+            txtScore.Location = new Point(470, 411);
             txtScore.Name = "txtScore";
             txtScore.Size = new Size(196, 23);
             txtScore.TabIndex = 5;
@@ -102,7 +108,7 @@
             // 
             dgvMarks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMarks.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMarks.Location = new Point(25, 82);
+            dgvMarks.Location = new Point(33, 112);
             dgvMarks.Name = "dgvMarks";
             dgvMarks.Size = new Size(625, 264);
             dgvMarks.TabIndex = 6;
@@ -113,7 +119,7 @@
             btnMAdd.BackColor = SystemColors.ActiveCaption;
             btnMAdd.Cursor = Cursors.Hand;
             btnMAdd.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnMAdd.Location = new Point(688, 112);
+            btnMAdd.Location = new Point(700, 185);
             btnMAdd.Name = "btnMAdd";
             btnMAdd.Size = new Size(168, 33);
             btnMAdd.TabIndex = 7;
@@ -126,7 +132,7 @@
             btnUpdate.BackColor = SystemColors.ActiveCaption;
             btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUpdate.Location = new Point(688, 177);
+            btnUpdate.Location = new Point(700, 247);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(168, 33);
             btnUpdate.TabIndex = 8;
@@ -139,7 +145,7 @@
             btnDelete.BackColor = SystemColors.ActiveCaption;
             btnDelete.Cursor = Cursors.Hand;
             btnDelete.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDelete.Location = new Point(688, 242);
+            btnDelete.Location = new Point(700, 309);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(168, 33);
             btnDelete.TabIndex = 9;
@@ -152,7 +158,7 @@
             btnBack.BackColor = SystemColors.ActiveCaption;
             btnBack.Cursor = Cursors.Hand;
             btnBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBack.Location = new Point(688, 313);
+            btnBack.Location = new Point(700, 370);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(168, 33);
             btnBack.TabIndex = 10;
@@ -164,7 +170,7 @@
             // 
             lbMSubject.AutoSize = true;
             lbMSubject.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbMSubject.Location = new Point(387, 436);
+            lbMSubject.Location = new Point(387, 462);
             lbMSubject.Name = "lbMSubject";
             lbMSubject.Size = new Size(67, 20);
             lbMSubject.TabIndex = 11;
@@ -173,27 +179,84 @@
             // cmbSubjects
             // 
             cmbSubjects.FormattingEnabled = true;
-            cmbSubjects.Location = new Point(462, 433);
+            cmbSubjects.Location = new Point(470, 459);
             cmbSubjects.Name = "cmbSubjects";
-            cmbSubjects.Size = new Size(188, 23);
+            cmbSubjects.Size = new Size(196, 23);
             cmbSubjects.TabIndex = 12;
             // 
             // lblNoExamWarning
             // 
             lblNoExamWarning.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNoExamWarning.ForeColor = Color.Red;
-            lblNoExamWarning.Location = new Point(97, 468);
+            lblNoExamWarning.Location = new Point(142, 488);
             lblNoExamWarning.Name = "lblNoExamWarning";
-            lblNoExamWarning.Size = new Size(310, 15);
+            lblNoExamWarning.Size = new Size(157, 39);
             lblNoExamWarning.TabIndex = 32;
             lblNoExamWarning.Text = "No exams available. Please create an exam first";
             lblNoExamWarning.Visible = false;
+            lblNoExamWarning.Click += lblNoExamWarning_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(247, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 15);
+            label1.TabIndex = 33;
+            // 
+            // labelMP
+            // 
+            labelMP.BackColor = SystemColors.ControlLight;
+            labelMP.Font = new Font("Segoe UI Historic", 15.75F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            labelMP.ForeColor = Color.Navy;
+            labelMP.Location = new Point(329, 38);
+            labelMP.Name = "labelMP";
+            labelMP.Size = new Size(271, 47);
+            labelMP.TabIndex = 34;
+            labelMP.Text = "Mark Allocation Panel";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.icons8_exam_64__1_;
+            pictureBox1.Location = new Point(285, 25);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(48, 47);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 35;
+            pictureBox1.TabStop = false;
+            // 
+            // lblNoStudentWarning
+            // 
+            lblNoStudentWarning.AutoSize = true;
+            lblNoStudentWarning.ForeColor = Color.Red;
+            lblNoStudentWarning.Location = new Point(209, 437);
+            lblNoStudentWarning.Name = "lblNoStudentWarning";
+            lblNoStudentWarning.Size = new Size(0, 15);
+            lblNoStudentWarning.TabIndex = 36;
+            lblNoStudentWarning.Visible = false;
+            // 
+            // lblNoSub
+            // 
+            lblNoSub.AutoSize = true;
+            lblNoSub.ForeColor = Color.Red;
+            lblNoSub.Location = new Point(553, 485);
+            lblNoSub.Name = "lblNoSub";
+            lblNoSub.Size = new Size(0, 15);
+            lblNoSub.TabIndex = 37;
+            lblNoSub.TextAlign = ContentAlignment.MiddleCenter;
+            lblNoSub.Visible = false;
             // 
             // MarkForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlLight;
             ClientSize = new Size(945, 536);
+            Controls.Add(lblNoSub);
+            Controls.Add(lblNoStudentWarning);
+            Controls.Add(pictureBox1);
+            Controls.Add(labelMP);
+            Controls.Add(label1);
             Controls.Add(lblNoExamWarning);
             Controls.Add(cmbSubjects);
             Controls.Add(lbMSubject);
@@ -212,6 +275,7 @@
             Text = "MarkForm";
             Load += MarkForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMarks).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -232,5 +296,10 @@
         private Label lbMSubject;
         private ComboBox cmbSubjects;
         private Label lblNoExamWarning;
+        private Label label1;
+        private Label labelMP;
+        private PictureBox pictureBox1;
+        private Label lblNoStudentWarning;
+        private Label lblNoSub;
     }
 }

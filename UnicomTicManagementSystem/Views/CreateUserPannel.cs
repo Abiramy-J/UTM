@@ -29,6 +29,7 @@ namespace UnicomTicManagementSystem.Views
                 return;//// Exit early to prevent further operations
             }
             pnlCreateUser.Controls.Clear(); // Clear previously loaded form
+
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;

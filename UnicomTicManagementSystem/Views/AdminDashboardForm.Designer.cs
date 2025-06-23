@@ -38,7 +38,10 @@
             btnLogout = new Button();
             btnManageRooms = new Button();
             panel1 = new Panel();
+            lbWlcm = new Label();
             btnMyProfile = new Button();
+            btnChangePasword = new Button();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnCreateUsers
@@ -142,11 +145,24 @@
             // 
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Controls.Add(lbWlcm);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(283, 536);
             panel1.TabIndex = 11;
+            // 
+            // lbWlcm
+            // 
+            lbWlcm.BackColor = Color.Transparent;
+            lbWlcm.Font = new Font("Century Schoolbook", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbWlcm.ForeColor = SystemColors.Window;
+            lbWlcm.Location = new Point(64, 464);
+            lbWlcm.Name = "lbWlcm";
+            lbWlcm.Size = new Size(167, 48);
+            lbWlcm.TabIndex = 13;
+            lbWlcm.Text = "Welcome!";
+            lbWlcm.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnMyProfile
             // 
@@ -160,12 +176,25 @@
             btnMyProfile.UseVisualStyleBackColor = false;
             btnMyProfile.Click += btnMyProfile_Click;
             // 
+            // btnChangePasword
+            // 
+            btnChangePasword.BackColor = Color.Lavender;
+            btnChangePasword.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnChangePasword.Location = new Point(412, 211);
+            btnChangePasword.Name = "btnChangePasword";
+            btnChangePasword.Size = new Size(250, 32);
+            btnChangePasword.TabIndex = 13;
+            btnChangePasword.Text = "Change Password";
+            btnChangePasword.UseVisualStyleBackColor = false;
+            btnChangePasword.Click += btnChangePasword_Click;
+            // 
             // AdminDashboardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(945, 536);
+            Controls.Add(btnChangePasword);
             Controls.Add(btnMyProfile);
             Controls.Add(panel1);
             Controls.Add(btnManageRooms);
@@ -181,6 +210,7 @@
             Text = "AdminDashboardForm";
             FormClosing += AdminDashboardForm_FormClosing;
             Load += AdminDashboardForm_Load;
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -196,5 +226,7 @@
         private Button btnManageRooms;
         private Panel panel1;
         private Button btnMyProfile;
+        private Label lbWlcm;
+        private Button btnChangePasword;
     }
 }

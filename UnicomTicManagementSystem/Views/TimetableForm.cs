@@ -171,6 +171,20 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnTAdd_Click(object sender, EventArgs e)
         {
+            
+            
+            if (cmbRoomName.Items.Count == 0)
+            {
+                lblNoRoomWarning.Text = "⚠️ No rooms found! Please add rooms in Room Management first.";
+                lblNoRoomWarning.Visible = true;
+                return;
+            }
+
+            else
+            {
+                lblNoRoomWarning.Visible = false;
+                lblNoRoomWarning.Text = "";
+            }
             if (cmbSubject.SelectedIndex == -1 || cmbRoomName.SelectedIndex == -1 || cmbTimeSlot.SelectedIndex == -1)
             {
                 MessageBox.Show("Please fill all fields.");
