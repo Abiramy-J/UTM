@@ -26,6 +26,9 @@ namespace UnicomTicManagementSystem.Views
             LoadTimeSlots();
             LoadTimetable();
             SetupRoleBasedAccess();
+            
+            dgvTimetable.AllowUserToAddRows = false;
+
         }
         private void SetupRoleBasedAccess()
         {
@@ -196,14 +199,15 @@ namespace UnicomTicManagementSystem.Views
 
         private void dgvTimetable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                selectedTimetableId = Convert.ToInt32(dgvTimetable.Rows[e.RowIndex].Cells[0].Value);
-                cmbSubject.Text = dgvTimetable.Rows[e.RowIndex].Cells[1].Value.ToString();
-                cmbRoomName.Text = dgvTimetable.Rows[e.RowIndex].Cells[2].Value.ToString();
-                dtpTTDate.Value = DateTime.Parse(dgvTimetable.Rows[e.RowIndex].Cells[3].Value.ToString());
-                cmbTimeSlot.Text = dgvTimetable.Rows[e.RowIndex].Cells[4].Value.ToString();
-            }
+            if (e.RowIndex < 0) return; // skip invalid clicks
+
+            var row = dgvTimetable.Rows[e.RowIndex];
+
+            selectedTimetableId = Convert.ToInt32(row.Cells[0].Value);
+            cmbSubject.Text = row.Cells[1].Value.ToString();
+            cmbRoomName.Text = row.Cells[2].Value.ToString();
+            dtpTTDate.Value = DateTime.Parse(row.Cells[3].Value.ToString());
+            cmbTimeSlot.Text = row.Cells[4].Value.ToString();
         }
 
         private void btnTUpdate_Click(object sender, EventArgs e)

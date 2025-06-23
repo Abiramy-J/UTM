@@ -166,7 +166,13 @@ namespace UnicomTicManagementSystem.Controllers
             using var conn = DbConfig.GetConnection();
             conn.Open();
 
-            string query = "SELECT * FROM Students WHERE UserID = @uid";
+            string query = @"
+        SELECT s.*, u.Username, u.Password, c.CourseName, c.CourseID
+        FROM Students s
+        JOIN Users u ON s.UserID = u.UserID
+        JOIN Courses c ON s.CourseID = c.CourseID
+        WHERE s.UserID = @uid";
+
             using var cmd = new SQLiteCommand(query, conn);
             cmd.Parameters.AddWithValue("@uid", userId);
 
@@ -177,20 +183,22 @@ namespace UnicomTicManagementSystem.Controllers
                 {
                     StudentID = Convert.ToInt32(reader["StudentID"]),
                     UserID = Convert.ToInt32(reader["UserID"]),
-                    Name = reader["Name"].ToString(),
-                    Address = reader["Address"].ToString(),
-                    Phone = reader["Phone"].ToString(),
-                    Email = reader["Email"].ToString(),
-                    Gender = reader["Gender"].ToString(),
+                    Name = reader["Name"].ToString() ?? string.Empty,
+                    Address = reader["Address"].ToString() ?? string.Empty,
+                    Phone = reader["Phone"].ToString() ?? string.Empty,
+                    Email = reader["Email"].ToString() ?? string.Empty,
+                    Gender = reader["Gender"].ToString() ?? string.Empty,
                     DOB = Convert.ToDateTime(reader["DOB"]),
-                    CourseID = reader["CourseID"].ToString(),
-                    
-                    
+                    CourseID = reader["CourseID"].ToString() ?? string.Empty,
+
+                    Username = reader["Username"].ToString() ?? string.Empty,
+                    Password = reader["Password"].ToString() ?? string.Empty
                 };
             }
 
             return null;
         }
+
 
 
 

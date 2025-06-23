@@ -30,6 +30,8 @@ namespace UnicomTicManagementSystem.Views
         {
             InitializeComponent();
             lblPhoneError.Visible = false;
+            //LoadFormDefaults();
+
         }
         // Overloaded constructor → used for editing an existing student
         public AddStudentForm(Student studentToEdit)
@@ -57,31 +59,23 @@ namespace UnicomTicManagementSystem.Views
             else
             {
                 isEditMode = true;
+                LoadFormDefaults();         // Load defaults for editing
                 LoadStudentDataIntoForm();         // For editing
             }
         }
 
-
-
         private void LoadFormDefaults()
         {
-            // Gender ComboBox
             cmbGender.Items.Clear();
-            cmbGender.Items.Add("-- Select Gender --");
             cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
-            cmbGender.SelectedIndex = 0;
 
-
-            // Course ComboBox
-
+            // Course ComboBox – new clean way
             using var conn = DbConfig.GetConnection();
             conn.Open();
             var cmd = new SQLiteCommand("SELECT CourseID, CourseName FROM Courses", conn);
             using var rdr = cmd.ExecuteReader();
 
-
             var courseList = new List<ComboBoxItem>();
-            courseList.Add(new ComboBoxItem("-- Select Course --", "0"));
             while (rdr.Read())
             {
                 courseList.Add(new ComboBoxItem(
@@ -93,8 +87,6 @@ namespace UnicomTicManagementSystem.Views
             cmbCourse.DisplayMember = "Text";   //  CourseName
             cmbCourse.ValueMember = "Value";    //  CourseID
 
-            cmbCourse.SelectedIndex = 0;
-
             if (courseList.Count == 0)
             {
                 MessageBox.Show("⚠️ No courses found in database. Please create at least one.");
@@ -102,38 +94,20 @@ namespace UnicomTicManagementSystem.Views
         }
 
 
-
         private void LoadStudentDataIntoForm()
         {
             if (editingStudent == null) return;
 
-            // Gender ComboBox - safe selection
+            // Gender
             cmbGender.Items.Clear();
             cmbGender.Items.AddRange(new[] { "Male", "Female", "Other" });
+            cmbGender.SelectedItem = editingStudent.Gender;
 
-            string gender = editingStudent.Gender ?? "";
-            if (cmbGender.Items.Contains(gender))
-                cmbGender.SelectedItem = gender;
-            else
-                cmbGender.SelectedIndex = 0; // default to first item if gender not found
+            // 🎯 ComboBox is already bound with Course list, so just:
+            cmbCourse.SelectedValue = editingStudent.CourseID;
 
-            // Course ComboBox - safe selection
-            bool courseExists = false;
-            foreach (ComboBoxItem item in cmbCourse.Items)
-            {
-                if (item.Value == editingStudent.CourseID)
-                {
-                    courseExists = true;
-                    break;
-                }
-            }
 
-            if (courseExists)
-                cmbCourse.SelectedValue = editingStudent.CourseID;
-            else
-                cmbCourse.SelectedIndex = 0; // default fallback
-
-            // Textboxes
+            // Fill other fields
             txtFullname.Text = editingStudent.Name;
             txtAddress.Text = editingStudent.Address;
             txtMail.Text = editingStudent.Email;
@@ -148,11 +122,11 @@ namespace UnicomTicManagementSystem.Views
             txtPw.UseSystemPasswordChar = false;
         }
 
-
-
         private void AddStudentForm_Load(object sender, EventArgs e)
         {
             LoadFormDefaults();
+            
+            
 
             if (!HasAnyCourses())
             {
@@ -173,7 +147,8 @@ namespace UnicomTicManagementSystem.Views
 
 
                 }
-                LoadFormDefaults(); // Reload courses after adding
+                LoadFormDefaults(); // Reload the form defaults after managing courses
+
 
             }
             if (!isEditMode)
@@ -239,7 +214,7 @@ namespace UnicomTicManagementSystem.Views
         private void btnSave_Click(object sender, EventArgs e)
         {
             bool isValid = true;
-
+           
             // --- Fullname ---
             if (string.IsNullOrWhiteSpace(txtFullname.Text))
             {
@@ -388,19 +363,18 @@ namespace UnicomTicManagementSystem.Views
                     }
                 }
             }
-        
+
 
         private void ClearForm()
         {
+
             txtFullname.Clear();
             txtAddress.Clear();
             txtMail.Clear();
             txtPhoneNo.Clear();
             cmbGender.SelectedIndex = -1;
-            cmbCourse.SelectedIndex = 0;
+            cmbCourse.SelectedIndex = -1;
             dtpDOB.Value = DateTime.Today;
-
-            LoadFormDefaults();
 
             txtUsername.Text = StudentController.GenerateUsername();
             txtPw.Text = StudentController.GeneratePassword();
@@ -408,6 +382,7 @@ namespace UnicomTicManagementSystem.Views
             txtPw.ReadOnly = true;
             txtPw.UseSystemPasswordChar = false;
         }
+
 
 
         private void btnBack_Click(object sender, EventArgs e)
