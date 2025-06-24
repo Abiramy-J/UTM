@@ -212,7 +212,6 @@
             lblNoRoomWarning.Name = "lblNoRoomWarning";
             lblNoRoomWarning.Size = new Size(348, 15);
             lblNoRoomWarning.TabIndex = 33;
-            lblNoRoomWarning.Text = "No rooms found! Please add rooms in Room Management first.";
             lblNoRoomWarning.Visible = false;
             // 
             // TimetableForm

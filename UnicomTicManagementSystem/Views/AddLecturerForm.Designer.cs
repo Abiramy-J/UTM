@@ -188,7 +188,7 @@
             lbLecDeForm.Name = "lbLecDeForm";
             lbLecDeForm.Size = new Size(367, 41);
             lbLecDeForm.TabIndex = 22;
-            lbLecDeForm.Text = "Lecturer Details Form";
+            lbLecDeForm.Text = "Lecturer Details ";
             // 
             // pictureBox1
             // 
@@ -217,7 +217,6 @@
             lblEmailError.Name = "lblEmailError";
             lblEmailError.Size = new Size(224, 15);
             lblEmailError.TabIndex = 36;
-            lblEmailError.Text = "Invalid email address format";
             lblEmailError.Visible = false;
             // 
             // lblPhoneError
@@ -228,7 +227,6 @@
             lblPhoneError.Name = "lblPhoneError";
             lblPhoneError.Size = new Size(224, 15);
             lblPhoneError.TabIndex = 37;
-            lblPhoneError.Text = "Phone must start with 07 and be 10 digits";
             lblPhoneError.Visible = false;
             // 
             // AddLecturerForm

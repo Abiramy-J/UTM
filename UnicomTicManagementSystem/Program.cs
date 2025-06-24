@@ -23,10 +23,7 @@ namespace UnicomTicManagementSystem
             {
                 conn.Open();
 
-                // Seed default courses and subjects if empty
-                //SystemDefaults.SeedDefaultCoursesAndSubjects(conn);
-
-                //// Check if any admin user exists
+                // Check if any admin user exists
                 string checkAdminQuery = "SELECT COUNT(*) FROM Users WHERE Role = 'Admin'";
                 using var cmd = new SQLiteCommand(checkAdminQuery, conn);
                 long adminCount = (long)cmd.ExecuteScalar();

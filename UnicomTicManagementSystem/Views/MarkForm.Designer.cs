@@ -192,7 +192,6 @@
             lblNoExamWarning.Name = "lblNoExamWarning";
             lblNoExamWarning.Size = new Size(157, 39);
             lblNoExamWarning.TabIndex = 32;
-            lblNoExamWarning.Text = "No exams available. Please create an exam first";
             lblNoExamWarning.Visible = false;
             lblNoExamWarning.Click += lblNoExamWarning_Click;
             // 

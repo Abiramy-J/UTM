@@ -36,29 +36,7 @@ namespace UnicomTicManagementSystem.Controllers
                 return result > 0;
             }
         }
-        public static List<User> GetAllAdmins()
-        {
-            var admins = new List<User>();
-            using var conn = DbConfig.GetConnection();
-            conn.Open();
-
-            string query = "SELECT UserID, Username , Password FROM Users WHERE Role = 'Admin'";
-            using var cmd = new SQLiteCommand(query, conn);
-            using var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                admins.Add(new User
-                {
-                    UserId = Convert.ToInt32(reader["UserID"]),
-                    Username = reader["Username"].ToString() ?? string.Empty,
-                    Password = reader["Password"].ToString() ?? string.Empty
-                });
-            }
-
-            return admins;
-        }
-
+        
         public static User Login(string username, string password)
         {
             using var conn = DbConfig.GetConnection();
@@ -82,6 +60,29 @@ namespace UnicomTicManagementSystem.Controllers
             }
 
             return null; // login failed
+        }
+        
+        public static List<User> GetAllAdmins()
+        {
+            var admins = new List<User>();
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+
+            string query = "SELECT UserID, Username , Password FROM Users WHERE Role = 'Admin'";
+            using var cmd = new SQLiteCommand(query, conn);
+            using var reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                admins.Add(new User
+                {
+                    UserId = Convert.ToInt32(reader["UserID"]),
+                    Username = reader["Username"].ToString() ?? string.Empty,
+                    Password = reader["Password"].ToString() ?? string.Empty
+                });
+            }
+
+            return admins;
         }
         public static bool ChangePassword(string username, string oldPassword, string newPassword)
         {
@@ -109,9 +110,6 @@ namespace UnicomTicManagementSystem.Controllers
 
             return false; // old password incorrect or user not found
         }
-        
-      
-            
 
         public static bool UsernameExists(string username)
         {

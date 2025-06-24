@@ -125,9 +125,7 @@ namespace UnicomTicManagementSystem.Views
         private void AddStudentForm_Load(object sender, EventArgs e)
         {
             LoadFormDefaults();
-            
-            
-
+            //if there is No Course Found Redirecting you to Manage Courses & subject  to add course and subject       
             if (!HasAnyCourses())
             {
                 MessageBox.Show("No courses found! Redirecting you to Manage Courses to add some.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);

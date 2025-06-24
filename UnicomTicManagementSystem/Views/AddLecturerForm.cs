@@ -88,6 +88,17 @@ namespace UnicomTicManagementSystem.Views
 
 
         }
+
+        private bool HasAnySubjects()
+        {
+            using var conn = DbConfig.GetConnection();
+            conn.Open();
+            string query = "SELECT COUNT(*) FROM Subjects";
+            using var cmd = new SQLiteCommand(query, conn);
+            long count = (long)cmd.ExecuteScalar();
+            return count > 0;
+        }
+
         private void LecturerData()
         {
             if (editingLecturer == null) return;
@@ -222,15 +233,6 @@ namespace UnicomTicManagementSystem.Views
             }
         }
 
-        private bool HasAnySubjects()
-        {
-            using var conn = DbConfig.GetConnection();
-            conn.Open();
-            string query = "SELECT COUNT(*) FROM Subjects";
-            using var cmd = new SQLiteCommand(query, conn);
-            long count = (long)cmd.ExecuteScalar();
-            return count > 0;
-        }
 
         private void LoadLecturerData()
         {

@@ -36,7 +36,6 @@
             labelCourse = new Label();
             lbManageSubject = new Label();
             panelCourse = new Panel();
-            lblSubjectError = new Label();
             lblCourseError = new Label();
             btnCUpdate = new Button();
             btnCDelete = new Button();
@@ -46,6 +45,7 @@
             lbCourseID = new Label();
             txtCourseID = new TextBox();
             txtCourseName = new TextBox();
+            lblSubjectError = new Label();
             panelSubject = new Panel();
             btnSDelete = new Button();
             btnSUpdate = new Button();
@@ -156,17 +156,6 @@
             panelCourse.Size = new Size(464, 433);
             panelCourse.TabIndex = 2;
             // 
-            // lblSubjectError
-            // 
-            lblSubjectError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSubjectError.ForeColor = Color.Red;
-            lblSubjectError.Location = new Point(221, 101);
-            lblSubjectError.Name = "lblSubjectError";
-            lblSubjectError.Size = new Size(126, 15);
-            lblSubjectError.TabIndex = 38;
-            lblSubjectError.Text = "Subject already exists!";
-            lblSubjectError.Visible = false;
-            // 
             // lblCourseError
             // 
             lblCourseError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -175,7 +164,6 @@
             lblCourseError.Name = "lblCourseError";
             lblCourseError.Size = new Size(126, 15);
             lblCourseError.TabIndex = 37;
-            lblCourseError.Text = "Course already exists!";
             lblCourseError.Visible = false;
             // 
             // btnCUpdate
@@ -258,6 +246,16 @@
             txtCourseName.Name = "txtCourseName";
             txtCourseName.Size = new Size(228, 23);
             txtCourseName.TabIndex = 10;
+            // 
+            // lblSubjectError
+            // 
+            lblSubjectError.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubjectError.ForeColor = Color.Red;
+            lblSubjectError.Location = new Point(221, 101);
+            lblSubjectError.Name = "lblSubjectError";
+            lblSubjectError.Size = new Size(126, 15);
+            lblSubjectError.TabIndex = 38;
+            lblSubjectError.Visible = false;
             // 
             // panelSubject
             // 

@@ -95,6 +95,7 @@ namespace UnicomTicManagementSystem.Controllers
             long count = (long)cmd.ExecuteScalar();
             return count > 0;
         }
+        // Method to get all marks for the logged-in student
         public static List<Mark> GetMarksForLoggedInStudent()
         {
             var marks = new List<Mark>();

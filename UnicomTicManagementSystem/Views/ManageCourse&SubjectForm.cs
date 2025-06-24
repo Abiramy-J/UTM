@@ -208,7 +208,7 @@ namespace UnicomTicManagementSystem.Views
             }
             string subjectName = txtSubjectName.Text.Trim();
 
-            if (SubjectController.IsSubjectExists(subjectName))
+            /*if (SubjectController.IsSubjectExists(subjectName))
             {
                 lblSubjectError.Text = "Subject already exists.";
                 lblSubjectError.Visible = true;
@@ -218,7 +218,7 @@ namespace UnicomTicManagementSystem.Views
             // 3. All good – hide error, prepare model and save
             lblSubjectError.Visible = false;
 
-
+            */
 
             var subject = new Subject
             {

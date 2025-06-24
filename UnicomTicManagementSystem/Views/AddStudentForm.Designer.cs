@@ -230,9 +230,9 @@
             label1.ForeColor = Color.Navy;
             label1.Location = new Point(297, 39);
             label1.Name = "label1";
-            label1.Size = new Size(259, 32);
+            label1.Size = new Size(200, 32);
             label1.TabIndex = 21;
-            label1.Text = "Student Details Form";
+            label1.Text = "Student Details ";
             // 
             // pictureBox1
             // 
@@ -264,7 +264,6 @@
             lblPhoneError.Name = "lblPhoneError";
             lblPhoneError.Size = new Size(224, 15);
             lblPhoneError.TabIndex = 24;
-            lblPhoneError.Text = "Phone must start with 07 and be 10 digits";
             lblPhoneError.Visible = false;
             lblPhoneError.TextChanged += lblPhoneError_TextChanged;
             // 
@@ -276,7 +275,6 @@
             lblEmailError.Name = "lblEmailError";
             lblEmailError.Size = new Size(224, 15);
             lblEmailError.TabIndex = 25;
-            lblEmailError.Text = "Invalid email address format";
             lblEmailError.Visible = false;
             // 
             // lblDOBError
@@ -287,7 +285,6 @@
             lblDOBError.Name = "lblDOBError";
             lblDOBError.Size = new Size(224, 15);
             lblDOBError.TabIndex = 26;
-            lblDOBError.Text = "Student must be at least 17 years old";
             lblDOBError.Visible = false;
             // 
             // IbFullNameError
@@ -307,7 +304,6 @@
             lb1GenderError.Name = "lb1GenderError";
             lb1GenderError.Size = new Size(224, 15);
             lb1GenderError.TabIndex = 29;
-            lb1GenderError.Text = "Please select a gender";
             lb1GenderError.Visible = false;
             // 
             // lblCourseError
@@ -318,7 +314,6 @@
             lblCourseError.Name = "lblCourseError";
             lblCourseError.Size = new Size(224, 15);
             lblCourseError.TabIndex = 30;
-            lblCourseError.Text = "Please select a valid course";
             lblCourseError.Visible = false;
             // 
             // lblFullnameError
@@ -329,7 +324,6 @@
             lblFullnameError.Name = "lblFullnameError";
             lblFullnameError.Size = new Size(224, 15);
             lblFullnameError.TabIndex = 31;
-            lblFullnameError.Text = "Full name is required";
             lblFullnameError.Visible = false;
             // 
             // lblAddressError
@@ -340,7 +334,6 @@
             lblAddressError.Name = "lblAddressError";
             lblAddressError.Size = new Size(224, 15);
             lblAddressError.TabIndex = 32;
-            lblAddressError.Text = "Address  is required";
             lblAddressError.Visible = false;
             // 
             // AddStudentForm

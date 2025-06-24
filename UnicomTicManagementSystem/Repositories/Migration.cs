@@ -124,8 +124,8 @@ namespace UnicomTicManagementSystem.Repositories
                 Email TEXT,
                 Phone TEXT,
                 UserID INTEGER,
-                FOREIGN KEY (UserID) REFERENCES Users(UserID),
-                FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+                FOREIGN KEY (UserID) REFERENCES Users(UserID)
+                
             );",
             // 11. LecturerSubjects Table
             @"CREATE TABLE IF NOT EXISTS LecturerSubjects (

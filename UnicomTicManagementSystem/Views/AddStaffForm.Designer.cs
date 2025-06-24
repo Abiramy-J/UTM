@@ -180,7 +180,7 @@
             label3.Name = "label3";
             label3.Size = new Size(236, 38);
             label3.TabIndex = 14;
-            label3.Text = "Staff Details Form";
+            label3.Text = "Staff Details ";
             // 
             // pictureBox1
             // 
@@ -200,7 +200,6 @@
             lblFullnameError.Name = "lblFullnameError";
             lblFullnameError.Size = new Size(224, 15);
             lblFullnameError.TabIndex = 32;
-            lblFullnameError.Text = "Full name is required";
             lblFullnameError.Visible = false;
             // 
             // lblAddressError
@@ -211,7 +210,6 @@
             lblAddressError.Name = "lblAddressError";
             lblAddressError.Size = new Size(224, 15);
             lblAddressError.TabIndex = 33;
-            lblAddressError.Text = "Address  is required";
             lblAddressError.Visible = false;
             // 
             // lblPhoneError
@@ -222,7 +220,6 @@
             lblPhoneError.Name = "lblPhoneError";
             lblPhoneError.Size = new Size(224, 15);
             lblPhoneError.TabIndex = 34;
-            lblPhoneError.Text = "Phone must start with 07 and be 10 digits";
             lblPhoneError.Visible = false;
             // 
             // lblEmailError
@@ -233,7 +230,6 @@
             lblEmailError.Name = "lblEmailError";
             lblEmailError.Size = new Size(224, 15);
             lblEmailError.TabIndex = 35;
-            lblEmailError.Text = "Invalid email address format";
             lblEmailError.Visible = false;
             // 
             // AddStaffForm

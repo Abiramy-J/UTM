@@ -104,7 +104,7 @@ namespace UnicomTicManagementSystem.Views
             btnManageMarks.Visible = false;
             btnManageTimetable.Visible = false;
 
-            //  Then show + rename based on role
+            //  show + rename based on role
             if (userRole == "Admin")
             {
                 btnCreateUsers.Visible = true;
@@ -217,7 +217,7 @@ namespace UnicomTicManagementSystem.Views
 
             }
         }
-
+        //Logged in user can see there details in readonlymode form
         private void btnMyProfile_Click(object sender, EventArgs e)
         {
             string role = AppSession.Role;
