@@ -51,6 +51,8 @@ namespace UnicomTicManagementSystem.Views
 
         private void btnCAdd_Click(object sender, EventArgs e)
         {
+            lblCourseError.Visible = false;
+            lblCourseError.Text = "";
             // Validate course name
             if (string.IsNullOrWhiteSpace(txtCourseName.Text))
             {
@@ -65,9 +67,6 @@ namespace UnicomTicManagementSystem.Views
                 lblCourseError.Visible = true;
                 return;
             }
-
-            // 3. All good – hide error, prepare model and save
-            lblSubjectError.Visible = false;
 
             // Create a course object
             var course = new Course
