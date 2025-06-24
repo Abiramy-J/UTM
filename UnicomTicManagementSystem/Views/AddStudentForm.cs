@@ -86,6 +86,8 @@ namespace UnicomTicManagementSystem.Views
             cmbCourse.DataSource = courseList;
             cmbCourse.DisplayMember = "Text";   //  CourseName
             cmbCourse.ValueMember = "Value";    //  CourseID
+            cmbCourse.SelectedIndex = -1;
+
 
             if (courseList.Count == 0)
             {
@@ -104,7 +106,7 @@ namespace UnicomTicManagementSystem.Views
             cmbGender.SelectedItem = editingStudent.Gender;
 
             // 🎯 ComboBox is already bound with Course list, so just:
-            cmbCourse.SelectedValue = editingStudent.CourseID;
+            cmbCourse.SelectedValue = editingStudent.CourseID.ToString();
 
 
             // Fill other fields
@@ -269,7 +271,7 @@ namespace UnicomTicManagementSystem.Views
             }
 
             // --- Gender ---
-            if (cmbGender.SelectedIndex == 0 || string.IsNullOrWhiteSpace(cmbGender.Text))
+            if (cmbGender.SelectedIndex == -1 || string.IsNullOrWhiteSpace(cmbGender.Text))
             {
                 lb1GenderError.Text = "Please select a gender.";
                 lb1GenderError.Visible = true;

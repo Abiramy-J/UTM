@@ -51,7 +51,7 @@ namespace UnicomTicManagementSystem.Views
             dgvTimetable.Visible = true;
             btnTBack.Visible = true;
 
-            if (userRole == "Admin" || userRole == "Staff")
+            if (userRole == "Admin")
             {
                 // Full access
                 IbDate.Visible = true;
@@ -68,7 +68,7 @@ namespace UnicomTicManagementSystem.Views
                 btnTUpdate.Visible = true;
                 btnTDelete.Visible = true;
             }
-            else if (userRole == "Lecturer")
+            else if (userRole == "Lecturer" || userRole == "Staff")
             {
                 // View-only
                 dgvTimetable.Visible = true;

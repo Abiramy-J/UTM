@@ -212,7 +212,7 @@
             labelMP.Name = "labelMP";
             labelMP.Size = new Size(271, 47);
             labelMP.TabIndex = 34;
-            labelMP.Text = "Mark Allocation Panel";
+            labelMP.Text = "Mark Allocations";
             // 
             // pictureBox1
             // 

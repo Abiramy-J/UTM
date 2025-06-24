@@ -42,7 +42,7 @@ namespace UnicomTicManagementSystem.Views
         {
             txtUsername.Text = StaffController.GenerateUsername();
             txtPassword.Text = StaffController.GeneratePassword();
-            txtPassword.UseSystemPasswordChar = false; // Optional: hides password like ●●●
+            txtPassword.UseSystemPasswordChar = false; 
         }
 
         private void LoadStaffDataIntoForm()
@@ -189,7 +189,7 @@ namespace UnicomTicManagementSystem.Views
            
             txtUsername.Text = editingStaff.username;
             txtPassword.Text = editingStaff.password;
-            txtPassword.UseSystemPasswordChar = true;
+            txtPassword.UseSystemPasswordChar = false;
         }
 
 

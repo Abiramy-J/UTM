@@ -22,6 +22,8 @@ namespace UnicomTicManagementSystem.Views
             InitializeComponent();
             LoadRoomTypes();
             LoadRoomList();
+            dgvRooms.AllowUserToAddRows = false;
+            // Disable adding new rows directly in DataGridView
         }
         private void LoadRoomTypes()
         {
@@ -132,12 +134,12 @@ namespace UnicomTicManagementSystem.Views
 
         private void dgvRooms_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                selectedRoomID = Convert.ToInt32(dgvRooms.Rows[e.RowIndex].Cells[0].Value);
-                txtRoomName.Text = dgvRooms.Rows[e.RowIndex].Cells[1].Value.ToString();
-                cmbRoomType.Text = dgvRooms.Rows[e.RowIndex].Cells[2].Value.ToString();
-            }
+            if (e.RowIndex < 0 || dgvRooms.Rows[e.RowIndex].IsNewRow)
+                return;  // Ignore clicks on headers or new blank row
+
+            selectedRoomID = Convert.ToInt32(dgvRooms.Rows[e.RowIndex].Cells[0].Value);
+            txtRoomName.Text = dgvRooms.Rows[e.RowIndex].Cells[1].Value.ToString();
+            cmbRoomType.Text = dgvRooms.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
         private void ClearForm()
         {

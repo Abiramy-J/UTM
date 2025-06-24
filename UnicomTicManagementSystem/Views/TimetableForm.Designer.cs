@@ -192,7 +192,7 @@
             labelMLect.Name = "labelMLect";
             labelMLect.Size = new Size(271, 47);
             labelMLect.TabIndex = 27;
-            labelMLect.Text = "Timetable Management";
+            labelMLect.Text = "Timetable Pannel";
             // 
             // pictureBox1
             // 
